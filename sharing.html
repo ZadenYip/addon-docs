@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light sidebar-visible" dir="ltr">
+<html lang="zh" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Sharing Add-ons - Writing Anki Add-ons</title>
+        <title>Sharing Add-ons - 编写 Anki 插件</title>
 
 
         <!-- Custom HTML head -->
@@ -134,7 +134,7 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">Writing Anki Add-ons</h1>
+                    <h1 class="menu-title">编写 Anki 插件</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -169,47 +169,48 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="sharing-add-ons"><a class="header" href="#sharing-add-ons">Sharing Add-ons</a></h1>
+                        <h1 id="sharing-add-ons分享插件"><a class="header" href="#sharing-add-ons分享插件">Sharing Add-ons（分享插件）</a></h1>
 <ul>
-<li><a href="#sharing-via-ankiweb">Sharing via AnkiWeb</a></li>
-<li><a href="#sharing-outside-ankiweb">Sharing outside AnkiWeb</a></li>
+<li><a href="#sharing-via-ankiweb%E9%80%9A%E8%BF%87-ankiweb-%E5%88%86%E4%BA%AB">Sharing via AnkiWeb（通过 AnkiWeb 分享）</a></li>
+<li><a href="#sharing-outside-ankiweb%E5%9C%A8-ankiweb-%E5%B9%B3%E5%8F%B0%E4%B9%8B%E5%A4%96%E5%88%86%E4%BA%AB">Sharing outside AnkiWeb（在 AnkiWeb 平台之外分享）</a></li>
 </ul>
-<h2 id="sharing-via-ankiweb"><a class="header" href="#sharing-via-ankiweb">Sharing via AnkiWeb</a></h2>
-<p>You can package up an add-on for distribution by zipping it up, and
-giving it a name ending in .ankiaddon.</p>
-<p>The top level folder should not be included in the zip file. For
-example, if you have a module like the following:</p>
+<h2 id="sharing-via-ankiweb通过-ankiweb-分享"><a class="header" href="#sharing-via-ankiweb通过-ankiweb-分享">Sharing via AnkiWeb（通过 AnkiWeb 分享）</a></h2>
+<p>You can package up an add-on for distribution by zipping it up, and giving it a name ending in .ankiaddon.
+你可以将插件打包成一个以「.ankiaddon」为后缀的 zip 压缩文件，以便分发。</p>
+<p>The top level folder should not be included in the zip file. For example, if you have a module like the following:
+打包时，请确保压缩文件的根目录直接包含插件文件，而不是将它们放在一个顶层文件夹内。例如，如果你的插件模块结构如下：</p>
 <pre><code>addons21/myaddon/__init__.py
 addons21/myaddon/my.data
 </code></pre>
-<p>Then the zip file contents should be:</p>
+<p>Then the zip file contents should be:
+那么，zip 压缩文件的内容应直接是：</p>
 <pre><code>__init__.py
 my.data
 </code></pre>
-<p>If you include the folder name in the zip like the following, AnkiWeb
-will not accept the zip file:</p>
+<p>If you include the folder name in the zip like the following, AnkiWeb will not accept the zip file:
+如果你在压缩文件中包含了 <strong>myaddon</strong> 这个顶层文件夹，如下所示，AnkiWeb 将会拒绝接收该文件：</p>
 <pre><code>myaddon/__init__.py
 myaddon/my.data
 </code></pre>
-<p>On Unix-based machines, you can create a properly-formed file with the
-following command:</p>
+<p>On Unix-based machines, you can create a properly-formed file with the following command:
+在类 Unix 系统（如 macOS 或 Linux）上，你可以使用以下命令来创建一个符合规范的压缩文件：</p>
 <pre><code>$ cd myaddon &amp;&amp; zip -r ../myaddon.ankiaddon *
 </code></pre>
-<p>Python automatically creates <code>pycache</code> folders when your add-on is run.
-Please make sure you delete these prior to creating the zip file, as
-AnkiWeb can not accept zip files that contain <code>pycache</code> folders.</p>
-<p>Once you’ve created a .ankiaddon file, you can use the Upload button on
-<a href="https://ankiweb.net/shared/addons/">https://ankiweb.net/shared/addons/</a> to share the add-on with others.</p>
-<h2 id="sharing-outside-ankiweb"><a class="header" href="#sharing-outside-ankiweb">Sharing outside AnkiWeb</a></h2>
-<p>If you wish to distribute .ankiaddon files outside of AnkiWeb, your
-add-on folder needs to contain a 'manifest.json' file. The file should
-contain at least two keys: 'package' specifies the folder name the
-add-on will be stored in, and 'name' specifies the name that will be
-shown to the user. You can optionally include a 'conflicts' key which is
-a list of other packages that conflict with the add-on, and a 'mod' key
-which specifies when the add-on was updated.</p>
+<p>Python automatically creates <code>pycache</code> folders when your add-on is run. Please make sure you delete these prior to creating the zip file, as AnkiWeb can not accept zip files that contain <code>pycache</code> folders.
+另外，当你的插件运行时，Python 会自动生成 <code>pycache</code> 文件夹。在创建 zip 文件之前，请务必删除这些缓存文件夹，因为 AnkiWeb 不接受含有 <code>pycache</code> 文件夹的压缩包。</p>
+<p>Once you’ve created a .ankiaddon file, you can use the Upload button on <a href="https://ankiweb.net/shared/addons/">https://ankiweb.net/shared/addons/</a> to share the add-on with others.
+创建好「.ankiaddon」文件后，你就可以访问 <a href="https://ankiweb.net/shared/addons/">https://ankiweb.net/shared/addons/</a>，点击「上传」按钮，将你的插件分享给其他人。</p>
+<h2 id="sharing-outside-ankiweb在-ankiweb-平台之外分享"><a class="header" href="#sharing-outside-ankiweb在-ankiweb-平台之外分享">Sharing outside AnkiWeb（在 AnkiWeb 平台之外分享）</a></h2>
+<p>If you wish to distribute .ankiaddon files outside of AnkiWeb, your add-on folder needs to contain a 'manifest.json' file. The file should contain at least two keys: 'package' specifies the folder name the add-on will be stored in, and 'name' specifies the name that will be shown to the user. You can optionally include a 'conflicts' key which is a list of other packages that conflict with the add-on, and a 'mod' key which specifies when the add-on was updated.
+如果你希望在 AnkiWeb 平台之外分发「.ankiaddon」文件，你的插件文件夹中必须包含一个名为「manifest.json」的配置文件。该文件至少需要包含两个键：「package」用于指定插件安装后在 <code>addons21</code> 目录中的文件夹名称，「name」则指定了在插件列表中向用户显示的名称。</p>
+<p>此外，你还可以选择性地添加以下键：</p>
+<ul>
+<li>「conflicts」：一个 list，包含与此插件不兼容（或冲突）的其他插件包的名称。</li>
+<li>「mod」：一个时间戳，用于记录插件的最后更新时间。</li>
+</ul>
 <p>When Anki downloads add-ons from AnkiWeb, only the conflicts key is used
-from the manifest.</p>
+from the manifest.
+需要注意的是，当 Anki 从 AnkiWeb 下载插件时，它只会读取并使用「manifest.json」文件中的「conflicts」键。</p>
 
                     </main>
 

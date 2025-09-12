@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light sidebar-visible" dir="ltr">
+<html lang="zh" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Reviewer Javascript - Writing Anki Add-ons</title>
+        <title>Reviewer Javascript - 编写 Anki 插件</title>
 
 
         <!-- Custom HTML head -->
@@ -134,7 +134,7 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">Writing Anki Add-ons</h1>
+                    <h1 class="menu-title">编写 Anki 插件</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -169,13 +169,13 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="reviewer-javascript"><a class="header" href="#reviewer-javascript">Reviewer Javascript</a></h1>
-<p>For a general solution not specific to card review, see
-<a href="hooks-and-filters.html#webview">the webview section</a>.</p>
-<p>Anki provides a hook to modify the question and answer HTML before it is
-displayed in the review screen, preview dialog, and card layout screen.
-This can be useful for adding Javascript to the card. If you wish to load external resources in your card, please see <a href="hooks-and-filters.html#managing-external-resources-in-webviews">managing external resources in webviews</a>.</p>
-<p>An example:</p>
+                        <h1 id="reviewer-javascript复习器中的-javascript"><a class="header" href="#reviewer-javascript复习器中的-javascript">Reviewer Javascript（复习器中的 Javascript）</a></h1>
+<p>For a general solution not specific to card review, see <a href="hooks-and-filters.html#webview">the webview section</a>.
+若需了解非针对卡片复习的通用解决方案，请参阅<a href="hooks-and-filters.html#webview">网页视图（webview）章节</a>。</p>
+<p>Anki provides a hook to modify the question and answer HTML before it is displayed in the review screen, preview dialog, and card layout screen. This can be useful for adding Javascript to the card. If you wish to load external resources in your card, please see <a href="hooks-and-filters.html#managing-external-resources-in-webviews">managing external resources in webviews</a>.
+Anki 提供了一个 Hook，允许在问题和答案的 HTML 内容显示于复习屏幕、预览对话框和卡片布局屏幕之前，对其进行修改。这个功能对于向卡片中添加 Javascript 非常有用。如果您希望在卡片中加载外部资源，请参阅<a href="hooks-and-filters.html#managing-external-resources-in-webviews">在网页视图中管理外部资源</a>。</p>
+<p>An example:
+示例如下：</p>
 <pre><code class="language-python">from aqt import gui_hooks
 def prepare(html, card, context):
     return html + """
@@ -184,20 +184,18 @@ document.body.style.background = "blue";
 &lt;/script&gt;"""
 gui_hooks.card_will_show.append(prepare)
 </code></pre>
-<p>The hook takes three arguments: the HTML of the question or answer, the
-current card object (so you can limit your add-on to specific note types
-for example), and a string representing the context the hook is running
-in.</p>
-<p>Make sure you return the modified HTML.</p>
-<p>Context is one of: "reviewQuestion", "reviewAnswer", "clayoutQuestion",
-"clayoutAnswer", "previewQuestion" or "previewAnswer".</p>
-<p>The answer preview in the card layout screen, and the previewer set to
-"show both sides" will only use the "Answer" context. This means
-Javascript you append on the back side of the card should not depend on
-Javascript that is only added on the front.</p>
-<p>Because Anki fades the previous text out before revealing the new text,
-Javascript hooks are required to perform actions like scrolling at the
-correct time. You can use them like so:</p>
+<p>The hook takes three arguments: the HTML of the question or answer, the current card object (so you can limit your add-on to specific note types for example), and a string representing the context the hook is running
+in.
+该 Hook 接受三个参数： 问题或答案的 HTML。当前的kap 对象，（您可以据此将插件功能限定在特定的笔记类型上）和一个表示当前 Hook 运行环境的上下文字符串。</p>
+<p>Make sure you return the modified HTML.
+请确保您的函数返回修改后的 HTML。</p>
+<p>Context is one of: "reviewQuestion", "reviewAnswer", "clayoutQuestion","clayoutAnswer", "previewQuestion" or "previewAnswer".
+上下文的取值包括：「reviewQuestion」、「reviewAnswer」、「clayoutQuestion」、「clayoutAnswer」、「previewQuestion」或「previewAnswer」。</p>
+<p>The answer preview in the card layout screen, and the previewer set to "show both sides" will only use the "Answer" context. This means
+Javascript you append on the back side of the card should not depend on Javascript that is only added on the front.
+在卡片布局屏幕的答案预览模式，以及设置为「显示双面」的预览器中，将只会触发与「答案」相关的上下文。这意味着，您附加在卡片背面的 Javascript 代码，不应该依赖于那些仅添加在正面的 Javascript 代码。</p>
+<p>Because Anki fades the previous text out before revealing the new text, Javascript hooks are required to perform actions like scrolling at the correct time. You can use them like so:
+由于 Anki 在显示新内容前会先将旧内容淡出，因此需要使用 Javascript Hook来确保在恰当的时机执行滚动等操作。你可以这样使用：</p>
 <pre><code class="language-python">from aqt import gui_hooks
 def prepare(html, card, context):
     return html + """
@@ -209,15 +207,13 @@ onUpdateHook.push(function () {
 gui_hooks.card_will_show.append(prepare)
 </code></pre>
 <ul>
-<li>
-<p>onUpdateHook fires after the new card has been placed in the DOM,
-but before it is shown.</p>
-</li>
-<li>
-<p>onShownHook fires after the card has faded in.</p>
-</li>
+<li>onUpdateHook fires after the new card has been placed in the DOM, but before it is shown.</li>
+<li>onShownHook fires after the card has faded in.</li>
+<li>onUpdateHook：在新卡片内容加载到 DOM 后、<strong>显示前</strong>触发。</li>
+<li>onShownHook：在卡片内容完全淡入<strong>显示后</strong>触发。</li>
 </ul>
-<p>The hooks are reset each time the question or answer is shown.</p>
+<p>The hooks are reset each time the question or answer is shown.
+每次显示问题或答案时，这些 Hook 都会被重置。</p>
 
                     </main>
 

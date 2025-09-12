@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light sidebar-visible" dir="ltr">
+<html lang="zh" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Hooks and Filters - Writing Anki Add-ons</title>
+        <title>Hooks and Filters - 编写 Anki 插件</title>
 
 
         <!-- Custom HTML head -->
@@ -134,7 +134,7 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">Writing Anki Add-ons</h1>
+                    <h1 class="menu-title">编写 Anki 插件</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -169,49 +169,46 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="hooks--filters"><a class="header" href="#hooks--filters">Hooks &amp; Filters</a></h1>
+                        <h1 id="hooks--filtershook-与过滤器"><a class="header" href="#hooks--filtershook-与过滤器">Hooks &amp; Filters（Hook 与过滤器）</a></h1>
 <ul>
-<li><a href="#new-style-hooks">New Style Hooks</a></li>
-<li><a href="#notable-hooks">Notable Hooks</a>
+<li><a href="#new-style-hooks%E6%96%B0%E5%BC%8F-hook">New Style Hooks（新式 Hook）</a></li>
+<li><a href="#notable-hooks%E9%87%8D%E8%A6%81-hook">Notable Hooks（重要 Hook）</a>
 <ul>
-<li><a href="#webview">Webview</a>
+<li><a href="#webview%E7%BD%91%E9%A1%B5%E8%A7%86%E5%9B%BE">Webview（网页视图）</a>
 <ul>
-<li><a href="#managing-external-resources-in-webviews">Managing External Resources in Webviews</a></li>
+<li><a href="#managing-external-resources-in-webviews%E5%9C%A8-webview-%E4%B8%AD%E7%AE%A1%E7%90%86%E5%A4%96%E9%83%A8%E8%B5%84%E6%BA%90">Managing External Resources in Webviews（在 Webview 中管理外部资源）</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#legacy-hook-handling">Legacy Hook Handling</a></li>
-<li><a href="#adding-hooks">Adding Hooks</a></li>
+<li><a href="#legacy-hook-handling%E6%97%A7%E5%BC%8F-hook">Legacy Hook Handling（旧式 Hook）</a></li>
+<li><a href="#adding-hooks%E6%B7%BB%E5%8A%A0-hook">Adding Hooks（添加 Hook）</a></li>
 </ul>
 <p>Hooks are the way you should connect your add-on code to Anki. If the
 function you want to alter doesn’t already have a hook, please see the
-section below about adding new hooks.</p>
+section below about adding new hooks.
+Hooks 是你将插件代码与 Anki 连接的首选方式。如果您想修改的函数尚未提供 Hook，请参阅下文关于添加新 Hook 的章节。</p>
 <p>There are two different kinds of "hooks":</p>
 <ul>
-<li>
-<p>Regular hooks are functions that don’t return anything. They are run
-for their side effects, and may sometimes alter the objects they
-have been passed, such as inserting an extra item in a list.</p>
-</li>
-<li>
-<p>"Filters" are functions that return their first argument, after
-maybe changing it. An example filter is one that takes the text of a
-field during card display, and returns an altered version.</p>
-</li>
+<li>Regular hooks are functions that don’t return anything. They are run for their side effects, and may sometimes alter the objects they have been passed, such as inserting an extra item in a list.</li>
+<li>"Filters" are functions that return their first argument, after maybe changing it. An example filter is one that takes the text of a field during card display, and returns an altered version.</li>
 </ul>
-<p>The distinction is necessary because some data types in Python can be
-modified directly, and others can only be modified by creating a changed
-copy (such as strings).</p>
-<h2 id="new-style-hooks"><a class="header" href="#new-style-hooks">New Style Hooks</a></h2>
-<p>A new style of hook was added in Anki 2.1.20.</p>
-<p>Imagine you wish to show a message each time the front side of a card is
-shown in the review screen. You’ve looked at the source code in
-reviewer.py, and seen the following line in the showQuestion() function:</p>
+<p>“Hook”主要有两种类型：</p>
+<ul>
+<li>常规 Hook，这类函数没有返回值。它们因其“副作用”（side effects）而被执行，有时可能会修改传递给它们的对象，例如向一个 list 中插入一个额外的 item。</li>
+<li>过滤器，这类函数会返回其接收的第一个参数，但可能在返回前对其进行修改。一个典型的例子是，在显示卡片时，过滤器可以获取字段中的文本，并返回一个修改后的版本。</li>
+</ul>
+<p>The distinction is necessary because some data types in Python can be modified directly, and others can only be modified by creating a changed copy (such as strings).
+之所以需要这种区分，是因为在 Python 中，某些数据类型（如 list）是<strong>可变的</strong>，可以直接修改；而其他数据类型（如字符串）是<strong>不可变的</strong>，只能通过创建一个修改后的副本来进行更改。</p>
+<h2 id="new-style-hooks新式-hook"><a class="header" href="#new-style-hooks新式-hook">New Style Hooks（新式 Hook）</a></h2>
+<p>A new style of hook was added in Anki 2.1.20.
+Anki 2.1.20 版本引入了一种新式的 Hook。</p>
+<p>Imagine you wish to show a message each time the front side of a card is shown in the review screen. You’ve looked at the source code in reviewer.py, and seen the following line in the showQuestion() function:
+假设你希望每当在复习界面显示卡片正面时，都弹出一则消息。通过查看 <code>reviewer.py</code> 的源代码，您会在 <code>showQuestion()</code> 函数中发现这样一行代码：</p>
 <pre><code class="language-python">gui_hooks.reviewer_did_show_question(card)
 </code></pre>
-<p>To register a function to be called when this hook is run, you can do
-the following in your add-on:</p>
+<p>To register a function to be called when this hook is run, you can do the following in your add-on:
+为了在该 Hook 触发时调用您自己的函数，您可以在插件中添加如下代码：</p>
 <pre><code class="language-python">from aqt import gui_hooks
 
 def myfunc(card):
@@ -219,55 +216,64 @@ def myfunc(card):
 
 gui_hooks.reviewer_did_show_question.append(myfunc)
 </code></pre>
-<p>Multiple add-ons can register for the same hook or filter - they will
-all be called in turn.</p>
-<p>To remove a hook, use code like:</p>
+<p>Multiple add-ons can register for the same hook or filter - they will all be called in turn.
+多个插件可以注册同一个 Hook 或过滤器，Anki 会依次调用所有注册的函数。</p>
+<p>To remove a hook, use code like:
+若要移除一个已注册的 Hook，可以使用类似下面的代码：</p>
 <pre><code>gui_hooks.reviewer_did_show_question.remove(myfunc)
 </code></pre>
-<p>:warning: Functions you attach to a hook should not modify the hook while they are executing, as it will break things:</p>
+<p>:warning: Functions you attach to a hook should not modify the hook while they are executing, as it will break things:
+:warning: <strong>警告</strong>：您挂载到 Hook 上的函数在执行期间不应尝试修改该 Hook 自身，否则会导致程序异常：</p>
 <pre><code>def myfunc(card):
   # DON'T DO THIS!
+  # 错误示范：不要这样做！
   gui_hooks.reviewer_did_show_question.remove(myfunc)
 
 gui_hooks.reviewer_did_show_question.append(myfunc)
 </code></pre>
 <p>An easy way to see all hooks at a glance is to look at
-<a href="https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py">pylib/tools/genhooks.py</a> and <a href="https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py">qt/tools/genhooks_gui.py</a>.</p>
-<p>If you have set up type completion as described in an earlier section,
-you can also see the hooks in your IDE:</p>
+<a href="https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py">pylib/tools/genhooks.py</a> and <a href="https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py">qt/tools/genhooks_gui.py</a>.
+要快速浏览所有可用的 Hook，一个简单的方法是查阅 Anki 源代码中的 <a href="https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py">pylib/tools/genhooks.py</a> 和 <a href="https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py">qt/tools/genhooks_gui.py</a> 文件。</p>
+<p>If you have set up type completion as described in an earlier section, you can also see the hooks in your IDE:
+如果您已按照前文指引配置好类型补全，那么在您的集成开发环境（IDE）中也能方便地查看这些 Hook：</p>
 <video controls autoplay loop muted>
  <source src="../img/autocomplete.mp4" type="video/mp4">
 </video>
 <p>In the above video, holding the command/ctrl key down while hovering
 will show a tooltip, including arguments and documentation if it exists.
 The argument names and types for the callback can be seen on the bottom
-line.</p>
-<p>For some examples of how the new hooks are used, please see
-<a href="https://github.com/ankitects/anki-addons/blob/master/demos/">https://github.com/ankitects/anki-addons/blob/master/demos/</a>.</p>
-<p>Most of the new style hooks will also call the legacy hooks (described
-further below), so old add-ons will continue to work for now, but add-on authors
-are encouraged to update to the new style as it allows for code
-completion, and better error checking.</p>
-<h2 id="notable-hooks"><a class="header" href="#notable-hooks">Notable Hooks</a></h2>
-<p>For a full list of hooks, and their documentation, please see</p>
+line.
+在上面的演示视频中，当您按住 <code>Command</code> 键（macOS）或 <code>Ctrl</code> 键（Windows/Linux）并将鼠标悬停在 Hook 上时，IDE 会显示一个工具提示，其中包含参数信息和相关文档（如果存在）。回调函数所需的参数名和类型会显示在提示的最后一行。</p>
+<p>For some examples of how the new hooks are used, please see <a href="https://github.com/ankitects/anki-addons/blob/master/demos/">https://github.com/ankitects/anki-addons/blob/master/demos/</a>.
+关于新式 Hook 的更多用法示例，请参考 <a href="https://github.com/ankitects/anki-addons/blob/master/demos/">https://github.com/ankitects/anki-addons/blob/master/demos/</a>。</p>
+<p>Most of the new style hooks will also call the legacy hooks (described further below), so old add-ons will continue to work for now, but add-on authors are encouraged to update to the new style as it allows for code completion, and better error checking.
+大部分新式 Hook 也会兼容并调用旧式 Hook（详见下文），因此旧版插件目前仍可继续使用。但我们强烈建议插件开发者升级到新式 Hook，因为它能提供更好的代码自动补全支持和更严格的错误检查。</p>
+<h2 id="notable-hooks重要-hook"><a class="header" href="#notable-hooks重要-hook">Notable Hooks（重要 Hook）</a></h2>
+<p>For a full list of hooks, and their documentation, please see
+要获取所有 Hook 的完整列表及其详细文档，请参阅：</p>
 <ul>
 <li><a href="https://github.com/ankitects/anki/blob/master/qt/tools/genhooks_gui.py">The GUI hooks</a></li>
 <li><a href="https://github.com/ankitects/anki/blob/master/pylib/tools/genhooks.py">The pylib hooks</a></li>
+<li><a href="https://github.com/ankitects/anki/blob/master/qt/tools/genhooks_gui.py">图形界面（GUI）相关 Hook</a></li>
+<li><a href="https://github.com/ankitects/anki/blob/master/pylib/tools/genhooks.py">核心库（pylib）相关 Hook</a></li>
 </ul>
-<h3 id="webview"><a class="header" href="#webview">Webview</a></h3>
+<h3 id="webview网页视图"><a class="header" href="#webview网页视图">Webview（网页视图）</a></h3>
 <p>Many of Anki's screens are built with one or more webviews, and there are
-some hooks you can use to intercept their use.</p>
+some hooks you can use to intercept their use.
+Anki 的许多界面都是由一个或多个 Webview 构建的，您可以使用一些特定的 Hook 来干预它们的行为。</p>
 <p>From Anki 2.1.22:</p>
 <ul>
-<li><code>gui_hooks.webview_will_set_content()</code> allows you to modify the HTML that
-various screens send to the webview. You can use this for adding your own
-HTML/CSS/Javascript to particular screens. This will not work for external
-pages - see the Anki 2.1.36 section below.</li>
+<li><code>gui_hooks.webview_will_set_content()</code> allows you to modify the HTML that various screens send to the webview. You can use this for adding your own HTML/CSS/Javascript to particular screens. This will not work for external pages - see the Anki 2.1.36 section below.</li>
 <li><code>gui_hooks.webview_did_receive_js_message()</code> allows you to intercept
 messages sent from Javascript. Anki provides a <code>pycmd(string)</code> function in
 Javascript which sends a message back to Python, and various screens such as
 reviewer.py respond to the messages. By using this hook, you can respond
 to your own messages as well.</li>
+</ul>
+<p>自 Anki 2.1.22 版本起：</p>
+<ul>
+<li><code>gui_hooks.webview_will_set_content()</code> 允许你修改各个界面发送到 Webview 的 HTML 内容。您可以利用这个 Hook 向特定界面添加自定义的 HTML、CSS 或 JavaScript。请注意，此 Hook 对外部页面无效——相关说明请参阅下文关于 Anki 2.1.36 的部分。</li>
+<li><code>gui_hooks.webview_did_receive_js_message()</code> 允许您拦截从 JavaScript 发送过来的消息。Anki 在 JavaScript 环境中提供了一个 <code>pycmd(string)</code> 函数，用于向 Python 后端发送消息。像 <code>reviewer.py</code> 等界面会响应这些消息。通过此 Hook，您也可以处理自己定义的 JavaScript 消息。</li>
 </ul>
 <p>From Anki 2.1.36:</p>
 <ul>
@@ -275,38 +281,47 @@ to your own messages as well.</li>
 styling or content into external pages like the graphs screen and congratulations
 page that are loaded with load_ts_page().</li>
 </ul>
-<h4 id="managing-external-resources-in-webviews"><a class="header" href="#managing-external-resources-in-webviews">Managing External Resources in Webviews</a></h4>
+<p>自 Anki 2.1.36 版本起：</p>
+<ul>
+<li><code>webview_did_inject_style_into_page()</code>：为您提供了一个机会，可以向通过 <code>load_ts_page()</code> 函数加载的外部页面（例如统计图表页和完成复习时的祝贺页）注入自定义样式或内容。</li>
+</ul>
+<h4 id="managing-external-resources-in-webviews在-webview-中管理外部资源"><a class="header" href="#managing-external-resources-in-webviews在-webview-中管理外部资源">Managing External Resources in Webviews（在 Webview 中管理外部资源）</a></h4>
 <p>Add-ons may expose their own web assets by utilizing <code>aqt.addons.AddonManager.setWebExports()</code>. Web exports registered in this manner may then be accessed under the <code>/_addons</code> subpath.</p>
-<p>For example, to allow access to a <code>my-addon.js</code> and <code>my-addon.css</code> residing
-in a "web" subfolder in your add-on package, first register the corresponding web export:</p>
+<p>插件可以通过调用 <code>aqt.addons.AddonManager.setWebExports()</code> 方法来暴露其自身的网络资源（web assets）。通过这种方式注册的资源，之后便可以通过 <code>/_addons</code> 这个子路径进行访问。</p>
+<p>For example, to allow access to a <code>my-addon.js</code> and <code>my-addon.css</code> residing in a "web" subfolder in your add-on package, first register the corresponding web export:
+例如，假设您的插件包内有一个 <code>web</code> 子文件夹，其中包含 <code>my-addon.js</code> 和 <code>my-addon.css</code> 两个文件。要让 Anki 能够访问它们，首先需要注册相应的网络导出规则：</p>
 <pre><code class="language-python">from aqt import mw
 mw.addonManager.setWebExports(__name__, r"web/.*(css|js)")
 </code></pre>
-<p>Then, append the subpaths to the corresponding web_content fields within a function subscribing to <code>gui_hooks.webview_will_set_content</code>:</p>
+<p>Then, append the subpaths to the corresponding web_content fields within a function subscribing to <code>gui_hooks.webview_will_set_content</code>:
+接着，在一个订阅了 <code>gui_hooks.webview_will_set_content</code> Hook 的函数中，将这些资源的路径添加到 <code>web_content</code> 对象相应的字段里：</p>
 <pre><code class="language-python">def on_webview_will_set_content(web_content: WebContent, context) -&gt; None:
     addon_package = mw.addonManager.addonFromModule(__name__)
     web_content.css.append(f"/_addons/{addon_package}/web/my-addon.css")
     web_content.js.append(f"/_addons/{addon_package}/web/my-addon.js")
 </code></pre>
-<p>Note that '/' will also match the os specific path separator.</p>
-<h2 id="legacy-hook-handling"><a class="header" href="#legacy-hook-handling">Legacy Hook Handling</a></h2>
-<p>Older versions of Anki used a different hook system, using the functions
-runHook(), addHook() and runFilter().</p>
-<p>For example, when the scheduler (anki/sched.py) discovers a leech, it
-calls:</p>
+<p>Note that '/' will also match the os specific path separator.
+请注意，路径中的 <code>/</code> 符号会自动适配不同操作系统（如 Windows 的 <code>\</code>）的路径分隔符。</p>
+<h2 id="legacy-hook-handling旧式-hook"><a class="header" href="#legacy-hook-handling旧式-hook">Legacy Hook Handling（旧式 Hook）</a></h2>
+<p>Older versions of Anki used a different hook system, using the functions runHook(), addHook() and runFilter().
+旧版 Anki 采用了一套不同的 Hook 系统，主要使用 <code>runHook()</code>、<code>addHook()</code> 和 <code>runFilter()</code> 这三个函数。</p>
+<p>For example, when the scheduler (anki/sched.py) discovers a leech, it calls:
+例如，当调度器（<code>anki/sched.py</code>）检测到一张“记忆难点”的卡片时，会调用：</p>
 <pre><code class="language-python">runHook("leech", card)
 </code></pre>
-<p>If you wished to perform a special operation when a leech was
-discovered, such as moving the card to a "Difficult" deck, you could do
-it with the following code:</p>
+<p>If you wished to perform a special operation when a leech was discovered, such as moving the card to a "Difficult" deck, you could do it with the following code:
+如果您希望在检测到“记忆难点”卡片时执行特定操作（例如，将其移动到“困难”牌组），可以使用以下代码实现：</p>
 <pre><code class="language-python">from anki.hooks import addHook
 from aqt import mw
 
 def onLeech(card):
     # can modify without .flush(), as scheduler will do it for us
+    # 此处修改卡片无需调用 .flush()，因为调度器稍后会统一处理
     card.did = mw.col.decks.id("Difficult")
     # if the card was in a cram deck, we have to put back the original due
     # time and original deck
+    # 如果卡片原先在临时复习牌组（cram deck）中，
+    # 我们需要恢复其原始的到期时间和牌组
     card.odid = 0
     if card.odue:
         card.due = card.odue
@@ -314,30 +329,29 @@ def onLeech(card):
 
 addHook("leech", onLeech)
 </code></pre>
-<p>An example of a filter is in <a href="https://github.com/ankitects/anki/blob/main/qt/aqt/editor.py">aqt/editor.py</a>. The editor calls the
-"editFocusLost" filter each time a field loses focus, so that add-ons
-can apply changes to the note:</p>
+<p>An example of a filter is in <a href="https://github.com/ankitects/anki/blob/main/qt/aqt/editor.py">aqt/editor.py</a>. The editor calls the "editFocusLost" filter each time a field loses focus, so that add-ons can apply changes to the note:
+关于过滤器（filter）的一个例子可以在 <code>aqt/editor.py</code> 文件中找到。每当编辑器中的某个字段失去焦点时，编辑器会调用名为 <code>editFocusLost</code> 的过滤器，从而允许插件对笔记内容进行修改：</p>
 <pre><code class="language-python">if runFilter(
     "editFocusLost", False, self.note, self.currentField):
     # something updated the note; schedule reload
+    # 过滤器返回 True，表示有内容被更新了，需要重新加载笔记
     def onUpdate():
         self.loadNote()
         self.checkValid()
     self.mw.progress.timer(100, onUpdate, False)
 </code></pre>
-<p>Each filter in this example accepts three arguments: a modified flag,
-the note, and the current field. If a filter makes no changes it returns
-the modified flag the same as it received it; if it makes a change it
-returns True. In this way, if any single add-on makes a change, the UI
-will reload the note to show updates.</p>
-<p>The Japanese Support add-on uses this hook to automatically generate one
-field from another. A slightly simplified version is presented below:</p>
+<p>Each filter in this example accepts three arguments: a modified flag, the note, and the current field. If a filter makes no changes it returns the modified flag the same as it received it; if it makes a change it returns True. In this way, if any single add-on makes a change, the UI will reload the note to show updates.
+在这个例子中，<code>editFocusLost</code> 过滤器接收三个参数：一个表示“是否修改”的 flag、当前笔记对象以及当前字段的索引。如果一个过滤器函数没有做任何修改，它应该原样返回这个 flag；如果它修改了笔记，则应返回 <code>True</code>。这样一来，只要有任何一个插件对笔记进行了修改，UI 就会重新加载笔记以展示最新的内容。</p>
+<p>The Japanese Support add-on uses this hook to automatically generate one field from another. A slightly simplified version is presented below:
+“日语支持”（Japanese Support）插件就利用了这个 Hook，根据一个字段的内容自动填充另一个字段。以下是其简化版的代码示例：</p>
 <pre><code class="language-python">def onFocusLost(flag, n, fidx):
     from aqt import mw
     # japanese model?
+    # 检查是否为“日语”模板？
     if "japanese" not in n.model()['name'].lower():
         return flag
     # have src and dst fields?
+    # 检查模板中是否存在源字段和目标字段？
     for c, name in enumerate(mw.col.models.fieldNames(n.model())):
         for f in srcFields:
             if name == f:
@@ -349,16 +363,20 @@ field from another. A slightly simplified version is presented below:</p>
     if not src or not dst:
         return flag
     # dst field already filled?
+    # 目标字段是否已经有内容？
     if n[dst]:
         return flag
     # event coming from src field?
+    # 事件是否由源字段触发？
     if fidx != srcIdx:
         return flag
     # grab source text
+    # 获取源字段的纯文本内容
     srcTxt = mw.col.media.strip(n[src])
     if not srcTxt:
         return flag
     # update field
+    # 更新目标字段
     try:
         n[dst] = mecab.reading(srcTxt)
     except Exception, e:
@@ -368,18 +386,15 @@ field from another. A slightly simplified version is presented below:</p>
 
 addHook('editFocusLost', onFocusLost)
 </code></pre>
-<p>The first argument of a filter is the argument that should be returned.
-In the focus lost filter this is a flag, but in other cases it may be
-some other object. For example, in anki/collection.py, _renderQA()
-calls the "mungeQA" filter which contains the generated HTML for the
-front and back of cards. latex.py uses this filter to convert text in
-LaTeX tags into images.</p>
-<p>In Anki 2.1, a hook was added for adding buttons to the editor. It can
-be used like so:</p>
+<p>The first argument of a filter is the argument that should be returned. In the focus lost filter this is a flag, but in other cases it may be some other object. For example, in anki/collection.py, _renderQA() calls the "mungeQA" filter which contains the generated HTML for the front and back of cards. latex.py uses this filter to convert text in LaTeX tags into images.
+过滤器的第一个参数通常是需要被层层处理并最终返回的值。在 <code>editFocusLost</code> 过滤器中，这个值是一个flag，但在其他情况下，它也可能是一个对象。例如，在 <code>anki/collection.py</code> 中，<code>_renderQA()</code> 函数会调用 <code>mungeQA</code> 过滤器，这个过滤器处理的是为卡片正反面生成的 HTML 代码。<code>latex.py</code> 模块就利用这个过滤器，将 LaTeX 标签内的文本转换成图像。</p>
+<p>In Anki 2.1, a hook was added for adding buttons to the editor. It can be used like so:
+Anki 2.1 版本为编辑器增加了一个用于添加自定义按钮的 Hook，用法如下：</p>
 <pre><code class="language-python">from aqt.utils import showInfo
 from anki.hooks import addHook
 
 # cross out the currently selected text
+# 为当前选中的文本添加删除线
 def onStrike(editor):
     editor.web.eval("wrap('&lt;del&gt;', '&lt;/del&gt;');")
 
@@ -392,16 +407,16 @@ def addMyButton(buttons, editor):
 
 addHook("setupEditorButtons", addMyButton)
 </code></pre>
-<h2 id="adding-hooks"><a class="header" href="#adding-hooks">Adding Hooks</a></h2>
-<p>If you want to modify a function that doesn’t already have a hook,
-please submit a pull request that adds the hooks you need.</p>
-<p>In your PR, please describe the use-case you're trying to solve. Hooks that
-are general in nature will typically be approved; hooks that target a very
-specific use case may need to be refactored to be more general first. For an
-example of what this might look like, please see <a href="https://github.com/ankitects/anki/pull/2340">this PR</a>.</p>
-<p>The hook definitions are located in <a href="https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py">pylib/tools/genhooks.py</a> and <a href="https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py">qt/tools/genhooks_gui.py</a>.  When building Anki, the build scripts will
-automatically update the hook files with the definitions listed there.</p>
-<p>Please see the <a href="https://github.com/ankitects/anki/tree/main/docs">docs/</a> folder in the source tree for more information.</p>
+<h2 id="adding-hooks添加-hook"><a class="header" href="#adding-hooks添加-hook">Adding Hooks（添加 Hook）</a></h2>
+<p>If you want to modify a function that doesn’t already have a hook, please submit a pull request that adds the hooks you need.
+如果您想修改的某个函数目前还没有提供 Hook，欢迎您提交一个拉取请求（Pull Request）来添加您所需要的 Hook。</p>
+<p>In your PR, please describe the use-case you're trying to solve. Hooks that are general in nature will typically be approved; hooks that target a very specific use case may need to be refactored to be more general first. For an
+example of what this might look like, please see <a href="https://github.com/ankitects/anki/pull/2340">this PR</a>.
+在您的 PR 中，请详细描述您希望通过这个 Hook 解决的具体应用场景。通常，那些具有通用性的 Hook 会被接受；而那些针对非常特定场景的 Hook，可能需要先进行重构，使其更具通用性。关于这方面的一个实例，可以参考<a href="https://github.com/ankitects/anki/pull/2340">此 PR</a>。</p>
+<p>The hook definitions are located in <a href="https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py">pylib/tools/genhooks.py</a> and <a href="https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py">qt/tools/genhooks_gui.py</a>. When building Anki, the build scripts will automatically update the hook files with the definitions listed there.
+Hook 的定义文件分别位于 <a href="https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py">pylib/tools/genhooks.py</a> 和 <a href="https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py">qt/tools/genhooks_gui.py</a>。当 Anki 项目构建时，构建脚本会自动根据这些文件中的定义来更新 Hook 相关的代码。</p>
+<p>Please see the <a href="https://github.com/ankitects/anki/tree/main/docs">docs/</a> folder in the source tree for more information.
+更多相关信息，请参阅 Anki 源代码树中的 <a href="https://github.com/ankitects/anki/tree/main/docs">docs/</a> 文件夹。</p>
 
                     </main>
 
