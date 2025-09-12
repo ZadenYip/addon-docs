@@ -1,9 +1,9 @@
 [book]
 authors = ["Ankitects Pty Ltd and contributors"]
-language = "en"
+language = "zh"
 multilingual = false
 src = "src"
-title = "Writing Anki Add-ons"
+title = "编写 Anki 插件"
 
 [build]
 create-missing = true
