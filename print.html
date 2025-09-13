@@ -181,64 +181,70 @@
 </li>
 </ul>
 <h2 id="overview概述"><a class="header" href="#overview概述">Overview（概述）</a></h2>
-<p>Anki 的 UI 主要由 Python/PyQt 构建。许多界面（如复习界面和编辑器）也使用了 TypeScript 和 Svelte。要编写插件，你需要具备一定的编程基础并一定程度上熟悉 Python。<a href="http://docs.python.org/tutorial/">Python 官方教程</a> 是一个很好的入门资源。</p>
-<p>Anki 的插件是以 Python 模块的形式实现的，Anki 会在启动时加载它们。插件可以注册 <strong>hooks</strong>，以便在特定操作（例如，加载「浏览」界面时）发生时被触发，进而对 UI 进行修改（例如，添加新的菜单项）。</p>
-<p>这里有一份可供查阅的 <a href="https://github.com/ankitects/anki/blob/main/docs/architecture.md">Anki 架构简述</a>。</p>
-<p>虽然只用纯文本编辑器也能开发 Anki 插件，但使用合适的代码编辑器或 IDE 能让你事半功倍。更多信息请参阅<a href="https://addon-docs.ankiweb.net/editor-setup.html">编辑器设置</a>一节。</p>
+<p>Anki's UI is primarily written in Python/PyQt. A number of screens, such as the review screen and editor, also make use of TypeScript and Svelte. To write add-ons, you will need some basic programming experience, and some familiarity with Python. The <a href="http://docs.python.org/tutorial/">Python tutorial</a> is a good place to start.<br>
+Anki 的 UI 主要由 Python/PyQt 构建。许多界面（如复习界面和编辑器）也使用了 TypeScript 和 Svelte。要编写插件，你需要具备一定的编程基础并一定程度上熟悉 Python。<a href="http://docs.python.org/tutorial/">Python 官方教程</a> 是一个很好的入门资源。</p>
+<p>Add-ons in Anki are implemented as Python modules, which Anki loads at startup. They can register themselves to be notified when certain actions take place (eg, a hook that runs when the browse screen is loaded), and can make changes to the UI (e.g.adding a new menu item) when those actions take place.<br>
+Anki 的插件是以 Python 模块的形式实现的，Anki 会在启动时加载它们。插件可以注册 <strong>hooks</strong>，以便在特定操作（例如，加载「浏览」界面时）发生时被触发，进而对 UI 进行修改（例如，添加新的菜单项）。</p>
+<p>There is a brief overview of Anki's architecture available.<br>
+这里有一份可供查阅的 <a href="https://github.com/ankitects/anki/blob/main/docs/architecture.md">Anki 架构简述</a>。</p>
+<p>While it is possible to develop Anki add-ons with just a plain text editor, you can make your life much easier by using a proper code editor/IDE. Please see the Editor Setup section for more information.<br>
+虽然只用纯文本编辑器也能开发 Anki 插件，但使用合适的代码编辑器或 IDE 能让你事半功倍。更多信息请参阅<a href="https://addon-docs.ankiweb.net/editor-setup.html">编辑器设置</a>一节。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="support技术支持"><a class="header" href="#support技术支持">Support（技术支持）</a></h1>
-<p>This document contains some hints to get you started, but it is not a comprehensive guide. To actually write an add-on, you will need to familiarize yourself with Anki’s source code, and the source code of other add-ons that do similiar things to what you are trying to accomplish.
+<p>This document contains some hints to get you started, but it is not a comprehensive guide. To actually write an add-on, you will need to familiarize yourself with Anki’s source code, and the source code of other add-ons that do similiar things to what you are trying to accomplish.<br>
 本文档提供了一些入门指引，而不是全面的指南。要真正开始编写插件，你需要熟悉 Anki 的源代码，以及其他功能相近的插件的源代码。</p>
-<p>Because of our limited resources, no official support is available for add-on writing. If you have any questions, you will either need to find the answers yourself in the source code, or post your questions on the development forum.
+<p>Because of our limited resources, no official support is available for add-on writing. If you have any questions, you will either need to find the answers yourself in the source code, or post your questions on the development forum.<br>
 由于资源有限，我们<strong>不为插件编写提供官方技术支持</strong>。如果你有任何问题，需要自行在源代码中寻找答案，或将问题发布在<a href="https://forums.ankiweb.net/c/development/12">开发者论坛</a>上。</p>
-<p>You can also use the add-on forum to request someone write an add-on for you. You may need to offer some money before anyone becomes interested in helping you.
+<p>You can also use the add-on forum to request someone write an add-on for you. You may need to offer some money before anyone becomes interested in helping you.<br>
 你也可以在插件论坛上发帖，请求他人为你编写插件。提供一些报酬，或许会有人愿意提供帮助。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="editor-setup编辑器设置"><a class="header" href="#editor-setup编辑器设置">Editor Setup（编辑器设置）</a></h1>
-<p>While you can write an add-on with a basic text editor such as Notepad,
-setting up a proper Python editor/development environment (IDE) will make
-your life considerably easier.</p>
-<p>虽然你可以用「记事本」等基本文本编辑器来编写插件，但配置一个合适的 Python 编辑器或集成开发环境（IDE）会让你的开发工作事半功倍。</p>
+<p>While you can write an add-on with a basic text editor such as Notepad, setting up a proper Python editor/development environment (IDE) will make your life considerably easier.<br>
+虽然你可以用「记事本」等基本文本编辑器来编写插件，但配置一个合适的 Python 编辑器或集成开发环境（IDE）会让你的开发工作事半功倍。</p>
 <h2 id="pycharm-setuppycharm-设置"><a class="header" href="#pycharm-setuppycharm-设置">PyCharm setup（PyCharm 设置）</a></h2>
-<p>The free community edition of PyCharm has good out of the box support for Python: <a href="https://www.jetbrains.com/pycharm/">https://www.jetbrains.com/pycharm/</a>. You can also use other
-editors like Visual Studio Code, but we find PyCharm gives the best results.
+<p>The free community edition of PyCharm has good out of the box support for Python: <a href="https://www.jetbrains.com/pycharm/">https://www.jetbrains.com/pycharm/</a>. You can also use other editors like Visual Studio Code, but we find PyCharm gives the best results.<br>
 PyCharm 的免费社区版对 Python 提供了良好的开箱即用支持：<a href="https://www.jetbrains.com/pycharm/">https://www.jetbrains.com/pycharm/</a>。你也可以使用 Visual Studio Code 等其他编辑器，但我们发现 PyCharm 的效果最佳。</p>
-<p>Over the last year, Anki’s codebase has been updated to add type hints to almost all of the code. These type hints make development easier, by providing better code completion, and by catching errors using tools like mypy. As an add-on author, you can take advantage of this type hinting as well.
+<p>Over the last year, Anki’s codebase has been updated to add type hints to almost all of the code. These type hints make development easier, by providing better code completion, and by catching errors using tools like mypy. As an add-on author, you can take advantage of this type hinting as well.<br>
 在过去一年里，Anki 的代码库已经更新，为几乎所有代码都添加了类型提示。这些类型提示通过提供更强大的代码补全功能，并利用 mypy 等工具来捕捉错误，从而简化了开发流程。作为插件开发者，你同样可以善用这一特性。</p>
-<p>To get started with your first add-on:
+<p>To get started with your first add-on:<br>
 要开始开发你的第一个插件，请按以下步骤操作：</p>
 <ul>
-<li>Open PyCharm and create a new project.</li>
-<li>打开 PyCharm 并创建一个新项目。
-<br></li>
-<li>Right click/ctrl+click on your project on the left and create a new Python package called "myaddon"</li>
-<li>在项目左侧面板上右键单击（在 Mac 上按住 Ctrl 并单击），然后创建一个名为「myaddon」的新 Python 包。</li>
+<li>
+<p>Open PyCharm and create a new project.</p>
+</li>
+<li>
+<p>打开 PyCharm 并创建一个新项目。<br></p>
+</li>
+<li>
+<p>Right click/ctrl+click on your project on the left and create a new Python package called "myaddon"</p>
+</li>
+<li>
+<p>在项目左侧面板上右键单击（在 Mac 上按住 Ctrl 并单击），然后创建一个名为「myaddon」的新 Python 包。<br></p>
+</li>
 </ul>
-<p>Now you’ll need to fetch Anki’s bundled source code so you can get type completion. As of Anki 2.1.24, these are available on PyPI. <strong>You will need to be using a 64 bit version of Python, and your Python version must match a version the Anki version you are fetching supports.</strong> To install Anki via PyCharm, click on Python Console in the bottom left and type the following in:
+<p>Now you’ll need to fetch Anki’s bundled source code so you can get type completion. As of Anki 2.1.24, these are available on PyPI. <strong>You will need to be using a 64 bit version of Python, and your Python version must match a version the Anki version you are fetching supports.</strong> To install Anki via PyCharm, click on Python Console in the bottom left and type the following in:<br>
 现在，你需要获取 Anki 捆绑的源代码，以便在编辑器中获得类型补全功能。从 Anki 2.1.24 版本开始，这些代码已经发布在 PyPI 上。<strong>你必须使用 64 位版本的 Python，并且你的 Python 版本必须与你所获取的 Anki 版本所支持的版本相匹配。</strong> 要通过 PyCharm 安装 Anki，请点击左下角的「Python 控制台」，然后输入以下命令：</p>
 <pre><code class="language-python">import subprocess
 
 subprocess.check_call(["pip3", "install", "--upgrade", "pip"])
 subprocess.check_call(["pip3", "install", "mypy", "aqt[qt6]"])
 </code></pre>
-<p>Hit enter and wait. Once it completes, you should now have code completion.
+<p>Hit enter and wait. Once it completes, you should now have code completion.<br>
 按下回车键并等待。命令执行完毕后，你的编辑器就应该具备代码补全功能了。</p>
-<p>If you get an error, you are probably not using a 64 bit version of Python, or your Python version is not one the latest Anki version supports. Try running the
-commands above with "-vvv" to get more info.
+<p>If you get an error, you are probably not using a 64 bit version of Python, or your Python version is not one the latest Anki version supports. Try running the commands above with "-vvv" to get more info.<br>
 如果你遇到错误，原因可能是你没有使用 64 位版本的 Python，或者你的 Python 版本不被你所安装的 Anki 版本支持。你可以尝试在上述命令后加上「-vvv」参数来运行，以获取更详细的错误信息。</p>
-<p>After installing, try out the code completion by double clicking on the <code>__init__.py</code> file. If you see a spinner down the bottom, wait for it to complete. Then type in:
+<p>After installing, try out the code completion by double clicking on the <code>__init__.py</code> file. If you see a spinner down the bottom, wait for it to complete. Then type in:<br>
 安装完成后，双击 <code>__init__.py</code> 文件来体验代码补全功能。如果你在界面底部看到一个旋转加载的图标，请等待它完成。然后输入：</p>
 <pre><code class="language-python">from anki import hooks
 hooks.
 </code></pre>
-<p>and you should see completions pop up.
+<p>and you should see completions pop up.<br>
 这时，你应该能看到弹出的代码补全建议。</p>
-<p><strong>Please note that you can not run your add-on from within PyCharm - you will get errors.</strong> Add-ons need to be run from within Anki, which is covered in the <a href="a-basic-addon.html">A Basic Add-on</a> section.
+<p><strong>Please note that you can not run your add-on from within PyCharm - you will get errors.</strong> Add-ons need to be run from within Anki, which is covered in the <a href="a-basic-addon.html">A Basic Add-on</a> section.<br>
 <strong>请注意，你不能直接在 PyCharm 内部运行你的插件，否则将会报错。</strong> 插件需要在 Anki 内部运行，具体方法在<a href="a-basic-addon.html">《一个基本的插件》</a>一章中有详细说明。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="mypy"><a class="header" href="#mypy">MyPy</a></h1>
 <h2 id="using-mypy使用-mypy"><a class="header" href="#using-mypy使用-mypy">Using MyPy（使用 MyPy）</a></h2>
-<p>The type hints you installed when <a href="./editor-setup.html">setting up PyCharm</a> can also be used to check your code is correct, using a tool called MyPy. My Py will catch some cases where you’ve called Anki functions incorrectly, such as when
-you've typed a function name in incorrectly, or passed a string when an integer was expected.</p>
-<p>您在<a href="./editor-setup.html">设置 PyCharm</a>时安装的类型提示，同样可以用于检查代码的正确性，这需要借助一个名为 MyPy 的工具。MyPy 能够发现某些对 Anki 函数的错误调用，例如函数名拼写错误，或是在需要整数的地方传入了字符串。</p>
-<p>In PyCharm, click on Terminal in the bottom left, and type <code>mypy myaddon</code>. After some processing, it will show a success or tell you any mistakes you’ve made. For example, if you specified a hook incorrectly:
+<p>The type hints you installed when <a href="./editor-setup.html">setting up PyCharm</a> can also be used to check your code is correct, using a tool called MyPy. My Py will catch some cases where you’ve called Anki functions incorrectly, such as when you've typed a function name in incorrectly, or passed a string when an integer was expected.<br>
+您在<a href="./editor-setup.html">设置 PyCharm</a>时安装的类型提示，同样可以用于检查代码的正确性，这需要借助一个名为 MyPy 的工具。MyPy 能够发现某些对 Anki 函数的错误调用，例如函数名拼写错误，或是在需要整数的地方传入了字符串。</p>
+<p>In PyCharm, click on Terminal in the bottom left, and type <code>mypy myaddon</code>. After some processing, it will show a success or tell you any mistakes you’ve made. For example, if you specified a hook incorrectly:<br>
 在 PyCharm 中，点击左下角的「终端」窗口，然后输入 <code>mypy myaddon</code>。经过短暂处理，它会显示成功信息，或报告代码中存在的错误。例如，如果您错误地指定了一个钩子（hook）：</p>
 <pre><code class="language-python">from aqt import gui_hooks
 
@@ -247,77 +253,70 @@ def myfunc() -&gt; None:
 
 gui_hooks.reviewer_did_show_answer.append(myfunc)
 </code></pre>
-<p>Then mypy will report:
+<p>Then mypy will report:<br>
 MyPy 将会报告如下错误：</p>
-<pre><code>myaddon/__init__.py:5: error: Argument 1 to "append" of "list" has incompatible type "Callable[[], Any]"; expected "Callable[[Card], None]"
-Found 1 error in 1 file (checked 1 source file)
+<pre><code>myaddon/__init__.py:5: error: Argument 1 to "append" of "list" has incompatible type "Callable[[], Any]"; expected "Callable[[Card], None]" Found 1 error in 1 file (checked 1 source file)
 </code></pre>
-<p>..which is telling you that the hook expects a function which takes a card as the first argument, eg
+<p>..which is telling you that the hook expects a function which takes a card as the first argument, eg<br>
 ..这条信息告诉您，该钩子需要一个接受 <code>Card</code> 对象作为第一个参数的函数，例如：</p>
 <pre><code class="language-python">from anki.cards import Card
 
 def myfunc(card: Card) -&gt; None:
   print("myfunc")
 </code></pre>
-<h2 id="checking-existing-add-ons"><a class="header" href="#checking-existing-add-ons">Checking Existing Add-Ons</a></h2>
-<h2 id="检查现有的插件"><a class="header" href="#检查现有的插件">检查现有的插件</a></h2>
-<p>Mypy has a "check_untyped_defs" option that will give you some type checking even if your own code lacks type hints, but to get the most out of it, you will need to add type hints to your own code. This can take some initial time, but pays off in the long term, as it becomes easier to navigate your own code, and allows you to catch errors in parts of the code you might not regularly exercise yourself. It is also makes it easier to check for any problems caused by updating to a newer Anki version.</p>
-<p>Mypy 提供了一个 <code>check_untyped_defs</code> 选项，即便您的代码没有类型提示，也能进行基本的类型检查。但为了最大限度地发挥其作用，您仍需为自己的代码添加类型提示。这在初期可能会花费一些时间，但从长远来看是值得的。因为它不仅能让您更容易地浏览自己的代码，还能帮助您发现那些不经常执行的代码路径中的潜在错误。同时，它也让检查因 Anki 版本更新而引发的问题变得更加简单。</p>
-<p>If you have a large existing add-on, you may wish to look into tools like monkeytype to automatically add types to your code.
+<h2 id="checking-existing-add-ons检查现有的插件"><a class="header" href="#checking-existing-add-ons检查现有的插件">Checking Existing Add-Ons（检查现有的插件）</a></h2>
+<p>Mypy has a "check_untyped_defs" option that will give you some type checking even if your own code lacks type hints, but to get the most out of it, you will need to add type hints to your own code. This can take some initial time, but pays off in the long term, as it becomes easier to navigate your own code, and allows you to catch errors in parts of the code you might not regularly exercise yourself. It is also makes it easier to check for any problems caused by updating to a newer Anki version.<br>
+Mypy 提供了一个 <code>check_untyped_defs</code> 选项，即便您的代码没有类型提示，也能进行基本的类型检查。但为了最大限度地发挥其作用，您仍需为自己的代码添加类型提示。这在初期可能会花费一些时间，但从长远来看是值得的。因为它不仅能让您更容易地浏览自己的代码，还能帮助您发现那些不经常执行的代码路径中的潜在错误。同时，它也让检查因 Anki 版本更新而引发的问题变得更加简单。</p>
+<p>If you have a large existing add-on, you may wish to look into tools like monkeytype to automatically add types to your code.<br>
 如果您有一个庞大且历史悠久的插件，不妨考虑使用 <code>monkeytype</code> 这类工具来自动为代码添加类型。</p>
 <details>
 <summary>Monkeytype</summary>
 <details>
 <summary>Monkeytype</summary>
-<p>To use monkeytype with an add-on called 'test', you could do something like the following:
+<p>To use monkeytype with an add-on called 'test', you could do something like the following:<br>
 要对一个名为「test」的插件使用 <code>monkeytype</code>，您可以参照以下步骤：</p>
 <pre><code class="language-shell">% /usr/local/bin/python3.8 -m venv pyenv
 % cd pyenv &amp;&amp; . bin/activate
 (pyenv) % pip install aqt monkeytype
 (pyenv) % monkeytype run bin/anki
 </code></pre>
-<p>Then click around in your add-on to gather the runtime type information, and close Anki when you're done.
+<p>Then click around in your add-on to gather the runtime type information, and close Anki when you're done.<br>
 接着，在您的插件界面中进行各种操作，以收集运行时的类型信息，然后在完成时关闭 Anki。</p>
-<p>After doing so, you'll need to comment out any top-level actions (such as code modifying menus outside of a function), as that will trip up monkeytype. Finally, you can generate the modified files with:
+<p>After doing so, you'll need to comment out any top-level actions (such as code modifying menus outside of a function), as that will trip up monkeytype. Finally, you can generate the modified files with:<br>
 之后，您需要注释掉所有顶层操作（例如在函数外部修改菜单的代码），因为这些操作会干扰 <code>monkeytype</code> 的正常工作。最后，您可以通过以下命令生成带有类型提示的文件：</p>
 <pre><code class="language-shell">(pyenv) % PYTHONPATH=~/Library/Application\ Support/Anki2/addons21 monkeytype apply test
 </code></pre>
 </details>
 </details>
-<p>Here are some example add-ons that use type hints:
+<p>Here are some example add-ons that use type hints:<br>
 这里有一些使用类型提示的插件示例：</p>
 <p><a href="https://github.com/ankitects/anki-addons/blob/master/demos/">https://github.com/ankitects/anki-addons/blob/master/demos/</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="add-on-folders插件文件夹"><a class="header" href="#add-on-folders插件文件夹">Add-on Folders（插件文件夹）</a></h1>
-<p>You can access the top level add-ons folder by going to the Tools&gt;Add-ons menu item in the main Anki window. Click on the View Files button, and a folder will pop up. If you had no add-ons installed, the top level add-ons folder will be shown. If you had an add-on selected, the add-on’s module folder will be shown, and you will need to go up one level.
+<p>You can access the top level add-ons folder by going to the Tools&gt;Add-ons menu item in the main Anki window. Click on the View Files button, and a folder will pop up. If you had no add-ons installed, the top level add-ons folder will be shown. If you had an add-on selected, the add-on’s module folder will be shown, and you will need to go up one level.<br>
 你可以通过 Anki 主窗口的 <strong>工具</strong> &gt; <strong>插件</strong> 菜单，来访问顶层插件文件夹。点击 <strong>查看文件</strong> 按钮，系统就会弹出一个文件夹。如果你没有安装任何插件，那么弹出的就是顶层插件文件夹；如果你选中了某个插件，那么弹出的将是该插件的模块文件夹，此时你需要返回上一级目录。</p>
-<p>The add-ons folder is named "addons21", corresponding to Anki 2.1. If you have an "addons" folder, it is because you have previously used Anki
+<p>The add-ons folder is named "addons21", corresponding to Anki 2.1. If you have an "addons" folder, it is because you have previously used Anki<br>
 2.0.x. 这个插件文件夹名为「addons21」，以对应 Anki 2.1 版本。如果你还有一个名为「addons」的文件夹，那说明你之前使用过 Anki 2.0.x 版本。</p>
-<p>Each add-on uses one folder inside the add-on folder. Anki looks for a file called <code>__init__.py</code> file inside the folder, eg:
+<p>Each add-on uses one folder inside the add-on folder. Anki looks for a file called <code>__init__.py</code> file inside the folder, eg:<br>
 每个插件在插件文件夹内都使用一个独立的文件夹。Anki 会在这些文件夹中寻找一个名为 <code>__init__.py</code> 的文件，例如：</p>
 <pre><code>addons21/myaddon/__init__.py
 </code></pre>
-<p>If <code>__init__.py</code> does not exist, Anki will ignore the folder.
+<p>If <code>__init__.py</code> does not exist, Anki will ignore the folder.<br>
 如果 <code>__init__.py</code> 文件不存在，Anki 就会忽略这个文件夹。</p>
-<p>When choosing a folder name, it is recommended to stick to a-z and 0-9
-characters to avoid problems with Python’s module system.
+<p>When choosing a folder name, it is recommended to stick to a-z and 0-9 characters to avoid problems with Python’s module system.<br>
 为插件文件夹命名时，建议只使用 a-z 和 0-9 这些字符，以避免与 Python 的模块系统发生冲突。</p>
-<p>While you can use whatever folder name you wish for folders you create yourself, when you download an add-on from AnkiWeb, Anki will use the item’s ID as the folder name, such as:
+<p>While you can use whatever folder name you wish for folders you create yourself, when you download an add-on from AnkiWeb, Anki will use the item’s ID as the folder name, such as:<br>
 当然，你可以为你自己创建的文件夹随意命名。但是，当你从 AnkiWeb 下载插件时，Anki 会使用该插件的项目 ID 作为文件夹名称，例如：</p>
 <pre><code>addons21/48927303923/__init__.py
 </code></pre>
-<p>Anki will also place a meta.json file in the folder, which keeps track of the original add-on name, when it was downloaded, and whether it’s enabled or not.
+<p>Anki will also place a meta.json file in the folder, which keeps track of the original add-on name, when it was downloaded, and whether it’s enabled or not.<br>
 Anki 同时还会在该文件夹中放置一个 <code>meta.json</code> 文件，用以记录插件的原始名称、下载时间以及是否启用等信息。</p>
-<p>You should not store user data in the add-on folder, as it’s <a href="addon-config.html#config-json">deleted
-when the user upgrades an add-on</a>.
+<p>You should not store user data in the add-on folder, as it’s <a href="addon-config.html#config-json">deleted when the user upgrades an add-on</a>.<br>
 请注意，你不应该在插件文件夹中存储用户数据，因为当用户<a href="addon-config.html#config-json">升级插件时，这些数据会被删除</a>。</p>
-<p>If you followed the steps in the <a href="editor-setup.html">editor setup</a> section, you
-can either copy your myaddon folder into Anki’s add-on folder to test it, or on
-Mac or Linux, create a symlink from the folder’s original location into your
-add-ons folder.
+<p>If you followed the steps in the <a href="editor-setup.html">editor setup</a> section, you can either copy your myaddon folder into Anki’s add-on folder to test it, or on Mac or Linux, create a symlink from the folder’s original location into your add-ons folder.<br>
 如果你已经按照<a href="editor-setup.html">编辑器设置</a>章节的步骤操作，那么你可以将你的 <code>myaddon</code> 文件夹复制到 Anki 的插件文件夹中进行测试。或者，在 Mac 或 Linux 系统上，你也可以从 <code>myaddon</code> 文件夹的原始位置创建一个符号链接到你的插件文件夹中。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="a-basic-add-on一个简单的插件"><a class="header" href="#a-basic-add-on一个简单的插件">A Basic Add-on（一个简单的插件）</a></h1>
-<p>Add the following to <code>myaddon/__init__.py</code> in your add-ons folder:</p>
-<p>将以下代码添加到你 Anki 插件文件夹内的 <code>myaddon/__init__.py</code> 文件中：</p>
+<p>Add the following to <code>myaddon/__init__.py</code> in your add-ons folder:<br>
+将以下代码添加到你 Anki 插件文件夹内的 <code>myaddon/__init__.py</code> 文件中：</p>
 <pre><code class="language-python"># import the main window object (mw) from aqt
 # 从 aqt 模块导入主窗口对象（mw）
 from aqt import mw
@@ -353,58 +352,55 @@ qconnect(action.triggered, testFunction)
 # 最后将这个操作添加到工具菜单中
 mw.form.menuTools.addAction(action)
 </code></pre>
-<p>Restart Anki, and you should find a 'test' item in the tools menu.
-Running it will display a dialog with the card count.</p>
-<p>重启 Anki，你应该能在「工具」菜单中找到一个名为「test」的菜单项。
-运行它，将会弹出一个显示卡片总数的对话框。</p>
-<p>If you make a mistake when entering in the plugin, Anki will show an
-error message on startup indicating where the problem is.</p>
-<p>如果你在输入插件代码时出错，Anki 将在启动时显示一条错误消息，并指明问题所在。</p>
+<p>Restart Anki, and you should find a 'test' item in the tools menu. Running it will display a dialog with the card count.<br>
+重启 Anki，你应该能在「工具」菜单中找到一个名为「test」的菜单项。运行它，将会弹出一个显示卡片总数的对话框。</p>
+<p>If you make a mistake when entering in the plugin, Anki will show an error message on startup indicating where the problem is.<br>
+如果你在输入插件代码时出错，Anki 将在启动时显示一条错误消息，并指明问题所在。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-anki-moduleanki模块"><a class="header" href="#the-anki-moduleanki模块">The 'anki' module（「anki」模块）</a></h1>
-<p>All access to your collection and associated media go through a Python package called <code>anki</code>, located in <a href="https://github.com/ankitects/anki/tree/main/pylib/anki">pylib/anki</a> in Anki's source repo.
+<p>All access to your collection and associated media go through a Python package called <code>anki</code>, located in <a href="https://github.com/ankitects/anki/tree/main/pylib/anki">pylib/anki</a> in Anki's source repo.<br>
 所有对你的牌组集合及相关媒体文件的访问，都是通过一个名为 <code>anki</code> 的 Python 包进行的。该包位于 Anki 源码仓库的 <a href="https://github.com/ankitects/anki/tree/main/pylib/anki">pylib/anki</a> 目录中。</p>
 <h2 id="the-collection牌组集合"><a class="header" href="#the-collection牌组集合">The Collection（牌组集合）</a></h2>
-<p>All operations on a collection file are accessed via a <code>Collection</code> object. The currently-open Collection is accessible via a global <code>mw.col</code>, where <code>mw</code> stands for <code>main window</code>. When using the <code>anki</code> module outside of Anki, you will need to create your own Collection object.
+<p>All operations on a collection file are accessed via a <code>Collection</code> object. The currently-open Collection is accessible via a global <code>mw.col</code>, where <code>mw</code> stands for <code>main window</code>. When using the <code>anki</code> module outside of Anki, you will need to create your own Collection object.<br>
 所有对牌组集合文件的操作都是通过一个 <code>Collection</code> 对象来访问的。当前打开的牌组集合可以通过全局变量 <code>mw.col</code> 来访问，其中 <code>mw</code> 代表「main window」（主窗口）。当在 Anki 环境之外使用 <code>anki</code> 模块时，你需要自己创建一个 <code>Collection</code> 对象。</p>
-<p>Some basic examples of what you can do follow. Please note that you should put these in something like <a href="./a-basic-addon.html">testFunction()</a>. You can’t run them directly in an add-on, as add-ons are initialized during Anki startup, before any collection or profile has been loaded.
+<p>Some basic examples of what you can do follow. Please note that you should put these in something like <a href="./a-basic-addon.html">testFunction()</a>. You can’t run them directly in an add-on, as add-ons are initialized during Anki startup, before any collection or profile has been loaded.<br>
 下面是一些你可以实现的基本操作示例。请注意，你应该将这些代码放在像 <a href="./a-basic-addon.html">testFunction()</a> 这样的函数中。你不能直接在插件的顶层代码中运行它们，因为插件是在 Anki 启动过程中初始化的，那时还没有加载任何牌组集合或用户配置文件。</p>
-<p>Also please note that accessing the collection directly can lead to the UI temporarily freezing if the operation doesn't complete quickly - in practice you would typically run the code below in a background thread.
+<p>Also please note that accessing the collection directly can lead to the UI temporarily freezing if the operation doesn't complete quickly - in practice you would typically run the code below in a background thread.<br>
 另外也请注意，如果操作不能快速完成，直接访问牌组集合可能会导致 UI 暂时冻结。在实际应用中，你通常应该在后台线程中运行下面的代码。</p>
-<p><strong>Get a due card:</strong>
+<p><strong>Get a due card:</strong><br>
 <strong>获取一张到期卡片：</strong></p>
 <pre><code class="language-python">card = mw.col.sched.getCard()
 if not card:
     # current deck is finished
     # 当前牌组已完成
 </code></pre>
-<p><strong>Answer the card:</strong>
+<p><strong>Answer the card:</strong><br>
 <strong>回答卡片：</strong></p>
 <pre><code class="language-python">mw.col.sched.answerCard(card, ease)
 </code></pre>
-<p><strong>Edit a note (append "new" to the end of each field):</strong>
+<p><strong>Edit a note (append "new" to the end of each field):</strong><br>
 <strong>编辑一条笔记（在每个字段末尾追加「new」）：</strong></p>
 <pre><code class="language-python">note = card.note()
 for (name, value) in note.items():
     note[name] = value + " new"
 mw.col.update_note(note)
 </code></pre>
-<p><strong>Get card IDs for notes with tag x:</strong>
+<p><strong>Get card IDs for notes with tag x:</strong><br>
 <strong>获取带有标签 x 的笔记的所有卡片 ID：</strong></p>
 <pre><code class="language-python">ids = mw.col.find_cards("tag:x")
 </code></pre>
-<p><strong>Get question and answer for each of those ids:</strong>
+<p><strong>Get question and answer for each of those ids:</strong><br>
 <strong>根据这些 ID 获取每张卡片的问题和答案：</strong></p>
 <pre><code class="language-python">for id in ids:
     card = mw.col.get_card(id)
     question = card.question()
     answer = card.answer()
 </code></pre>
-<p><strong>Make reviews due tomorrow</strong>
+<p><strong>Make reviews due tomorrow</strong><br>
 <strong>将复习卡片的到期日设为明天：</strong></p>
 <pre><code class="language-python">ids = mw.col.find_cards("is:due")
 mw.col.sched.set_due_date(ids, "1")
 </code></pre>
-<p><strong>Import a text file into the collection</strong>
+<p><strong>Import a text file into the collection</strong><br>
 <strong>将一个文本文件导入到牌组集合中：</strong></p>
 <p>Requires Anki 2.1.55+.
 需要 Anki 2.1.55+ 版本。</p>
@@ -417,13 +413,11 @@ request = ImportCsvRequest(path=path, metadata=metadata)
 response = col.import_csv(request)
 print(response.log.found_notes, list(response.log.updated), list(response.log.new))
 </code></pre>
-<p>Almost every GUI operation has an associated function in anki, so any of
-the operations that Anki makes available can also be called in an
-add-on.
+<p>Almost every GUI operation has an associated function in anki, so any of the operations that Anki makes available can also be called in an add-on.<br>
 几乎每个 GUI 操作在 <code>anki</code> 模块中都有一个对应的函数，因此 Anki 提供的任何操作都可以在插件中调用。</p>
 <h2 id="readingwriting-读写对象"><a class="header" href="#readingwriting-读写对象">Reading/Writing （读/写对象）</a></h2>
-<p>Most objects in Anki can be read and written via methods in pylib.</p>
-<p>Anki 中的大多数对象都可以通过 pylib 中的方法进行读取和写入。</p>
+<p>Most objects in Anki can be read and written via methods in pylib.<br>
+Anki 中的大多数对象都可以通过 pylib 中的方法进行读取和写入。</p>
 <pre><code class="language-python">card = col.get_card(card_id)
 card.ivl += 1
 col.update_card(card)
@@ -450,69 +444,65 @@ col.models.save(note)
 notetype = col.models.by_name("Basic")
 ...
 </code></pre>
-<p>You should prefer these methods over directly accessing the database, as they take care of marking items as requiring a sync, and they prevent some forms of invalid data from being written to the database.
+<p>You should prefer these methods over directly accessing the database, as they take care of marking items as requiring a sync, and they prevent some forms of invalid data from being written to the database.<br>
 你应该优先使用这些方法，而不是直接访问数据库。因为这些方法会自动处理需要同步的项目标记，并能防止某些形式的无效数据被写入数据库。</p>
-<p>For locating specific cards and notes, col.find_cards() and
-col.find_notes() are useful.
+<p>For locating specific cards and notes, col.find_cards() and col.find_notes() are useful.<br>
 要查找特定的卡片和笔记，<code>col.find_cards()</code> 和 <code>col.find_notes()</code> 函数非常有用。</p>
 <h2 id="the-database数据库"><a class="header" href="#the-database数据库">The Database（数据库）</a></h2>
-<p>:warning: You can easily cause problems by writing directly to the database.
-Where possible, please use methods such as the ones mentioned above instead.
+<p>:warning: You can easily cause problems by writing directly to the database. Where possible, please use methods such as the ones mentioned above instead.<br>
 :warning: 直接写入数据库很容易引发问题。请尽可能使用上文提到的方法来代替直接操作数据库。</p>
-<p>Anki’s DB object supports the following functions:
+<p>Anki’s DB object supports the following functions:<br>
 Anki 的 DB 对象支持以下函数：</p>
-<p><strong>scalar() returns a single item:</strong>
+<p><strong>scalar() returns a single item:</strong><br>
 <strong>scalar() 返回单个值：</strong></p>
 <pre><code class="language-python">showInfo("card count: %d" % mw.col.db.scalar("select count() from cards"))
 </code></pre>
-<p><strong>list() returns a list of the first column in each row, e.g.[1, 2, 3]</strong>
+<p><strong>list() returns a list of the first column in each row, e.g.[1, 2, 3]</strong><br>
 <strong>list() 返回每行第一列数据组成的 list，例如：[1, 2, 3]</strong></p>
 <pre><code class="language-python">ids = mw.col.db.list("select id from cards limit 3")
 </code></pre>
-<p><strong>all() returns a list of rows, where each row is a list:</strong>
+<p><strong>all() returns a list of rows, where each row is a list:</strong><br>
 <strong>all() 返回一个由多个行行组成的 list，其中每一行本身也是一个 list：</strong></p>
 <pre><code class="language-python">ids_and_ivl = mw.col.db.all("select id, ivl from cards")
 </code></pre>
-<p><strong>execute() can also be used to iterate over a result set without
-building an intermediate list. eg:</strong>
+<p><strong>execute() can also be used to iterate over a result set without building an intermediate list. eg:</strong><br>
 <strong>execute() 也可以用来遍历 result set，而无需构建一个中间 list。例如：</strong></p>
 <pre><code class="language-python">for id, ivl in mw.col.db.execute("select id, ivl from cards limit 3"):
     showInfo("card id %d has ivl %d" % (id, ivl))
 </code></pre>
-<p><strong>execute() allows you to perform an insert or update operation. Use named arguments with ?. eg:</strong>
+<p><strong>execute() allows you to perform an insert or update operation. Use named arguments with ?. eg:</strong><br>
 <strong>execute() 允许你执行插入或更新操作。请使用 <code>?</code> 作为占位符。例如：</strong></p>
 <pre><code class="language-python">mw.col.db.execute("update cards set ivl = ? where id = ?", newIvl, cardId)
 </code></pre>
 <p>Note that these changes won't sync, as they would if you used the functions mentioned in the previous section.
 请注意，这些更改不会被同步，而使用上一节提到的函数所做的更改则会被同步。</p>
-<p><strong>executemany() allows you to perform bulk update or insert operations. For large updates, this is much faster than calling execute() for each data point. eg:</strong>
+<p><strong>executemany() allows you to perform bulk update or insert operations. For large updates, this is much faster than calling execute() for each data point. eg:</strong><br>
 <strong>executemany() 允许你执行批量更新或插入操作。对于大量更新，这比为每个数据点调用 <code>execute()</code> 要快得多。例如：</strong></p>
 <pre><code class="language-python">data = [[newIvl1, cardId1], [newIvl2, cardId2]]
 mw.col.db.executemany(same_sql_as_above, data)
 </code></pre>
-<p>As above, these changes won't sync.
+<p>As above, these changes won't sync.<br>
 与上面一样，这些更改也不会被同步。</p>
-<p>Add-ons should never modify the schema of existing tables, as that may break future versions of Anki.
+<p>Add-ons should never modify the schema of existing tables, as that may break future versions of Anki.<br>
 插件永远不应该修改现有表的结构（schema），因为这可能会破坏未来版本的 Anki。</p>
-<p>If you need to store addon-specific data, consider using Anki’s
-<a href="addon-config.html#config-json">Configuration</a> support.
+<p>If you need to store addon-specific data, consider using Anki’s <a href="addon-config.html#config-json">Configuration</a> support.<br>
 如果你需要存储插件特有的数据，可以考虑使用 Anki 的<a href="addon-config.html#config-json">配置</a>功能。</p>
-<p>If you need the data to sync across devices, small options can be stored within mw.col.conf. Please don’t store large amounts of data there, as it’s currently sent on every sync.
+<p>If you need the data to sync across devices, small options can be stored within mw.col.conf. Please don’t store large amounts of data there, as it’s currently sent on every sync.<br>
 如果你需要数据在不同设备间同步，可以将小的配置项存储在 <code>mw.col.conf</code> 中。请不要在那里存储大量数据，因为它目前会在每次同步时都被发送。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="command-line-use命令行使用"><a class="header" href="#command-line-use命令行使用">Command-Line Use（命令行使用）</a></h1>
-<p>The <code>anki</code> module can be used separately from Anki's GUI. It is strongly recommended you use it instead of attempting to read or write a .anki2 file directly.</p>
-<p><code>anki</code> 模块可以独立于 Anki 的图形用户界面（GUI）运行。我们强烈建议你通过此模块进行操作，而不是直接尝试读取或写入 <code>.anki2</code> 文件。</p>
-<p>Install it with pip:
+<p>The <code>anki</code> module can be used separately from Anki's GUI. It is strongly recommended you use it instead of attempting to read or write a .anki2 file directly.<br>
+<code>anki</code> 模块可以独立于 Anki 的图形用户界面（GUI）运行。我们强烈建议你通过此模块进行操作，而不是直接尝试读取或写入 <code>.anki2</code> 文件。</p>
+<p>Install it with pip:<br>
 请使用 pip 来安装该模块：</p>
 <pre><code class="language-shell">$ pip install anki
 </code></pre>
-<p>Then you can use it in a .py file, like so:
+<p>Then you can use it in a .py file, like so:<br>
 安装后，你就可以在 <code>.py</code> 文件中如下所示地使用它：</p>
 <pre><code class="language-python">from anki.collection import Collection
 col = Collection("/path/to/collection.anki2")
 print(col.sched.deck_due_tree())
 </code></pre>
-<p>See <a href="./the-anki-module.html">the Anki module</a> for more.
+<p>See <a href="./the-anki-module.html">the Anki module</a> for more.<br>
 更多详细信息，请参阅 <a href="./the-anki-module.html">Anki 模块</a> 章节。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hooks--filtershook-与过滤器"><a class="header" href="#hooks--filtershook-与过滤器">Hooks &amp; Filters（Hook 与过滤器）</a></h1>
 <ul>
@@ -529,30 +519,26 @@ print(col.sched.deck_due_tree())
 <li><a href="hooks-and-filters.html#legacy-hook-handling%E6%97%A7%E5%BC%8F-hook">Legacy Hook Handling（旧式 Hook）</a></li>
 <li><a href="hooks-and-filters.html#adding-hooks%E6%B7%BB%E5%8A%A0-hook">Adding Hooks（添加 Hook）</a></li>
 </ul>
-<p>Hooks are the way you should connect your add-on code to Anki. If the
-function you want to alter doesn’t already have a hook, please see the
-section below about adding new hooks.
+<p>Hooks are the way you should connect your add-on code to Anki. If the function you want to alter doesn’t already have a hook, please see the section below about adding new hooks.<br>
 Hooks 是你将插件代码与 Anki 连接的首选方式。如果您想修改的函数尚未提供 Hook，请参阅下文关于添加新 Hook 的章节。</p>
 <p>There are two different kinds of "hooks":</p>
 <ul>
 <li>Regular hooks are functions that don’t return anything. They are run for their side effects, and may sometimes alter the objects they have been passed, such as inserting an extra item in a list.</li>
-<li>"Filters" are functions that return their first argument, after maybe changing it. An example filter is one that takes the text of a field during card display, and returns an altered version.</li>
-</ul>
-<p>“Hook”主要有两种类型：</p>
-<ul>
+<li>"Filters" are functions that return their first argument, after maybe changing it. An example filter is one that takes the text of a field during card display, and returns an altered version.<br>
+“Hook”主要有两种类型：</li>
 <li>常规 Hook，这类函数没有返回值。它们因其“副作用”（side effects）而被执行，有时可能会修改传递给它们的对象，例如向一个 list 中插入一个额外的 item。</li>
 <li>过滤器，这类函数会返回其接收的第一个参数，但可能在返回前对其进行修改。一个典型的例子是，在显示卡片时，过滤器可以获取字段中的文本，并返回一个修改后的版本。</li>
 </ul>
-<p>The distinction is necessary because some data types in Python can be modified directly, and others can only be modified by creating a changed copy (such as strings).
+<p>The distinction is necessary because some data types in Python can be modified directly, and others can only be modified by creating a changed copy (such as strings).<br>
 之所以需要这种区分，是因为在 Python 中，某些数据类型（如 list）是<strong>可变的</strong>，可以直接修改；而其他数据类型（如字符串）是<strong>不可变的</strong>，只能通过创建一个修改后的副本来进行更改。</p>
 <h2 id="new-style-hooks新式-hook"><a class="header" href="#new-style-hooks新式-hook">New Style Hooks（新式 Hook）</a></h2>
-<p>A new style of hook was added in Anki 2.1.20.
+<p>A new style of hook was added in Anki 2.1.20.<br>
 Anki 2.1.20 版本引入了一种新式的 Hook。</p>
-<p>Imagine you wish to show a message each time the front side of a card is shown in the review screen. You’ve looked at the source code in reviewer.py, and seen the following line in the showQuestion() function:
+<p>Imagine you wish to show a message each time the front side of a card is shown in the review screen. You’ve looked at the source code in reviewer.py, and seen the following line in the showQuestion() function:<br>
 假设你希望每当在复习界面显示卡片正面时，都弹出一则消息。通过查看 <code>reviewer.py</code> 的源代码，您会在 <code>showQuestion()</code> 函数中发现这样一行代码：</p>
 <pre><code class="language-python">gui_hooks.reviewer_did_show_question(card)
 </code></pre>
-<p>To register a function to be called when this hook is run, you can do the following in your add-on:
+<p>To register a function to be called when this hook is run, you can do the following in your add-on:<br>
 为了在该 Hook 触发时调用您自己的函数，您可以在插件中添加如下代码：</p>
 <pre><code class="language-python">from aqt import gui_hooks
 
@@ -561,13 +547,13 @@ def myfunc(card):
 
 gui_hooks.reviewer_did_show_question.append(myfunc)
 </code></pre>
-<p>Multiple add-ons can register for the same hook or filter - they will all be called in turn.
+<p>Multiple add-ons can register for the same hook or filter - they will all be called in turn.<br>
 多个插件可以注册同一个 Hook 或过滤器，Anki 会依次调用所有注册的函数。</p>
-<p>To remove a hook, use code like:
+<p>To remove a hook, use code like:<br>
 若要移除一个已注册的 Hook，可以使用类似下面的代码：</p>
 <pre><code>gui_hooks.reviewer_did_show_question.remove(myfunc)
 </code></pre>
-<p>:warning: Functions you attach to a hook should not modify the hook while they are executing, as it will break things:
+<p>:warning: Functions you attach to a hook should not modify the hook while they are executing, as it will break things:<br>
 :warning: <strong>警告</strong>：您挂载到 Hook 上的函数在执行期间不应尝试修改该 Hook 自身，否则会导致程序异常：</p>
 <pre><code>def myfunc(card):
   # DON'T DO THIS!
@@ -576,25 +562,21 @@ gui_hooks.reviewer_did_show_question.append(myfunc)
 
 gui_hooks.reviewer_did_show_question.append(myfunc)
 </code></pre>
-<p>An easy way to see all hooks at a glance is to look at
-<a href="https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py">pylib/tools/genhooks.py</a> and <a href="https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py">qt/tools/genhooks_gui.py</a>.
+<p>An easy way to see all hooks at a glance is to look at <a href="https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py">pylib/tools/genhooks.py</a> and <a href="https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py">qt/tools/genhooks_gui.py</a>.<br>
 要快速浏览所有可用的 Hook，一个简单的方法是查阅 Anki 源代码中的 <a href="https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py">pylib/tools/genhooks.py</a> 和 <a href="https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py">qt/tools/genhooks_gui.py</a> 文件。</p>
-<p>If you have set up type completion as described in an earlier section, you can also see the hooks in your IDE:
+<p>If you have set up type completion as described in an earlier section, you can also see the hooks in your IDE:<br>
 如果您已按照前文指引配置好类型补全，那么在您的集成开发环境（IDE）中也能方便地查看这些 Hook：</p>
 <video controls autoplay loop muted>
  <source src="../img/autocomplete.mp4" type="video/mp4">
 </video>
-<p>In the above video, holding the command/ctrl key down while hovering
-will show a tooltip, including arguments and documentation if it exists.
-The argument names and types for the callback can be seen on the bottom
-line.
+<p>In the above video, holding the command/ctrl key down while hovering will show a tooltip, including arguments and documentation if it exists. The argument names and types for the callback can be seen on the bottom line.<br>
 在上面的演示视频中，当您按住 <code>Command</code> 键（macOS）或 <code>Ctrl</code> 键（Windows/Linux）并将鼠标悬停在 Hook 上时，IDE 会显示一个工具提示，其中包含参数信息和相关文档（如果存在）。回调函数所需的参数名和类型会显示在提示的最后一行。</p>
-<p>For some examples of how the new hooks are used, please see <a href="https://github.com/ankitects/anki-addons/blob/master/demos/">https://github.com/ankitects/anki-addons/blob/master/demos/</a>.
+<p>For some examples of how the new hooks are used, please see <a href="https://github.com/ankitects/anki-addons/blob/master/demos/">https://github.com/ankitects/anki-addons/blob/master/demos/</a>.<br>
 关于新式 Hook 的更多用法示例，请参考 <a href="https://github.com/ankitects/anki-addons/blob/master/demos/">https://github.com/ankitects/anki-addons/blob/master/demos/</a>。</p>
-<p>Most of the new style hooks will also call the legacy hooks (described further below), so old add-ons will continue to work for now, but add-on authors are encouraged to update to the new style as it allows for code completion, and better error checking.
+<p>Most of the new style hooks will also call the legacy hooks (described further below), so old add-ons will continue to work for now, but add-on authors are encouraged to update to the new style as it allows for code completion, and better error checking.<br>
 大部分新式 Hook 也会兼容并调用旧式 Hook（详见下文），因此旧版插件目前仍可继续使用。但我们强烈建议插件开发者升级到新式 Hook，因为它能提供更好的代码自动补全支持和更严格的错误检查。</p>
 <h2 id="notable-hooks重要-hook"><a class="header" href="#notable-hooks重要-hook">Notable Hooks（重要 Hook）</a></h2>
-<p>For a full list of hooks, and their documentation, please see
+<p>For a full list of hooks, and their documentation, please see<br>
 要获取所有 Hook 的完整列表及其详细文档，请参阅：</p>
 <ul>
 <li><a href="https://github.com/ankitects/anki/blob/master/qt/tools/genhooks_gui.py">The GUI hooks</a></li>
@@ -604,57 +586,48 @@ line.
 </ul>
 <h3 id="webview网页视图"><a class="header" href="#webview网页视图">Webview（网页视图）</a></h3>
 <p>Many of Anki's screens are built with one or more webviews, and there are
-some hooks you can use to intercept their use.
+some hooks you can use to intercept their use.<br>
 Anki 的许多界面都是由一个或多个 Webview 构建的，您可以使用一些特定的 Hook 来干预它们的行为。</p>
 <p>From Anki 2.1.22:</p>
 <ul>
 <li><code>gui_hooks.webview_will_set_content()</code> allows you to modify the HTML that various screens send to the webview. You can use this for adding your own HTML/CSS/Javascript to particular screens. This will not work for external pages - see the Anki 2.1.36 section below.</li>
 <li><code>gui_hooks.webview_did_receive_js_message()</code> allows you to intercept
-messages sent from Javascript. Anki provides a <code>pycmd(string)</code> function in
-Javascript which sends a message back to Python, and various screens such as
-reviewer.py respond to the messages. By using this hook, you can respond
-to your own messages as well.</li>
-</ul>
-<p>自 Anki 2.1.22 版本起：</p>
-<ul>
+messages sent from Javascript. Anki provides a <code>pycmd(string)</code> function in Javascript which sends a message back to Python, and various screens such as reviewer.py respond to the messages. By using this hook, you can respond to your own messages as well.<br>
+自 Anki 2.1.22 版本起：</li>
 <li><code>gui_hooks.webview_will_set_content()</code> 允许你修改各个界面发送到 Webview 的 HTML 内容。您可以利用这个 Hook 向特定界面添加自定义的 HTML、CSS 或 JavaScript。请注意，此 Hook 对外部页面无效——相关说明请参阅下文关于 Anki 2.1.36 的部分。</li>
 <li><code>gui_hooks.webview_did_receive_js_message()</code> 允许您拦截从 JavaScript 发送过来的消息。Anki 在 JavaScript 环境中提供了一个 <code>pycmd(string)</code> 函数，用于向 Python 后端发送消息。像 <code>reviewer.py</code> 等界面会响应这些消息。通过此 Hook，您也可以处理自己定义的 JavaScript 消息。</li>
 </ul>
 <p>From Anki 2.1.36:</p>
 <ul>
-<li><code>webview_did_inject_style_into_page()</code> gives you an opportunity to inject
-styling or content into external pages like the graphs screen and congratulations
-page that are loaded with load_ts_page().</li>
-</ul>
-<p>自 Anki 2.1.36 版本起：</p>
-<ul>
+<li><code>webview_did_inject_style_into_page()</code> gives you an opportunity to inject styling or content into external pages like the graphs screen and congratulations page that are loaded with load_ts_page().<br>
+自 Anki 2.1.36 版本起：</li>
 <li><code>webview_did_inject_style_into_page()</code>：为您提供了一个机会，可以向通过 <code>load_ts_page()</code> 函数加载的外部页面（例如统计图表页和完成复习时的祝贺页）注入自定义样式或内容。</li>
 </ul>
 <h4 id="managing-external-resources-in-webviews在-webview-中管理外部资源"><a class="header" href="#managing-external-resources-in-webviews在-webview-中管理外部资源">Managing External Resources in Webviews（在 Webview 中管理外部资源）</a></h4>
-<p>Add-ons may expose their own web assets by utilizing <code>aqt.addons.AddonManager.setWebExports()</code>. Web exports registered in this manner may then be accessed under the <code>/_addons</code> subpath.</p>
-<p>插件可以通过调用 <code>aqt.addons.AddonManager.setWebExports()</code> 方法来暴露其自身的网络资源（web assets）。通过这种方式注册的资源，之后便可以通过 <code>/_addons</code> 这个子路径进行访问。</p>
-<p>For example, to allow access to a <code>my-addon.js</code> and <code>my-addon.css</code> residing in a "web" subfolder in your add-on package, first register the corresponding web export:
+<p>Add-ons may expose their own web assets by utilizing <code>aqt.addons.AddonManager.setWebExports()</code>. Web exports registered in this manner may then be accessed under the <code>/_addons</code> subpath.<br>
+插件可以通过调用 <code>aqt.addons.AddonManager.setWebExports()</code> 方法来暴露其自身的网络资源（web assets）。通过这种方式注册的资源，之后便可以通过 <code>/_addons</code> 这个子路径进行访问。</p>
+<p>For example, to allow access to a <code>my-addon.js</code> and <code>my-addon.css</code> residing in a "web" subfolder in your add-on package, first register the corresponding web export: <br>
 例如，假设您的插件包内有一个 <code>web</code> 子文件夹，其中包含 <code>my-addon.js</code> 和 <code>my-addon.css</code> 两个文件。要让 Anki 能够访问它们，首先需要注册相应的网络导出规则：</p>
 <pre><code class="language-python">from aqt import mw
 mw.addonManager.setWebExports(__name__, r"web/.*(css|js)")
 </code></pre>
-<p>Then, append the subpaths to the corresponding web_content fields within a function subscribing to <code>gui_hooks.webview_will_set_content</code>:
+<p>Then, append the subpaths to the corresponding web_content fields within a function subscribing to <code>gui_hooks.webview_will_set_content</code>:<br>
 接着，在一个订阅了 <code>gui_hooks.webview_will_set_content</code> Hook 的函数中，将这些资源的路径添加到 <code>web_content</code> 对象相应的字段里：</p>
 <pre><code class="language-python">def on_webview_will_set_content(web_content: WebContent, context) -&gt; None:
     addon_package = mw.addonManager.addonFromModule(__name__)
     web_content.css.append(f"/_addons/{addon_package}/web/my-addon.css")
     web_content.js.append(f"/_addons/{addon_package}/web/my-addon.js")
 </code></pre>
-<p>Note that '/' will also match the os specific path separator.
+<p>Note that '/' will also match the os specific path separator.<br>
 请注意，路径中的 <code>/</code> 符号会自动适配不同操作系统（如 Windows 的 <code>\</code>）的路径分隔符。</p>
 <h2 id="legacy-hook-handling旧式-hook"><a class="header" href="#legacy-hook-handling旧式-hook">Legacy Hook Handling（旧式 Hook）</a></h2>
-<p>Older versions of Anki used a different hook system, using the functions runHook(), addHook() and runFilter().
+<p>Older versions of Anki used a different hook system, using the functions runHook(), addHook() and runFilter().<br>
 旧版 Anki 采用了一套不同的 Hook 系统，主要使用 <code>runHook()</code>、<code>addHook()</code> 和 <code>runFilter()</code> 这三个函数。</p>
-<p>For example, when the scheduler (anki/sched.py) discovers a leech, it calls:
+<p>For example, when the scheduler (anki/sched.py) discovers a leech, it calls:<br>
 例如，当调度器（<code>anki/sched.py</code>）检测到一张“记忆难点”的卡片时，会调用：</p>
 <pre><code class="language-python">runHook("leech", card)
 </code></pre>
-<p>If you wished to perform a special operation when a leech was discovered, such as moving the card to a "Difficult" deck, you could do it with the following code:
+<p>If you wished to perform a special operation when a leech was discovered, such as moving the card to a "Difficult" deck, you could do it with the following code:<br>
 如果您希望在检测到“记忆难点”卡片时执行特定操作（例如，将其移动到“困难”牌组），可以使用以下代码实现：</p>
 <pre><code class="language-python">from anki.hooks import addHook
 from aqt import mw
@@ -674,7 +647,7 @@ def onLeech(card):
 
 addHook("leech", onLeech)
 </code></pre>
-<p>An example of a filter is in <a href="https://github.com/ankitects/anki/blob/main/qt/aqt/editor.py">aqt/editor.py</a>. The editor calls the "editFocusLost" filter each time a field loses focus, so that add-ons can apply changes to the note:
+<p>An example of a filter is in <a href="https://github.com/ankitects/anki/blob/main/qt/aqt/editor.py">aqt/editor.py</a>. The editor calls the "editFocusLost" filter each time a field loses focus, so that add-ons can apply changes to the note:<br>
 关于过滤器（filter）的一个例子可以在 <code>aqt/editor.py</code> 文件中找到。每当编辑器中的某个字段失去焦点时，编辑器会调用名为 <code>editFocusLost</code> 的过滤器，从而允许插件对笔记内容进行修改：</p>
 <pre><code class="language-python">if runFilter(
     "editFocusLost", False, self.note, self.currentField):
@@ -685,9 +658,9 @@ addHook("leech", onLeech)
         self.checkValid()
     self.mw.progress.timer(100, onUpdate, False)
 </code></pre>
-<p>Each filter in this example accepts three arguments: a modified flag, the note, and the current field. If a filter makes no changes it returns the modified flag the same as it received it; if it makes a change it returns True. In this way, if any single add-on makes a change, the UI will reload the note to show updates.
+<p>Each filter in this example accepts three arguments: a modified flag, the note, and the current field. If a filter makes no changes it returns the modified flag the same as it received it; if it makes a change it returns True. In this way, if any single add-on makes a change, the UI will reload the note to show updates.<br>
 在这个例子中，<code>editFocusLost</code> 过滤器接收三个参数：一个表示“是否修改”的 flag、当前笔记对象以及当前字段的索引。如果一个过滤器函数没有做任何修改，它应该原样返回这个 flag；如果它修改了笔记，则应返回 <code>True</code>。这样一来，只要有任何一个插件对笔记进行了修改，UI 就会重新加载笔记以展示最新的内容。</p>
-<p>The Japanese Support add-on uses this hook to automatically generate one field from another. A slightly simplified version is presented below:
+<p>The Japanese Support add-on uses this hook to automatically generate one field from another. A slightly simplified version is presented below:<br>
 “日语支持”（Japanese Support）插件就利用了这个 Hook，根据一个字段的内容自动填充另一个字段。以下是其简化版的代码示例：</p>
 <pre><code class="language-python">def onFocusLost(flag, n, fidx):
     from aqt import mw
@@ -731,9 +704,9 @@ addHook("leech", onLeech)
 
 addHook('editFocusLost', onFocusLost)
 </code></pre>
-<p>The first argument of a filter is the argument that should be returned. In the focus lost filter this is a flag, but in other cases it may be some other object. For example, in anki/collection.py, _renderQA() calls the "mungeQA" filter which contains the generated HTML for the front and back of cards. latex.py uses this filter to convert text in LaTeX tags into images.
+<p>The first argument of a filter is the argument that should be returned. In the focus lost filter this is a flag, but in other cases it may be some other object. For example, in anki/collection.py, _renderQA() calls the "mungeQA" filter which contains the generated HTML for the front and back of cards. latex.py uses this filter to convert text in LaTeX tags into images.<br>
 过滤器的第一个参数通常是需要被层层处理并最终返回的值。在 <code>editFocusLost</code> 过滤器中，这个值是一个flag，但在其他情况下，它也可能是一个对象。例如，在 <code>anki/collection.py</code> 中，<code>_renderQA()</code> 函数会调用 <code>mungeQA</code> 过滤器，这个过滤器处理的是为卡片正反面生成的 HTML 代码。<code>latex.py</code> 模块就利用这个过滤器，将 LaTeX 标签内的文本转换成图像。</p>
-<p>In Anki 2.1, a hook was added for adding buttons to the editor. It can be used like so:
+<p>In Anki 2.1, a hook was added for adding buttons to the editor. It can be used like so:<br>
 Anki 2.1 版本为编辑器增加了一个用于添加自定义按钮的 Hook，用法如下：</p>
 <pre><code class="language-python">from aqt.utils import showInfo
 from anki.hooks import addHook
@@ -753,52 +726,50 @@ def addMyButton(buttons, editor):
 addHook("setupEditorButtons", addMyButton)
 </code></pre>
 <h2 id="adding-hooks添加-hook"><a class="header" href="#adding-hooks添加-hook">Adding Hooks（添加 Hook）</a></h2>
-<p>If you want to modify a function that doesn’t already have a hook, please submit a pull request that adds the hooks you need.
+<p>If you want to modify a function that doesn’t already have a hook, please submit a pull request that adds the hooks you need.<br>
 如果您想修改的某个函数目前还没有提供 Hook，欢迎您提交一个拉取请求（Pull Request）来添加您所需要的 Hook。</p>
-<p>In your PR, please describe the use-case you're trying to solve. Hooks that are general in nature will typically be approved; hooks that target a very specific use case may need to be refactored to be more general first. For an
-example of what this might look like, please see <a href="https://github.com/ankitects/anki/pull/2340">this PR</a>.
+<p>In your PR, please describe the use-case you're trying to solve. Hooks that are general in nature will typically be approved; hooks that target a very specific use case may need to be refactored to be more general first. For an example of what this might look like, please see <a href="https://github.com/ankitects/anki/pull/2340">this PR</a>.<br>
 在您的 PR 中，请详细描述您希望通过这个 Hook 解决的具体应用场景。通常，那些具有通用性的 Hook 会被接受；而那些针对非常特定场景的 Hook，可能需要先进行重构，使其更具通用性。关于这方面的一个实例，可以参考<a href="https://github.com/ankitects/anki/pull/2340">此 PR</a>。</p>
-<p>The hook definitions are located in <a href="https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py">pylib/tools/genhooks.py</a> and <a href="https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py">qt/tools/genhooks_gui.py</a>. When building Anki, the build scripts will automatically update the hook files with the definitions listed there.
+<p>The hook definitions are located in <a href="https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py">pylib/tools/genhooks.py</a> and <a href="https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py">qt/tools/genhooks_gui.py</a>. When building Anki, the build scripts will automatically update the hook files with the definitions listed there.<br>
 Hook 的定义文件分别位于 <a href="https://github.com/ankitects/anki/tree/main/pylib/tools/genhooks.py">pylib/tools/genhooks.py</a> 和 <a href="https://github.com/ankitects/anki/blob/main/qt/tools/genhooks_gui.py">qt/tools/genhooks_gui.py</a>。当 Anki 项目构建时，构建脚本会自动根据这些文件中的定义来更新 Hook 相关的代码。</p>
-<p>Please see the <a href="https://github.com/ankitects/anki/tree/main/docs">docs/</a> folder in the source tree for more information.
+<p>Please see the <a href="https://github.com/ankitects/anki/tree/main/docs">docs/</a> folder in the source tree for more information.<br>
 更多相关信息，请参阅 Anki 源代码树中的 <a href="https://github.com/ankitects/anki/tree/main/docs">docs/</a> 文件夹。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="console-output控制台输出"><a class="header" href="#console-output控制台输出">Console Output（控制台输出）</a></h1>
-<p>Because Anki is a GUI app, text output to stdout (e.g.<code>print("foo")</code>) is not usually visible to the user. You can optionally reveal text printed to stdout, and it is recommended that you do so while developing your add-on.
+<p>Because Anki is a GUI app, text output to stdout (e.g.<code>print("foo")</code>) is not usually visible to the user. You can optionally reveal text printed to stdout, and it is recommended that you do so while developing your add-on.<br>
 因为 Anki 是一个 GUI 应用程序，所以输出到 stdout 的文本（例如 <code>print("foo")</code>）通常对用户是不可见的。您可以选择性地显示打印到标准输出的文本，我们建议您在开发插件时这样做。</p>
 <h2 id="warnings警告"><a class="header" href="#warnings警告">Warnings（警告）</a></h2>
-<p>Anki uses stdout to print warnings about API deprecations, eg:
+<p>Anki uses stdout to print warnings about API deprecations, eg:<br>
 Anki 使用标准输出来打印关于 API 已弃用的警告，例如：</p>
 <pre><code>addons21/mytest/__init__.py:10:getNote is deprecated: please use 'get_note'
 </code></pre>
-<p>If these warnings are occurring in a loop, please address them promptly, as they can
-slow Anki down even if the console is not shown.
+<p>If these warnings are occurring in a loop, please address them promptly, as they can slow Anki down even if the console is not shown.<br>
 如果这些警告出现在循环中，请及时处理，因为即使控制台没有显示，它们也会拖慢 Anki 的运行速度。</p>
 <h2 id="printing-text打印文本"><a class="header" href="#printing-text打印文本">Printing text（打印文本）</a></h2>
-<p>You may find it useful to print text to stdout to aid in debugging your add-on. Please avoid printing large amounts of text (e.g.in a loop that deals with hundreds or thousands of items), as that may slow Anki down, even if the console is not shown.
+<p>You may find it useful to print text to stdout to aid in debugging your add-on. Please avoid printing large amounts of text (e.g.in a loop that deals with hundreds or thousands of items), as that may slow Anki down, even if the console is not shown.<br>
 您可能会发现在调试插件时，将文本打印到标准输出会很有帮助。请避免打印大量文本（例如，在处理成百上千个项目的循环中），因为即使不显示控制台，这也可能会拖慢 Anki 的运行速度。</p>
 <h2 id="showing-the-console显示控制台"><a class="header" href="#showing-the-console显示控制台">Showing the Console（显示控制台）</a></h2>
 <h3 id="windows"><a class="header" href="#windows">Windows</a></h3>
-<p>If you start Anki via the <code>anki-console.bat</code> file in <code>C:\Users\user\AppData\Local\Programs\Anki</code> (or <code>C:\Program Files\Anki</code>), a separate console window will appear.
+<p>If you start Anki via the <code>anki-console.bat</code> file in <code>C:\Users\user\AppData\Local\Programs\Anki</code> (or <code>C:\Program Files\Anki</code>), a separate console window will appear.<br>
 如果您通过 <code>C:\Users\user\AppData\Local\Programs\Anki</code>（或 <code>C:\Program Files\Anki</code>）中的 <code>anki-console.bat</code> 文件启动 Anki，将会出现一个独立的控制台窗口。</p>
 <h3 id="macos"><a class="header" href="#macos">macOS</a></h3>
-<p>Open Terminal.app, then enter the following text and hit enter:
+<p>Open Terminal.app, then enter the following text and hit enter:<br>
 打开「终端.app」（Terminal.app），然后输入以下文本并按回车键：</p>
 <pre><code>/Applications/Anki.app/Contents/MacOS/anki
 </code></pre>
 <h3 id="linux"><a class="header" href="#linux">Linux</a></h3>
-<p>Open a terminal/xterm, then run Anki with <code>anki</code>
+<p>Open a terminal/xterm, then run Anki with <code>anki</code><br>
 打开一个终端/xterm，然后使用 <code>anki</code> 运行 Anki。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="background-operations后台操作"><a class="header" href="#background-operations后台操作">Background Operations（后台操作）</a></h1>
-<p>If your add-on performs a long-running operation directly, the user interface will freeze until the operation completes - no progress window will be shown, and the app will look as if it's stuck. This is annoying for users, so care should be taken to avoid it happening.
+<p>If your add-on performs a long-running operation directly, the user interface will freeze until the operation completes - no progress window will be shown, and the app will look as if it's stuck. This is annoying for users, so care should be taken to avoid it happening.<br>
 如果你的插件直接执行耗时较长的操作，那么在操作完成之前，用户界面会一直处于冻结状态——不仅不会显示进度窗口，而且整个应用程序看起来会像是卡死了。这会给用户带来糟糕的体验，因此应谨慎避免这种情况的发生。</p>
-<p>The reason it happens is because the user interface runs on the "main thread". When your add-on performs a long-running operation directly, it also runs on the main thread, and it prevents the UI code from running again until your operation completes. The solution is to run your add-on code in a background thread, so that the UI can continue to function.
+<p>The reason it happens is because the user interface runs on the "main thread". When your add-on performs a long-running operation directly, it also runs on the main thread, and it prevents the UI code from running again until your operation completes. The solution is to run your add-on code in a background thread, so that the UI can continue to function.<br>
 出现这种情况，是因为用户界面运行在「主线程」上。当你的插件直接执行耗时操作时，该操作同样在主线程上运行，这会阻塞 UI 代码的执行，直到你的操作完成为止。解决方案就是将插件代码放在「后台线程」中运行，这样 UI 才能继续正常工作。</p>
-<p>A complicating factor is that any code you write that interacts with the UI also needs to be run on the main thread. If your add-on only ran in the background, and it attempted to access the UI, it would cause Anki to crash. So selectivity is required - UI operations should be run on the main thread, and long-running operations like collection and network access should be run in the background. Anki provides some tools to make this easier.
+<p>A complicating factor is that any code you write that interacts with the UI also needs to be run on the main thread. If your add-on only ran in the background, and it attempted to access the UI, it would cause Anki to crash. So selectivity is required - UI operations should be run on the main thread, and long-running operations like collection and network access should be run in the background. Anki provides some tools to make this easier.<br>
 但一个更复杂的因素是，任何与 UI 交互的代码<strong>也必须</strong>在主线程上运行。如果你的插件只在后台运行，一旦它试图访问 UI，就会导致 Anki 崩溃。因此，你需要区别处理：UI 相关的操作应在主线程上运行，而像操作集合、访问网络这类耗时操作则应在后台运行。为了简化这一过程，Anki 提供了一些实用工具。</p>
 <h2 id="read-onlynon-undoable-operations只读不可撤销的操作"><a class="header" href="#read-onlynon-undoable-operations只读不可撤销的操作">Read-Only/Non-Undoable Operations（只读/不可撤销的操作）</a></h2>
-<p>For long-running operations like gathering a group of notes, or things like network access, <code>QueryOp</code> is recommended. For the latter, make sure to read about serialization further below.
+<p>For long-running operations like gathering a group of notes, or things like network access, <code>QueryOp</code> is recommended. For the latter, make sure to read about serialization further below.<br>
 对于收集一组笔记或进行网络访问这类耗时操作，推荐使用 <code>QueryOp</code>。对于网络访问这类操作，请务必阅读下文有关序列化的部分。</p>
-<p>In the following example, my_ui_action() will return quickly, and the operation will continue to run in the background until it completes. If it finishes successfully, on_success will be called.
+<p>In the following example, my_ui_action() will return quickly, and the operation will continue to run in the background until it completes. If it finishes successfully, on_success will be called.<br>
 在下面的示例中，<code>my_ui_action()</code> 函数会立即返回，而实际操作会继续在后台运行，直到完成。如果操作成功结束，<code>on_success</code> 函数将会被调用。</p>
 <pre><code class="language-python">from anki.collection import Collection
 from aqt.operations import QueryOp
@@ -841,7 +812,7 @@ def my_ui_action(note_ids: list[int]):
     # 注意：在 Anki 2.1.50 版本之前，QueryOp.with_progress() 存在缺陷
     op.with_progress().run_in_background()
 </code></pre>
-<p><strong>Be careful not to directly call any Qt/UI routines inside the background operation!</strong>
+<p><strong>Be careful not to directly call any Qt/UI routines inside the background operation!</strong><br>
 <strong>切记，不要在后台操作内部直接调用任何 Qt/UI 相关的功能！</strong></p>
 <ul>
 <li>If you need to modify the UI after an operation completes (e.g.show a tooltip),
@@ -863,7 +834,7 @@ prior to executing the operation.</li>
     )
     last_progress = time.time()
 </code></pre>
-<p><strong>Operations are serialized by default</strong>
+<p><strong>Operations are serialized by default</strong><br>
 <strong>操作默认是串行（译注：逐个执行）执行的</strong></p>
 <p>By default, only a single operation can run at once, to ensure multiple read operations on the
 collection don't interleave with another write operation.
@@ -874,112 +845,103 @@ opt out of this serialization so that the operation runs concurrently to other o
 <pre><code class="language-python">op.without_collection().run_in_background()
 </code></pre>
 <h2 id="collection-operations集合操作"><a class="header" href="#collection-operations集合操作">Collection Operations（集合操作）</a></h2>
-<p>A separate <code>CollectionOp</code> is provided for undoable operations that modify the collection. It functions similarly to QueryOp, but will also update the UI as changes are made (e.g.refresh the Browse screen if any notes are changed).
+<p>A separate <code>CollectionOp</code> is provided for undoable operations that modify the collection. It functions similarly to QueryOp, but will also update the UI as changes are made (e.g.refresh the Browse screen if any notes are changed).<br>
 对于那些需要修改集合并支持撤销的操作，Anki 提供了另一个专门的 <code>CollectionOp</code>。它的功能与 <code>QueryOp</code> 类似，但它还会在数据发生变化时自动更新 UI（例如，当笔记被修改后，它会自动刷新浏览器界面）。</p>
-<p>Many undoable ops already have a <code>CollectionOp</code> defined in <a href="https://github.com/ankitects/anki/tree/main/qt/aqt/operations">aqt/operations/*.py</a>. You can often use one of them directly rather than having to create your own.
-For example:
+<p>Many undoable ops already have a <code>CollectionOp</code> defined in <a href="https://github.com/ankitects/anki/tree/main/qt/aqt/operations">aqt/operations/*.py</a>. You can often use one of them directly rather than having to create your own. For example:<br>
 许多常见的可撤销操作已经在 <a href="https://github.com/ankitects/anki/tree/main/qt/aqt/operations"><code>aqt/operations/*.py</code></a> 目录中被封装成了 <code>CollectionOp</code>。你通常可以直接使用这些现成的操作，而无需自己创建。例如：</p>
 <pre><code class="language-python">from aqt.operations.note import remove_notes
 
 def my_ui_action(note_ids: list[int]) -&gt; None:
     remove_notes(parent=mw, note_ids=note_ids).run_in_background()
 </code></pre>
-<p>By default that routine will show a tooltip on success. You can call .success() or .failure() on it to provide an alternative routine.
+<p>By default that routine will show a tooltip on success. You can call .success() or .failure() on it to provide an alternative routine.<br>
 默认情况下，该操作成功后会显示一个工具提示。你也可以通过链式调用 <code>.success()</code> 或 <code>.failure()</code> 方法来提供自定义的回调函数。</p>
-<p>For more information on undo handling, including combining multiple operations
-into a single undo step, please see <a href="https://forums.ankiweb.net/t/add-on-porting-notes-for-anki-2-1-45/11212#undoredo-4">this forum
-page</a>.
+<p>For more information on undo handling, including combining multiple operations into a single undo step, please see <a href="https://forums.ankiweb.net/t/add-on-porting-notes-for-anki-2-1-45/11212#undoredo-4">this forum page</a>.<br>
 如果想了解更多关于撤销处理的信息，包括如何将多个操作合并为一个撤销步骤，请参阅<a href="https://forums.ankiweb.net/t/add-on-porting-notes-for-anki-2-1-45/11212#undoredo-4">此论坛页面</a>。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="qt-and-pyqtqt-与-pyqt"><a class="header" href="#qt-and-pyqtqt-与-pyqt">Qt and PyQt（Qt 与 PyQt）</a></h1>
 <p>As mentioned in the overview, Anki uses PyQt for a lot of its UI, and the Qt
-documentation and <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/sip-classes.html">PyQt
-documentation</a>
-are invaluable for learning how to display different GUI widgets.</p>
-<p>如概述中所述，Anki 的许多 UI 都是用 PyQt 实现的。在学习如何显示不同的 GUI 控件时，Qt 官方文档和 <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/sip-classes.html">PyQt 文档</a> 是非常宝贵的参考资料。</p>
+documentation and <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/sip-classes.html">PyQt documentation</a> are invaluable for learning how to display different GUI widgets.<br>
+如概述中所述，Anki 的许多 UI 都是用 PyQt 实现的。在学习如何显示不同的 GUI 控件时，Qt 官方文档和 <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/sip-classes.html">PyQt 文档</a> 是非常宝贵的参考资料。</p>
 <h2 id="qt-versionsqt-版本"><a class="header" href="#qt-versionsqt-版本">Qt Versions（Qt 版本）</a></h2>
-<p>From Anki 2.1.50, separate builds are provided for PyQt5 and PyQt6. Generally speaking, if you write code that works in Qt6, and make sure to import any Qt classes from aqt.qt instead of directly from PyQt6, your code should also work
-in Qt5.</p>
-<p>从 Anki 2.1.50 版本开始，官方分别为 PyQt5 和 PyQt6 提供了独立的构建版本。通常来说，只要您编写的代码能在 Qt6 环境下运行，并确保所有 Qt 类都从 <code>aqt.qt</code> 导入，而不是直接从 <code>PyQt6</code> 导入，那么您的代码也应该能兼容 Qt5。</p>
+<p>From Anki 2.1.50, separate builds are provided for PyQt5 and PyQt6. Generally speaking, if you write code that works in Qt6, and make sure to import any Qt classes from aqt.qt instead of directly from PyQt6, your code should also work in Qt5.<br>
+从 Anki 2.1.50 版本开始，官方分别为 PyQt5 和 PyQt6 提供了独立的构建版本。通常来说，只要您编写的代码能在 Qt6 环境下运行，并确保所有 Qt 类都从 <code>aqt.qt</code> 导入，而不是直接从 <code>PyQt6</code> 导入，那么您的代码也应该能兼容 Qt5。</p>
 <h2 id="designer-filesdesigner-文件"><a class="header" href="#designer-filesdesigner-文件">Designer Files（Designer 文件）</a></h2>
-<p>Parts of Anki's UI are defined in .ui files, located in <code>qt/aqt/forms</code>. Anki's build process converts them into .py files. If you wish to build your add-on's UI in a similar way, you will need to install Python, and install a program called Qt Designer (Designer.app on macOS). On Linux, it may be available in your distro's packages; on Windows and Mac, you'll need to install it as part of a <a href="https://download.qt.io/">Qt install</a>. Once installed, you will need to use a program provided in the pyqt6 pip package to compile the .ui files.</p>
-<p>Anki 的部分用户界面是在 <code>.ui</code> 文件中定义的，这些文件位于 <code>qt/aqt/forms</code> 目录下。Anki 的构建过程会将这些 <code>.ui</code> 文件转换为 <code>.py</code> 文件。如果您希望用类似的方式来构建插件的用户界面，就需要安装 Python 和一个名为 Qt Designer 的程序（在 macOS 上是 Designer.app）。在 Linux 系统上，您或许能通过发行版的软件包管理器直接安装；而在 Windows 和 Mac 系统上，则需要通过<a href="https://download.qt.io/">安装 Qt</a> 来获取它。安装完成后，您还需要使用 <code>pyqt6</code> pip 包提供的一个程序来编译 <code>.ui</code> 文件。</p>
-<p>Generated Python files for PyQt6 won't work with PyQt5 and vice versa, so if you wish to support both versions, you will need to build the .ui files twice, once with pyuic5, and once with pyuic6.
+<p>Parts of Anki's UI are defined in .ui files, located in <code>qt/aqt/forms</code>. Anki's build process converts them into .py files. If you wish to build your add-on's UI in a similar way, you will need to install Python, and install a program called Qt Designer (Designer.app on macOS). On Linux, it may be available in your distro's packages; on Windows and Mac, you'll need to install it as part of a <a href="https://download.qt.io/">Qt install</a>. Once installed, you will need to use a program provided in the pyqt6 pip package to compile the .ui files.<br>
+Anki 的部分用户界面是在 <code>.ui</code> 文件中定义的，这些文件位于 <code>qt/aqt/forms</code> 目录下。Anki 的构建过程会将这些 <code>.ui</code> 文件转换为 <code>.py</code> 文件。如果您希望用类似的方式来构建插件的用户界面，就需要安装 Python 和一个名为 Qt Designer 的程序（在 macOS 上是 Designer.app）。在 Linux 系统上，您或许能通过发行版的软件包管理器直接安装；而在 Windows 和 Mac 系统上，则需要通过<a href="https://download.qt.io/">安装 Qt</a> 来获取它。安装完成后，您还需要使用 <code>pyqt6</code> pip 包提供的一个程序来编译 <code>.ui</code> 文件。</p>
+<p>Generated Python files for PyQt6 won't work with PyQt5 and vice versa, so if you wish to support both versions, you will need to build the .ui files twice, once with pyuic5, and once with pyuic6.<br>
 为 PyQt6 生成的 Python 文件与 PyQt5 并不兼容，反之亦然。因此，若想同时支持这两个版本，您需要分别使用 <code>pyuic5</code> 和 <code>pyuic6</code> 将 <code>.ui</code> 文件编译两次。</p>
 <h2 id="garbage-collection垃圾回收"><a class="header" href="#garbage-collection垃圾回收">Garbage Collection（垃圾回收）</a></h2>
-<p>One particular thing to bear in mind is that objects are garbage
-collected in Python, so if you do something like:</p>
-<p>有一个特殊情况需要牢记：Python 会对对象进行垃圾回收。因此，如果您编写了如下代码：</p>
+<p>One particular thing to bear in mind is that objects are garbage collected in Python, so if you do something like:<br>
+有一个特殊情况需要牢记：Python 会对对象进行垃圾回收。因此，如果您编写了如下代码：</p>
 <pre><code class="language-python">def myfunc():
     widget = QWidget()
     widget.show()
 </code></pre>
-<p>…​then the widget will disappear as soon as the function exits. To
-prevent this, assign top level widgets to an existing object, like:</p>
-<p>…​那么这个控件会在函数执行完毕后立即消失。为避免这种情况，需要将顶层控件赋值给一个已存在的对象，例如：</p>
+<p>…​then the widget will disappear as soon as the function exits. To prevent this, assign top level widgets to an existing object, like:<br>
+…​那么这个控件会在函数执行完毕后立即消失。为避免这种情况，需要将顶层控件赋值给一个已存在的对象，例如：</p>
 <pre><code class="language-python">def myfunc():
     mw.myWidget = widget = QWidget()
     widget.show()
 </code></pre>
-<p>This is often not required when you create a Qt object and give it an existing object as the parent, as the parent will keep a reference to
-the object.
+<p>This is often not required when you create a Qt object and give it an existing object as the parent, as the parent will keep a reference to the object.<br>
 不过，在创建一个 Qt 对象并为其指定一个父对象时，通常不必这样做，因为父对象会持有对该子对象的引用。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="python-modulespython-模块"><a class="header" href="#python-modulespython-模块">Python Modules（Python 模块）</a></h1>
-<p>From Anki 2.1.50, the packaged builds include most built-in Python modules. Earlier versions ship with only the standard modules necessary to run Anki.
+<p>From Anki 2.1.50, the packaged builds include most built-in Python modules. Earlier versions ship with only the standard modules necessary to run Anki.<br>
 自 Anki 2.1.50 版本起，其打包发行版已包含大部分 Python 内置模块。而早期版本仅提供运行 Anki 所必需的标准模块。</p>
-<p>If your add-on uses a standard Python module that has not been included, or a package from PyPI, then your add-on will need to bundle the module.
+<p>If your add-on uses a standard Python module that has not been included, or a package from PyPI, then your add-on will need to bundle the module.<br>
 如果你的插件需要使用某个未被包含的标准 Python 模块，或是来自 PyPI 的第三方包，那么你就需要在插件中捆绑该模块。</p>
-<p>For pure Python modules, this is usually as simple as putting them in a subfolder, and adjusting sys.path. For modules that require C extensions such as numpy, things get a fair bit more complicated, as you'll need to bundle the different module versions for each platform, and ensure you're bundling a version that is compatible with the version of Python Anki is packaged with.
+<p>For pure Python modules, this is usually as simple as putting them in a subfolder, and adjusting sys.path. For modules that require C extensions such as numpy, things get a fair bit more complicated, as you'll need to bundle the different module versions for each platform, and ensure you're bundling a version that is compatible with the version of Python Anki is packaged with.<br>
 对于纯 Python 模块而言，操作通常很简单：只需将它们放入一个子文件夹，然后调整 <code>sys.path</code> 即可。但对于需要 C 语言扩展的模块（如 <strong>numpy</strong>），情况就要复杂得多。因为你需要为每个平台捆绑不同版本的模块，并确保其版本与 Anki 打包所用的 Python 版本相互兼容。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="add-on-config插件配置"><a class="header" href="#add-on-config插件配置">Add-on Config（插件配置）</a></h1>
 <h2 id="config-jsonjson-配置"><a class="header" href="#config-jsonjson-配置">Config JSON（JSON 配置）</a></h2>
-<p>Add-ons can store config data in a JSON dictionary. You provide the default values by shipping a file called <code>config.json</code>. A simple example:
+<p>Add-ons can store config data in a JSON dictionary. You provide the default values by shipping a file called <code>config.json</code>. A simple example:<br>
 插件可将配置数据存储于一个 JSON 字典中。你可以通过随插件一同发布一个名为 <code>config.json</code> 的文件来提供默认值。示例如下：</p>
 <pre><code>{"myvar": 5}
 </code></pre>
-<p>In config.md:
+<p>In config.md:<br>
 在 config.md 中：</p>
 <pre><code>This is documentation for this add-on's configuration, in *markdown* format.
 这是此插件的配置文档，采用「markdown」格式。
 </code></pre>
-<p>In your add-on’s code:
+<p>In your add-on’s code:<br>
 在你的插件代码中：</p>
 <pre><code class="language-python">from aqt import mw
 config = mw.addonManager.getConfig(__name__)
 print("var is", config['myvar'])
 </code></pre>
-<p>If the config hasn't been customized, the default values from that file will be used.
+<p>If the config hasn't been customized, the default values from that file will be used.<br>
 如果用户尚未自定义配置，程序将采用该文件中的默认值。</p>
-<p>If you need to programmatically modify the config, you can save your changes with:
+<p>If you need to programmatically modify the config, you can save your changes with:<br>
 如果你需要通过编程方式修改配置，可以使用以下代码保存更改：</p>
 <pre><code class="language-python">mw.addonManager.writeConfig(__name__, config)
 </code></pre>
-<p>Users are also able to edit the config inside the GUI.
-用户也可以在图形用户界面（GUI）中直接编辑配置。
-The edited config is stored in <code>meta.json</code>.
+<p>Users are also able to edit the config inside the GUI.<br>
+用户也可以在图形用户界面（GUI）中直接编辑配置。</p>
+<p>The edited config is stored in <code>meta.json</code>.<br>
 编辑后的配置被存储在 <code>meta.json</code> 文件中。</p>
-<p>When <code>getConfig()</code> is used after edits, meta.json is used preferentially. If a key is missing from meta.json's config, Anki will fall back on the default config.
+<p>When <code>getConfig()</code> is used after edits, meta.json is used preferentially. If a key is missing from meta.json's config, Anki will fall back on the default config.<br>
 当 <code>getConfig()</code> 在配置被编辑后调用时，程序将优先使用 <code>meta.json</code> 中的数据。如果 <code>meta.json</code> 的配置中缺少某个键，Anki 将回退至默认配置。</p>
-<p>If you change the value of existing keys in config.json, users who have customized their configuration will continue to see the old values unless they use the "restore defaults" button.
+<p>If you change the value of existing keys in config.json, users who have customized their configuration will continue to see the old values unless they use the "restore defaults" button.<br>
 如果你更改了 <code>config.json</code> 文件中现有键的值，已自定义配置的用户将继续看到旧的值，除非他们使用「恢复默认值」按钮。</p>
-<p>If no config.json file exists, getConfig() will return None - even if you have called writeConfig().
+<p>If no config.json file exists, getConfig() will return None - even if you have called writeConfig().<br>
 如果 <code>config.json</code> 文件不存在，<code>getConfig()</code> 将返回 <code>None</code>——即使你已经调用过 <code>writeConfig()</code>。</p>
-<p>Add-ons that manage options in their own GUI can have that GUI displayed when the config button is clicked:
+<p>Add-ons that manage options in their own GUI can have that GUI displayed when the config button is clicked:<br>
 对于在自有图形界面中管理选项的插件，可以设置在用户点击配置按钮时显示该界面：</p>
 <pre><code class="language-python">mw.addonManager.setConfigAction(__name__, myOptionsFunc)
 </code></pre>
-<p>Avoid key names starting with an underscore - they are reserved for future use by Anki.
+<p>Avoid key names starting with an underscore - they are reserved for future use by Anki.<br>
 请避免使用以下划线开头的键名——它们已被 Anki 预留给未来功能使用。</p>
 <h2 id="user-files用户文件"><a class="header" href="#user-files用户文件">User Files（用户文件）</a></h2>
-<p>When your add-on needs configuration data other than simple keys and values, it can use a special folder called user_files in the root of your add-on’s folder. Any files placed in this folder will be preserved when the add-on is upgraded. All other files in the add-on folder are removed on upgrade.
+<p>When your add-on needs configuration data other than simple keys and values, it can use a special folder called user_files in the root of your add-on’s folder. Any files placed in this folder will be preserved when the add-on is upgraded. All other files in the add-on folder are removed on upgrade.<br>
 当你的插件需要的配置数据超出了简单的键值对外，它可以使用一个位于插件根目录下的特殊文件夹 <code>user_files</code>。放置在此文件夹中的任何文件都会在插件升级时被保留。插件文件夹中的所有其他文件都将在升级时被移除。</p>
-<p>To ensure the user_files folder is created for the user, you can put a README.txt or similar file inside it before zipping up your add-on.
+<p>To ensure the user_files folder is created for the user, you can put a README.txt or similar file inside it before zipping up your add-on.<br>
 为了确保系统能为用户创建 <code>user_files</code> 文件夹，你可以在打包插件（<code>.zip</code>）前，在该文件夹内放置一个 <code>README.txt</code> 或类似的文件。</p>
-<p>When Anki upgrades an add-on, it will ignore any files in the .zip that already exist in the user_files folder.
+<p>When Anki upgrades an add-on, it will ignore any files in the .zip that already exist in the user_files folder.<br>
 当 Anki 升级插件时，它会忽略压缩包中那些与 <code>user_files</code> 文件夹内已存在文件同名的文件。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="reviewer-javascript复习器中的-javascript"><a class="header" href="#reviewer-javascript复习器中的-javascript">Reviewer Javascript（复习器中的 Javascript）</a></h1>
-<p>For a general solution not specific to card review, see <a href="hooks-and-filters.html#webview">the webview section</a>.
+<p>For a general solution not specific to card review, see <a href="hooks-and-filters.html#webview">the webview section</a>.<br>
 若需了解非针对卡片复习的通用解决方案，请参阅<a href="hooks-and-filters.html#webview">网页视图（webview）章节</a>。</p>
-<p>Anki provides a hook to modify the question and answer HTML before it is displayed in the review screen, preview dialog, and card layout screen. This can be useful for adding Javascript to the card. If you wish to load external resources in your card, please see <a href="hooks-and-filters.html#managing-external-resources-in-webviews">managing external resources in webviews</a>.
+<p>Anki provides a hook to modify the question and answer HTML before it is displayed in the review screen, preview dialog, and card layout screen. This can be useful for adding Javascript to the card. If you wish to load external resources in your card, please see <a href="hooks-and-filters.html#managing-external-resources-in-webviews">managing external resources in webviews</a>.<br>
 Anki 提供了一个 Hook，允许在问题和答案的 HTML 内容显示于复习屏幕、预览对话框和卡片布局屏幕之前，对其进行修改。这个功能对于向卡片中添加 Javascript 非常有用。如果您希望在卡片中加载外部资源，请参阅<a href="hooks-and-filters.html#managing-external-resources-in-webviews">在网页视图中管理外部资源</a>。</p>
 <p>An example:
 示例如下：</p>
@@ -991,17 +953,15 @@ document.body.style.background = "blue";
 &lt;/script&gt;"""
 gui_hooks.card_will_show.append(prepare)
 </code></pre>
-<p>The hook takes three arguments: the HTML of the question or answer, the current card object (so you can limit your add-on to specific note types for example), and a string representing the context the hook is running
-in.
+<p>The hook takes three arguments: the HTML of the question or answer, the current card object (so you can limit your add-on to specific note types for example), and a string representing the context the hook is running in.<br>
 该 Hook 接受三个参数： 问题或答案的 HTML。当前的kap 对象，（您可以据此将插件功能限定在特定的笔记类型上）和一个表示当前 Hook 运行环境的上下文字符串。</p>
-<p>Make sure you return the modified HTML.
+<p>Make sure you return the modified HTML.<br>
 请确保您的函数返回修改后的 HTML。</p>
-<p>Context is one of: "reviewQuestion", "reviewAnswer", "clayoutQuestion","clayoutAnswer", "previewQuestion" or "previewAnswer".
+<p>Context is one of: "reviewQuestion", "reviewAnswer", "clayoutQuestion","clayoutAnswer", "previewQuestion" or "previewAnswer".<br>
 上下文的取值包括：「reviewQuestion」、「reviewAnswer」、「clayoutQuestion」、「clayoutAnswer」、「previewQuestion」或「previewAnswer」。</p>
-<p>The answer preview in the card layout screen, and the previewer set to "show both sides" will only use the "Answer" context. This means
-Javascript you append on the back side of the card should not depend on Javascript that is only added on the front.
+<p>The answer preview in the card layout screen, and the previewer set to "show both sides" will only use the "Answer" context. This means Javascript you append on the back side of the card should not depend on Javascript that is only added on the front.<br>
 在卡片布局屏幕的答案预览模式，以及设置为「显示双面」的预览器中，将只会触发与「答案」相关的上下文。这意味着，您附加在卡片背面的 Javascript 代码，不应该依赖于那些仅添加在正面的 Javascript 代码。</p>
-<p>Because Anki fades the previous text out before revealing the new text, Javascript hooks are required to perform actions like scrolling at the correct time. You can use them like so:
+<p>Because Anki fades the previous text out before revealing the new text, Javascript hooks are required to perform actions like scrolling at the correct time. You can use them like so:<br>
 由于 Anki 在显示新内容前会先将旧内容淡出，因此需要使用 Javascript Hook来确保在恰当的时机执行滚动等操作。你可以这样使用：</p>
 <pre><code class="language-python">from aqt import gui_hooks
 def prepare(html, card, context):
@@ -1017,25 +977,25 @@ gui_hooks.card_will_show.append(prepare)
 <li>onUpdateHook fires after the new card has been placed in the DOM, but before it is shown.</li>
 <li>onShownHook fires after the card has faded in.</li>
 <li>onUpdateHook：在新卡片内容加载到 DOM 后、<strong>显示前</strong>触发。</li>
-<li>onShownHook：在卡片内容完全淡入<strong>显示后</strong>触发。</li>
+<li>onShownHook：在卡片内容完全淡入<strong>显示后</strong>触发。<br></li>
 </ul>
-<p>The hooks are reset each time the question or answer is shown.
+<p>The hooks are reset each time the question or answer is shown.<br>
 每次显示问题或答案时，这些 Hook 都会被重置。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="debugging调试"><a class="header" href="#debugging调试">Debugging（调试）</a></h1>
 <h2 id="exceptions-and-stdoutstderr异常标准输出与标准错误"><a class="header" href="#exceptions-and-stdoutstderr异常标准输出与标准错误">Exceptions and Stdout/Stderr（异常、标准输出与标准错误）</a></h2>
-<p>If your code throws an uncaught exception, it will be caught by Anki’s standard exception handler, and an error will be presented to the user.
+<p>If your code throws an uncaught exception, it will be caught by Anki’s standard exception handler, and an error will be presented to the user.<br>
 如果你的代码抛出一个未被捕获的异常，Anki 的标准异常 handler 将会捕获它，并向用户显示一个错误提示。</p>
-<p>The handler catches anything that is printed to stderr, so you should avoid logging text to stderr unless you want the user to see it in a popup.
+<p>The handler catches anything that is printed to stderr, so you should avoid logging text to stderr unless you want the user to see it in a popup.<br>
 该 handler 会捕获所有打印到 stderr 的内容。因此，除非你希望用户在弹窗中看到某些信息，否则应避免将文本日志记录到 stderr。</p>
-<p>Text printed to standard output is covered in <a href="./console-output.html">this section</a>.
+<p>Text printed to standard output is covered in <a href="./console-output.html">this section</a>.<br>
 关于打印到标准输出流的文本，请参阅<a href="./console-output.html">此章节</a>。</p>
 <h2 id="webviews网页视图"><a class="header" href="#webviews网页视图">Webviews（网页视图）</a></h2>
-<p>If you set the env var QTWEBENGINE_REMOTE_DEBUGGING to 8080 prior to starting Anki, you can surf to http://localhost:8080 in Chrome to debug the visible webpages.
+<p>If you set the env var QTWEBENGINE_REMOTE_DEBUGGING to 8080 prior to starting Anki, you can surf to http://localhost:8080 in Chrome to debug the visible webpages.<br>
 在启动 Anki 之前，如果你将环境变量 <code>QTWEBENGINE_REMOTE_DEBUGGING</code> 设置为 <code>8080</code>，就可以在 Chrome 浏览器中通过访问 <code>http://localhost:8080</code> 来调试当前显示的网页。</p>
-<p>Alternatively, you can use <a href="https://ankiweb.net/shared/info/31746032">this add-on</a> to open the inspector inside Anki.
+<p>Alternatively, you can use <a href="https://ankiweb.net/shared/info/31746032">this add-on</a> to open the inspector inside Anki.<br>
 此外，你也可以使用<a href="https://ankiweb.net/shared/info/31746032">这款插件</a>直接在 Anki 程序内部打开开发者工具。</p>
 <h2 id="debug-console调试控制台"><a class="header" href="#debug-console调试控制台">Debug Console（调试控制台）</a></h2>
-<p>Anki also includes a REPL. From within the program, press the <a href="https://docs.ankiweb.net/misc.html#debug-console">shortcut key</a> and a window will open up. You can enter expressions or statements into the top area, and then press ctrl+return/command+return to evaluate them. An example session follows:
+<p>Anki also includes a REPL. From within the program, press the <a href="https://docs.ankiweb.net/misc.html#debug-console">shortcut key</a> and a window will open up. You can enter expressions or statements into the top area, and then press ctrl+return/command+return to evaluate them. An example session follows:<br>
 Anki 还内置了一个 REPL。在 Anki 程序中，按下指定的<a href="https://docs.ankiweb.net/misc.html#debug-console">快捷键</a>即可打开一个窗口。你可以在上方的文本区域输入表达式或语句，然后按 <code>Ctrl+Return</code>（macOS 上为 <code>Command+Return</code>）来执行。下面是一个示例会话：</p>
 <pre><code>&gt;&gt;&gt; mw
 &lt;no output&gt;
@@ -1082,33 +1042,30 @@ NameError: name 'invalidName' is not defined
 &lt;as above&gt;
 </code></pre>
 <p>Note that you need to explicitly print an expression in order to see what it evaluates to. Anki exports pp() (pretty print) in the scope to make it easier to quickly dump the details of objects, and the shortcut
-ctrl+shift+return will wrap the current text in the upper area with pp() and execute the result.
+ctrl+shift+return will wrap the current text in the upper area with pp() and execute the result.<br>
 请注意，你必须显式地使用 <code>print</code> 函数才能看到表达式的求值结果。Anki 在环境中预置了 <code>pp()</code> 函数（即 pretty print，优美打印），方便你快速输出对象的详细信息。快捷键 <code>Ctrl+Shift+Return</code> 会自动用 <code>pp()</code> 包裹当前文本区域的内容并执行该代码。</p>
 <h2 id="pdb"><a class="header" href="#pdb">PDB</a></h2>
-<p>If you’re on Linux or are running Anki from source, it’s also possible to debug your script with pdb. Place the following line somewhere in your code, and when Anki reaches that point it will kick into the debugger in the terminal:
+<p>If you’re on Linux or are running Anki from source, it’s also possible to debug your script with pdb. Place the following line somewhere in your code, and when Anki reaches that point it will kick into the debugger in the terminal:<br>
 如果你在 Linux 系统，或者从源代码运行 Anki，还可以使用 <code>pdb</code> 来调试你的脚本。只需将下面这行代码插入到你的代码中，当 Anki 执行到该处时，便会在终端里激活调试器：</p>
 <pre><code class="language-python">    from aqt.qt import debug; debug()
 </code></pre>
-<p>Alternatively you can export DEBUG=1 in your shell and it will kick into the debugger on an uncaught exception.
+<p>Alternatively you can export DEBUG=1 in your shell and it will kick into the debugger on an uncaught exception.<br>
 另外一个方法是，在你的 shell 环境中 export DEBUG=1 变量，这样当程序遇到未捕获的异常时，就会自动进入调试器。</p>
 <h2 id="python-assertionspython-断言"><a class="header" href="#python-assertionspython-断言">Python Assertions（Python 断言）</a></h2>
-<p>Runtime checks using Python's <code>assert</code> statement are not evaluated in Anki's release builds, even when running in debug mode. If you want to use <code>assert</code> for testing you can use the <a href="https://betas.ankiweb.net/#via-pypipip">packaged versions from PyPI</a> or <a href="https://github.com/ankitects/anki/blob/main/docs/development.md">run Anki from source</a>.
+<p>Runtime checks using Python's <code>assert</code> statement are not evaluated in Anki's release builds, even when running in debug mode. If you want to use <code>assert</code> for testing you can use the <a href="https://betas.ankiweb.net/#via-pypipip">packaged versions from PyPI</a> or <a href="https://github.com/ankitects/anki/blob/main/docs/development.md">run Anki from source</a>.<br>
 在 Anki 的正式发布版中，即便是在调试模式下运行，使用 Python <code>assert</code> 语句进行的运行时检查也不会被执行。如果你希望使用 <code>assert</code> 来进行测试，可以安装<a href="https://betas.ankiweb.net/#via-pypipip">通过 PyPI 提供的打包版本</a>，或者<a href="https://github.com/ankitects/anki/blob/main/docs/development.md">从源代码运行 Anki</a>。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="monkey-patching-and-method-wrapping猴子补丁与方法包装"><a class="header" href="#monkey-patching-and-method-wrapping猴子补丁与方法包装">Monkey Patching and Method Wrapping（猴子补丁与方法包装）</a></h1>
-<p>If you want to modify a function that doesn’t already have a hook, it’s
-possible to overwrite that function with a custom version instead. This
-is sometimes referred to as 'monkey patching'.
+<p>If you want to modify a function that doesn’t already have a hook, it’s possible to overwrite that function with a custom version instead. This is sometimes referred to as 'monkey patching'.<br>
 如果你想修改一个尚未提供 hook 的函数，可以用一个自定义版本来覆盖原始函数。这种技术有时被称为「猴子补丁」（Monkey patch）。</p>
-<p>Monkey patching is useful in the testing stage, and while waiting for new hooks to be integrated into Anki. But please don’t rely on it long term, as monkey patching is very fragile, and will tend to break as Anki is updated in the future.
+<p>Monkey patching is useful in the testing stage, and while waiting for new hooks to be integrated into Anki. But please don’t rely on it long term, as monkey patching is very fragile, and will tend to break as Anki is updated in the future.<br>
 在测试阶段，或在等待 Anki 集成新 Hook 期间，猴子补丁非常有用。但请不要长期依赖它，因为猴子补丁非常脆弱，随着 Anki 未来的版本更新，它很可能会失效。</p>
-<p>The only exception to the above is if you’re making extensive changes to Anki where adding new hooks would be impractical. In that case, you may unfortunately need to modify your add-on periodically as Anki is updated.
+<p>The only exception to the above is if you’re making extensive changes to Anki where adding new hooks would be impractical. In that case, you may unfortunately need to modify your add-on periodically as Anki is updated.<br>
 唯一的例外是，当你需要对 Anki 进行大规模修改，以至于添加新 Hook 变得不切实际时。在这种情况下，你可能不得不随着 Anki 的更新，周期性地维护你的插件。</p>
-<p>In <a href="https://github.com/ankitects/anki/blob/main/qt/aqt/editor.py">aqt/editor.py</a> there is a function setupButtons() which creates the buttons like bold, italics and so on that you see in the editor. Let’s imagine you want to add another button in your add-on.
+<p>In <a href="https://github.com/ankitects/anki/blob/main/qt/aqt/editor.py">aqt/editor.py</a> there is a function setupButtons() which creates the buttons like bold, italics and so on that you see in the editor. Let’s imagine you want to add another button in your add-on.<br>
 在 <a href="https://github.com/ankitects/anki/blob/main/qt/aqt/editor.py">aqt/editor.py</a> 文件中，有一个 <code>setupButtons()</code> 函数，它负责创建你在编辑器中看到的<strong>粗体</strong>、<strong>斜体</strong>等按钮。现在，我们假设你想在自己的插件中添加一个新按钮。</p>
-<p>Anki 2.1 no longer uses setupButtons(). The code below is still useful to understand how monkey patching works, but for adding buttons to the editor please see the setupEditorButtons hook described in the previous
-section.
+<p>Anki 2.1 no longer uses setupButtons(). The code below is still useful to understand how monkey patching works, but for adding buttons to the editor please see the setupEditorButtons hook described in the previous section.<br>
 Anki 2.1 已不再使用 <code>setupButtons()</code>。虽然下面的代码对于理解猴子补丁的工作原理依然有帮助，但若要向编辑器添加按钮，请参阅前一节介绍的 <code>setupEditorButtons</code> Hook。</p>
-<p>The simplest way is to copy and paste the function from the Anki source code, add your text to the bottom, and then overwrite the original, like so:
+<p>The simplest way is to copy and paste the function from the Anki source code, add your text to the bottom, and then overwrite the original, like so:<br>
 最简单的方法是直接从 Anki 源码中复制粘贴整个函数，在末尾加上你的代码，然后覆盖原始函数，如下所示：</p>
 <pre><code class="language-python">from aqt.editor import Editor
 
@@ -1118,7 +1075,7 @@ def mySetupButtons(self):
 
 Editor.setupButtons = mySetupButtons
 </code></pre>
-<p>This approach is fragile however, as if the original code is updated in a future version of Anki, you would also have to update your add-on. A better approach would be to save the original, and call it in our custom version:
+<p>This approach is fragile however, as if the original code is updated in a future version of Anki, you would also have to update your add-on. A better approach would be to save the original, and call it in our custom version:<br>
 然而，这种方法非常脆弱。一旦 Anki 未来版本更新了原始代码，你的插件也必须随之更新。更好的方法是先保存原始函数，然后在你的自定义版本中调用它：</p>
 <pre><code class="language-python">from aqt.editor import Editor
 
@@ -1129,7 +1086,7 @@ def mySetupButtons(self):
 origSetupButtons = Editor.setupButtons
 Editor.setupButtons = mySetupButtons
 </code></pre>
-<p>Because this is a common operation, Anki provides a function called wrap() which makes this a little more convenient. A real example:
+<p>Because this is a common operation, Anki provides a function called wrap() which makes this a little more convenient. A real example:<br>
 由于这是一种常见操作，Anki 提供了一个名为 <code>wrap()</code> 的函数，让整个过程更便捷。下面是一个实例：</p>
 <pre><code class="language-python">from anki.hooks import wrap
 from aqt.editor import Editor
@@ -1152,7 +1109,7 @@ def mySetupButtons(self):
 
 Editor.setupButtons = wrap(Editor.setupButtons, mySetupButtons)
 </code></pre>
-<p>By default, wrap() runs your custom code after the original code. You can pass a third argument, "before", to reverse this. If you need to run code both before and after the original version, you can do so like so:
+<p>By default, wrap() runs your custom code after the original code. You can pass a third argument, "before", to reverse this. If you need to run code both before and after the original version, you can do so like so:<br>
 默认情况下，<code>wrap()</code> 会在原始代码执行<strong>之后</strong>运行你的自定义代码。你也可以传入第三个参数「before」，让你的代码在原始代码<strong>之前</strong>执行。如果你需要在原始代码执行前后都注入代码，可以这样做：</p>
 <pre><code class="language-python">from anki.hooks import wrap
 from aqt.editor import Editor
@@ -1171,46 +1128,45 @@ Editor.setupButtons = wrap(Editor.setupButtons, mySetupButtons, "around")
 <li><a href="sharing.html#sharing-outside-ankiweb%E5%9C%A8-ankiweb-%E5%B9%B3%E5%8F%B0%E4%B9%8B%E5%A4%96%E5%88%86%E4%BA%AB">Sharing outside AnkiWeb（在 AnkiWeb 平台之外分享）</a></li>
 </ul>
 <h2 id="sharing-via-ankiweb通过-ankiweb-分享"><a class="header" href="#sharing-via-ankiweb通过-ankiweb-分享">Sharing via AnkiWeb（通过 AnkiWeb 分享）</a></h2>
-<p>You can package up an add-on for distribution by zipping it up, and giving it a name ending in .ankiaddon.
+<p>You can package up an add-on for distribution by zipping it up, and giving it a name ending in .ankiaddon.<br>
 你可以将插件打包成一个以「.ankiaddon」为后缀的 zip 压缩文件，以便分发。</p>
-<p>The top level folder should not be included in the zip file. For example, if you have a module like the following:
+<p>The top level folder should not be included in the zip file. For example, if you have a module like the following:<br>
 打包时，请确保压缩文件的根目录直接包含插件文件，而不是将它们放在一个顶层文件夹内。例如，如果你的插件模块结构如下：</p>
 <pre><code>addons21/myaddon/__init__.py
 addons21/myaddon/my.data
 </code></pre>
-<p>Then the zip file contents should be:
+<p>Then the zip file contents should be:<br>
 那么，zip 压缩文件的内容应直接是：</p>
 <pre><code>__init__.py
 my.data
 </code></pre>
-<p>If you include the folder name in the zip like the following, AnkiWeb will not accept the zip file:
+<p>If you include the folder name in the zip like the following, AnkiWeb will not accept the zip file:<br>
 如果你在压缩文件中包含了 <strong>myaddon</strong> 这个顶层文件夹，如下所示，AnkiWeb 将会拒绝接收该文件：</p>
 <pre><code>myaddon/__init__.py
 myaddon/my.data
 </code></pre>
-<p>On Unix-based machines, you can create a properly-formed file with the following command:
+<p>On Unix-based machines, you can create a properly-formed file with the following command:<br>
 在类 Unix 系统（如 macOS 或 Linux）上，你可以使用以下命令来创建一个符合规范的压缩文件：</p>
 <pre><code>$ cd myaddon &amp;&amp; zip -r ../myaddon.ankiaddon *
 </code></pre>
-<p>Python automatically creates <code>pycache</code> folders when your add-on is run. Please make sure you delete these prior to creating the zip file, as AnkiWeb can not accept zip files that contain <code>pycache</code> folders.
+<p>Python automatically creates <code>pycache</code> folders when your add-on is run. Please make sure you delete these prior to creating the zip file, as AnkiWeb can not accept zip files that contain <code>pycache</code> folders.<br>
 另外，当你的插件运行时，Python 会自动生成 <code>pycache</code> 文件夹。在创建 zip 文件之前，请务必删除这些缓存文件夹，因为 AnkiWeb 不接受含有 <code>pycache</code> 文件夹的压缩包。</p>
-<p>Once you’ve created a .ankiaddon file, you can use the Upload button on <a href="https://ankiweb.net/shared/addons/">https://ankiweb.net/shared/addons/</a> to share the add-on with others.
+<p>Once you’ve created a .ankiaddon file, you can use the Upload button on <a href="https://ankiweb.net/shared/addons/">https://ankiweb.net/shared/addons/</a> to share the add-on with others.<br>
 创建好「.ankiaddon」文件后，你就可以访问 <a href="https://ankiweb.net/shared/addons/">https://ankiweb.net/shared/addons/</a>，点击「上传」按钮，将你的插件分享给其他人。</p>
 <h2 id="sharing-outside-ankiweb在-ankiweb-平台之外分享"><a class="header" href="#sharing-outside-ankiweb在-ankiweb-平台之外分享">Sharing outside AnkiWeb（在 AnkiWeb 平台之外分享）</a></h2>
-<p>If you wish to distribute .ankiaddon files outside of AnkiWeb, your add-on folder needs to contain a 'manifest.json' file. The file should contain at least two keys: 'package' specifies the folder name the add-on will be stored in, and 'name' specifies the name that will be shown to the user. You can optionally include a 'conflicts' key which is a list of other packages that conflict with the add-on, and a 'mod' key which specifies when the add-on was updated.
+<p>If you wish to distribute .ankiaddon files outside of AnkiWeb, your add-on folder needs to contain a 'manifest.json' file. The file should contain at least two keys: 'package' specifies the folder name the add-on will be stored in, and 'name' specifies the name that will be shown to the user. You can optionally include a 'conflicts' key which is a list of other packages that conflict with the add-on, and a 'mod' key which specifies when the add-on was updated.<br>
 如果你希望在 AnkiWeb 平台之外分发「.ankiaddon」文件，你的插件文件夹中必须包含一个名为「manifest.json」的配置文件。该文件至少需要包含两个键：「package」用于指定插件安装后在 <code>addons21</code> 目录中的文件夹名称，「name」则指定了在插件列表中向用户显示的名称。</p>
 <p>此外，你还可以选择性地添加以下键：</p>
 <ul>
 <li>「conflicts」：一个 list，包含与此插件不兼容（或冲突）的其他插件包的名称。</li>
 <li>「mod」：一个时间戳，用于记录插件的最后更新时间。</li>
 </ul>
-<p>When Anki downloads add-ons from AnkiWeb, only the conflicts key is used
-from the manifest.
+<p>When Anki downloads add-ons from AnkiWeb, only the conflicts key is used from the manifest.<br>
 需要注意的是，当 Anki 从 AnkiWeb 下载插件时，它只会读取并使用「manifest.json」文件中的「conflicts」键。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="porting-21x-add-ons迁移-21x-版本的插件"><a class="header" href="#porting-21x-add-ons迁移-21x-版本的插件">Porting 2.1.x Add-ons（迁移 2.1.x 版本的插件）</a></h1>
-<p>Please see <a href="https://forums.ankiweb.net/t/porting-tips-for-anki-23-10/35916">https://forums.ankiweb.net/t/porting-tips-for-anki-23-10/35916</a>
+<p>Please see <a href="https://forums.ankiweb.net/t/porting-tips-for-anki-23-10/35916">https://forums.ankiweb.net/t/porting-tips-for-anki-23-10/35916</a><br>
 请看 <a href="https://forums.ankiweb.net/t/porting-tips-for-anki-23-10/35916">https://forums.ankiweb.net/t/porting-tips-for-anki-23-10/35916</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="porting-anki-20-add-ons移植-anki-20-插件"><a class="header" href="#porting-anki-20-add-ons移植-anki-20-插件">Porting Anki 2.0 add-ons（移植 Anki 2.0 插件）</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="porting-anki-20-add-ons迁移-anki-20-插件"><a class="header" href="#porting-anki-20-add-ons迁移-anki-20-插件">Porting Anki 2.0 add-ons（迁移 Anki 2.0 插件）</a></h1>
 <ul>
 <li><a href="porting2.0.html#python-3">Python 3</a></li>
 <li><a href="porting2.0.html#qt5--pyqt5">Qt5 / PyQt5</a></li>
@@ -1222,115 +1178,104 @@ from the manifest.
 <li><a href="porting2.0.html#add-on-configuration%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE">Add-on Configuration（插件配置）</a></li>
 </ul>
 <h2 id="python-3"><a class="header" href="#python-3">Python 3</a></h2>
-<p>Anki 2.1 requires Python 3 or later. After installing Python 3 on your machine, you can use the 2to3 tool to automatically convert your
-existing scripts to Python 3 code on a folder by folder basis, like:</p>
-<p>Anki 2.1 需要 Python 3 或更高版本。在你的电脑上安装 Python 3 后，你可以使用 <code>2to3</code> 工具，按文件夹逐一将现有脚本自动转换为 Python 3 代码，如下所示：</p>
+<p>Anki 2.1 requires Python 3 or later. After installing Python 3 on your machine, you can use the 2to3 tool to automatically convert your existing scripts to Python 3 code on a folder by folder basis, like:<br>
+Anki 2.1 需要 Python 3 或更高版本。在你的电脑上安装 Python 3 后，你可以使用 <code>2to3</code> 工具，按文件夹逐一将现有脚本自动转换为 Python 3 代码，如下所示：</p>
 <pre><code>2to3-3.8 --output-dir=aqt3 -W -n aqt
 mv aqt aqt-old
 mv aqt3 aqt
 </code></pre>
-<p>Most simple code can be converted automatically, but there may be parts of the code that you need to manually modify.</p>
-<p>大多数简单的代码都能自动转换，但仍可能有些部分需要你手动修改。</p>
+<p>Most simple code can be converted automatically, but there may be parts of the code that you need to manually modify.<br>
+大多数简单的代码都能自动转换，但仍可能有些部分需要你手动修改。</p>
 <h2 id="qt5--pyqt5"><a class="header" href="#qt5--pyqt5">Qt5 / PyQt5</a></h2>
-<p>The syntax for connecting signals and slots has changed in PyQt5. Recent PyQt4 versions support the new syntax as well, so the same syntax can be used for both Anki 2.0 and 2.1 add-ons.
+<p>The syntax for connecting signals and slots has changed in PyQt5. Recent PyQt4 versions support the new syntax as well, so the same syntax can be used for both Anki 2.0 and 2.1 add-ons.<br>
 <code>PyQt5</code> 中连接「信号和槽」的语法已发生变化。不过，较新版本的 <code>PyQt4</code> 也支持新语法，因此同一套语法可同时用于 Anki 2.0 和 2.1 的插件。</p>
-<p>More info is available at
-<a href="http://pyqt.sourceforge.net/Docs/PyQt4/new_style_signals_slots.html">http://pyqt.sourceforge.net/Docs/PyQt4/new_style_signals_slots.html</a></p>
-<p>更多信息请参阅：
-<a href="http://pyqt.sourceforge.net/Docs/PyQt4/new_style_signals_slots.html">http://pyqt.sourceforge.net/Docs/PyQt4/new_style_signals_slots.html</a></p>
-<p>One add-on author reported that the following tool was useful to automatically convert the code:
-<a href="https://github.com/rferrazz/pyqt4topyqt5">https://github.com/rferrazz/pyqt4topyqt5</a></p>
-<p>据一位插件作者反映，以下工具对自动转换代码很有帮助：
-<a href="https://github.com/rferrazz/pyqt4topyqt5">https://github.com/rferrazz/pyqt4topyqt5</a></p>
-<p>The Qt modules are in 'PyQt5' instead of 'PyQt4'. You can do a conditional import, but an easier way is to import from aqt.qt - eg
+<p>More info is available at <a href="http://pyqt.sourceforge.net/Docs/PyQt4/new_style_signals_slots.html">http://pyqt.sourceforge.net/Docs/PyQt4/new_style_signals_slots.html</a><br>
+更多信息请参阅：<a href="http://pyqt.sourceforge.net/Docs/PyQt4/new_style_signals_slots.html">http://pyqt.sourceforge.net/Docs/PyQt4/new_style_signals_slots.html</a></p>
+<p>One add-on author reported that the following tool was useful to automatically convert the code: <a href="https://github.com/rferrazz/pyqt4topyqt5">https://github.com/rferrazz/pyqt4topyqt5</a><br>
+据一位插件作者反映，以下工具对自动转换代码很有帮助：<a href="https://github.com/rferrazz/pyqt4topyqt5">https://github.com/rferrazz/pyqt4topyqt5</a></p>
+<p>The Qt modules are in 'PyQt5' instead of 'PyQt4'. You can do a conditional import, but an easier way is to import from aqt.qt - eg<br>
 Qt 模块位于 <code>PyQt5</code> 中，而非 <code>PyQt4</code>。你可以进行条件导入，但更简单的方法是从 <code>aqt.qt</code> 导入，例如：</p>
 <pre><code>from aqt.qt import *
 </code></pre>
-<p>That will import all the Qt objects like QDialog without having to specify the Qt version.
+<p>That will import all the Qt objects like QDialog without having to specify the Qt version.<br>
 这样就能导入像 <code>QDialog</code> 等所有 Qt 对象，而无需指定具体的 Qt 版本。</p>
 <h2 id="single-py-add-ons-need-their-own-folder单个-py-文件插件需要独立的文件夹"><a class="header" href="#single-py-add-ons-need-their-own-folder单个-py-文件插件需要独立的文件夹">Single .py add-ons need their own folder（单个 <code>.py</code> 文件插件需要独立的文件夹）</a></h2>
-<p>Each add-on is now stored in its own folder. If your add-on was previously called <code>demo.py</code>, you’ll need to create a <code>demo</code> folder with an <code>__init__.py</code> file.
+<p>Each add-on is now stored in its own folder. If your add-on was previously called <code>demo.py</code>, you’ll need to create a <code>demo</code> folder with an <code>__init__.py</code> file.<br>
 现在，每个插件都存储在各自独立的文件夹中。如果你的插件之前是名为 <code>demo.py</code> 的单个文件，那么你需要创建一个 <code>demo</code> 文件夹，并在其中包含一个 <code>__init__.py</code> 文件。</p>
-<p>If you don’t care about 2.0 compatibility, you can just rename <code>demo.py</code> to <code>demo/__init__.py</code>. 如果你无需考虑与 2.0 版本的兼容性，可以直接将 <code>demo.py</code> 重命名为 <code>demo/__init__.py</code>。</p>
-<p>If you plan to support 2.0 with the same file, you can copy your original file into the folder (<code>demo.py</code> → <code>demo/demo.py</code>), and then import it relatively by adding the following to <code>demo/__init__.py</code>:
+<p>If you don’t care about 2.0 compatibility, you can just rename <code>demo.py</code> to <code>demo/__init__.py</code>.<br>
+如果你无需考虑与 2.0 版本的兼容性，可以直接将 <code>demo.py</code> 重命名为 <code>demo/__init__.py</code>。</p>
+<p>If you plan to support 2.0 with the same file, you can copy your original file into the folder (<code>demo.py</code> → <code>demo/demo.py</code>), and then import it relatively by adding the following to <code>demo/__init__.py</code>:<br>
 如果你计划用同一个文件来同时支持 2.0 版本，可以将原文件复制到新文件夹中（即 <code>demo.py</code> → <code>demo/demo.py</code>），然后在 <code>demo/__init__.py</code> 文件里添加以下代码来进行相对导入：</p>
 <pre><code>from . import demo
 </code></pre>
-<p>The folder needs to be zipped up when uploading to AnkiWeb. For more info, please see <a href="sharing.html">sharing add-ons</a>.
+<p>The folder needs to be zipped up when uploading to AnkiWeb. For more info, please see <a href="sharing.html">sharing add-ons</a>.<br>
 上传到 AnkiWeb 时，需要将该文件夹打包成 zip 压缩文件。更多信息，请参阅<a href="sharing.html">分享插件</a>。</p>
 <h2 id="folders-are-deleted-when-upgrading升级时插件文件夹会被删除"><a class="header" href="#folders-are-deleted-when-upgrading升级时插件文件夹会被删除">Folders are deleted when upgrading（升级时插件文件夹会被删除）</a></h2>
-<p>When an add-on is upgraded, all files in the add-on folder are deleted. The only exception is the special <a href="addon-config.html#user-files">user_files folder</a>. If your add-on requires more than simple key/value configuration, make sure you store the associated files in the user_files folder, or they will be lost on upgrade.
+<p>When an add-on is upgraded, all files in the add-on folder are deleted. The only exception is the special <a href="addon-config.html#user-files">user_files folder</a>. If your add-on requires more than simple key/value configuration, make sure you store the associated files in the user_files folder, or they will be lost on upgrade.<br>
 当升级插件时，其文件夹内的所有文件都将被删除。唯一的例外是一个名为 <a href="addon-config.html#user-files"><code>user_files</code> 的特殊文件夹</a>。如果你的插件需要的配置比简单的「键/值」对更复杂，请务必将相关文件存储在 <code>user_files</code> 文件夹中，否则这些文件将在升级过程中丢失。</p>
 <h2 id="supporting-both-20-and-21-in-one-codebase在同一代码库中支持-20-和-21-版本"><a class="header" href="#supporting-both-20-and-21-in-one-codebase在同一代码库中支持-20-和-21-版本">Supporting both 2.0 and 2.1 in one codebase（在同一代码库中支持 2.0 和 2.1 版本）</a></h2>
-<p>Most Python 3 code will run on Python 2 as well, so it is possible to update your add-ons in such a way that they run on both Anki 2.0 and 2.1. Whether this is worth it depends on the changes you need to make.</p>
-<p>大多数 Python 3 代码也能在 Python 2 上运行，因此你可以通过更新，让插件同时在 Anki 2.0 和 2.1 上运行。是否值得这样做，取决于你需要做出的改动大小。
-Most add-ons that affect the scheduler should require only minor changes to work on 2.1. Add-ons that alter the behaviour of the reviewer, browser or editor may require more work.</p>
-<p>大多数影响<strong>调度器</strong>的插件只需少量修改即可在 2.1 版本上运行。而那些修改<strong>复习器</strong>、<strong>浏览器</strong>或<strong>编辑器</strong>行为的插件则可能需要更多工作。</p>
-<p>The most difficult part is the change from the unsupported QtWebKit to QtWebEngine. If you do any non-trivial work with webviews, some work will be required to port your code to Anki 2.1, and you may find it difficult to support both Anki versions in the one codebase.</p>
-<p>最困难的部分是从不再受支持的 <code>QtWebKit</code> 迁移到 <code>QtWebEngine</code>。如果你对 <code>webview</code> 进行了任何复杂的操作，那么将代码移植到 Anki 2.1 将需要不少工作，而且你可能会发现在单个代码库中同时支持两个 Anki 版本非常困难。</p>
-<p>If you find your add-on runs without modification, or requires only minor changes, you may find it easiest to add some if statements to your code and upload the same file for both 2.0.x and 2.1.x.
+<p>Most Python 3 code will run on Python 2 as well, so it is possible to update your add-ons in such a way that they run on both Anki 2.0 and 2.1. Whether this is worth it depends on the changes you need to make.<br>
+大多数 Python 3 代码也能在 Python 2 上运行，因此你可以通过更新，让插件同时在 Anki 2.0 和 2.1 上运行。是否值得这样做，取决于你需要做出的改动大小。</p>
+<p>Most add-ons that affect the scheduler should require only minor changes to work on 2.1. Add-ons that alter the behaviour of the reviewer, browser or editor may require more work.<br>
+大多数影响<strong>调度器</strong>的插件只需少量修改即可在 2.1 版本上运行。而那些修改<strong>复习器</strong>、<strong>浏览器</strong>或<strong>编辑器</strong>行为的插件则可能需要更多工作。</p>
+<p>The most difficult part is the change from the unsupported QtWebKit to QtWebEngine. If you do any non-trivial work with webviews, some work will be required to port your code to Anki 2.1, and you may find it difficult to support both Anki versions in the one codebase.<br>
+最困难的部分是从不再受支持的 <code>QtWebKit</code> 迁移到 <code>QtWebEngine</code>。如果你对 <code>webview</code> 进行了任何复杂的操作，那么将代码迁移到 Anki 2.1 将需要不少工作，而且你可能会发现在单个代码库中同时支持两个 Anki 版本非常困难。</p>
+<p>If you find your add-on runs without modification, or requires only minor changes, you may find it easiest to add some if statements to your code and upload the same file for both 2.0.x and 2.1.x.<br>
 如果你发现插件无需修改即可运行，或者仅需微调，那么最简单的方法可能是在代码中添加一些 <code>if</code> 判断语句，然后为 2.0.x 和 2.1.x 版本上传同一个文件。</p>
-<p>If your add-on requires more significant changes, you may find it easier to stop providing updates for 2.0.x, or to maintain separate files for the two Anki versions.
+<p>If your add-on requires more significant changes, you may find it easier to stop providing updates for 2.0.x, or to maintain separate files for the two Anki versions.<br>
 如果你的插件需要较大改动，那么更简单的做法可能是停止为 2.0.x 版本提供更新，或者为这两个 Anki 版本分别维护不同的文件。</p>
 <h2 id="webview-changeswebview-变更"><a class="header" href="#webview-changeswebview-变更">Webview Changes（Webview 变更）</a></h2>
-<p>Qt 5 has dropped WebKit in favour of the Chromium-based WebEngine, so Anki’s webviews are now using WebEngine. Of note:
+<p>Qt 5 has dropped WebKit in favour of the Chromium-based WebEngine, so Anki’s webviews are now using WebEngine. Of note:<br>
 Qt 5 已弃用 <code>WebKit</code>，转而采用基于 <code>Chromium</code> 的 <code>WebEngine</code>，因此 Anki 的 <code>webview</code> 现在使用的是 <code>WebEngine</code>。值得注意的变更如下：</p>
 <ul>
 <li>
 <p>You can now debug the webviews using an external Chrome instance, by setting the env var QTWEBENGINE_REMOTE_DEBUGGING to 8080 prior to starting Anki, then surfing to localhost:8080 in Chrome.</p>
 </li>
 <li>
-<p>现在，你可以通过外部的 Chrome 浏览器实例来调试 <code>webview</code>。只需在启动 Anki 前，将环境变量 <code>QTWEBENGINE_REMOTE_DEBUGGING</code> 设置为 <code>8080</code>，然后在 Chrome 中访问 <code>localhost:8080</code> 即可。
-<br></p>
+<p>现在，你可以通过外部的 Chrome 浏览器实例来调试 <code>webview</code>。只需在启动 Anki 前，将环境变量 <code>QTWEBENGINE_REMOTE_DEBUGGING</code> 设置为 <code>8080</code>，然后在 Chrome 中访问 <code>localhost:8080</code> 即可。<br></p>
 </li>
 <li>
 <p>WebEngine uses a different method of communicating back to Python. AnkiWebView() is a wrapper for webviews which provides a pycmd(str) function in Javascript which will call the ankiwebview’s onBridgeCmd(str) method. Various parts of Anki’s UI like reviewer.py and deckbrowser.py have had to be modified to use this.</p>
 </li>
 <li>
-<p><code>WebEngine</code> 使用了不同的方法与 Python 进行反向通信。<code>AnkiWebView()</code> 是一个 <code>webview</code> 的包装器，它在 Javascript 端提供了一个 <code>pycmd(str)</code> 函数，该函数会调用 Python 端 <code>ankiwebview</code> 对象的 <code>onBridgeCmd(str)</code> 方法。Anki 界面中的许多部分（如 <code>reviewer.py</code> 和 <code>deckbrowser.py</code>）都已为此做出修改。
-<br></p>
+<p><code>WebEngine</code> 使用了不同的方法与 Python 进行反向通信。<code>AnkiWebView()</code> 是一个 <code>webview</code> 的包装器，它在 Javascript 端提供了一个 <code>pycmd(str)</code> 函数，该函数会调用 Python 端 <code>ankiwebview</code> 对象的 <code>onBridgeCmd(str)</code> 方法。Anki 界面中的许多部分（如 <code>reviewer.py</code> 和 <code>deckbrowser.py</code>）都已为此做出修改。<br></p>
 </li>
 <li>
 <p>Javascript is evaluated asynchronously, so if you need the result of a JS expression you can use ankiwebview’s evalWithCallback().</p>
 </li>
 <li>
-<p>Javascript 是异步执行的。因此，如果你需要获取某个 JS 表达式的执行结果，应使用 <code>ankiwebview</code> 的 <code>evalWithCallback()</code> 方法。
-<br></p>
+<p>Javascript 是异步执行的。因此，如果你需要获取某个 JS 表达式的执行结果，应使用 <code>ankiwebview</code> 的 <code>evalWithCallback()</code> 方法。<br></p>
 </li>
 <li>
 <p>As a result of this asynchronous behaviour, editor.saveNow() now requires a callback. If your add-on performs actions in the browser, you likely need to call editor.saveNow() first and then run the rest of your code in the callback. Calls to .onSearch() will need to be changed to .search()/.onSearchActivated() as well. See the browser’s .deleteNotes() for an example.</p>
 </li>
 <li>
-<p>受此异步行为影响，<code>editor.saveNow()</code> 现在需要一个回调函数。如果你的插件需要在浏览器（Anki 浏览器，非 Chrome）中执行操作，很可能需要先调用 <code>editor.saveNow()</code>，然后将余下的代码放在回调函数中执行。同样，对 <code>.onSearch()</code> 的调用也需要改为 <code>.search()</code> 或 <code>.onSearchActivated()</code>。具体可参考浏览器中的 <code>.deleteNotes()</code> 方法作为示例。
-<br></p>
+<p>受此异步行为影响，<code>editor.saveNow()</code> 现在需要一个回调函数。如果你的插件需要在浏览器（Anki 浏览器，非 Chrome）中执行操作，很可能需要先调用 <code>editor.saveNow()</code>，然后将余下的代码放在回调函数中执行。同样，对 <code>.onSearch()</code> 的调用也需要改为 <code>.search()</code> 或 <code>.onSearchActivated()</code>。具体可参考浏览器中的 <code>.deleteNotes()</code> 方法作为示例。<br></p>
 </li>
 <li>
 <p>Various operations that were supported by WebKit like setScrollPosition() now need to be implemented in javascript.</p>
 </li>
 <li>
-<p>许多 <code>WebKit</code> 支持的操作（如 <code>setScrollPosition()</code>）现在需要通过 Javascript 来实现。
-<br></p>
+<p>许多 <code>WebKit</code> 支持的操作（如 <code>setScrollPosition()</code>）现在需要通过 Javascript 来实现。<br></p>
 </li>
 <li>
 <p>Page actions like mw.web.triggerPageAction(QWebEnginePage.Copy) are also asynchronous, and need to be rewritten to use javascript or a delay.</p>
 </li>
 <li>
-<p>页面动作（如 <code>mw.web.triggerPageAction(QWebEnginePage.Copy)</code>）也变为异步执行，需要重写为使用 Javascript 或添加延迟处理。
-<br></p>
+<p>页面动作（如 <code>mw.web.triggerPageAction(QWebEnginePage.Copy)</code>）也变为异步执行，需要重写为使用 Javascript 或添加延迟处理。<br></p>
 </li>
 <li>
 <p>WebEngine doesn’t provide a keyPressEvent() like WebKit did, so the code that catches shortcuts not attached to a menu or button has had to be changed. setStateShortcuts() fires a hook that can be used to adjust the shortcuts for a given state.</p>
 </li>
 <li>
-<p><code>WebEngine</code> 不再提供 <code>keyPressEvent()</code> 方法，因此，用于捕获未绑定到菜单或按钮上的快捷键的代码也必须修改。<code>setStateShortcuts()</code> 会触发一个钩子（hook），你可以利用这个钩子来调整特定状态下的快捷键。</p>
+<p><code>WebEngine</code> 不再提供 <code>keyPressEvent()</code> 方法，因此，用于捕获未绑定到菜单或按钮上的快捷键的代码也必须修改。<code>setStateShortcuts()</code> 会触发一个钩子（hook），你可以利用这个钩子来调整特定状态下的快捷键。<br></p>
 </li>
 </ul>
 <h2 id="reviewer-changes复习器变更"><a class="header" href="#reviewer-changes复习器变更">Reviewer Changes（复习器变更）</a></h2>
-<p>Anki now fades the previous card out before fading the next card in, so the next card won’t be available in the DOM when the showQuestion hook fires. There are some new hooks you can use to run Javascript at the appropriate time - see <a href="reviewer-javascript.html">here</a> for more.
+<p>Anki now fades the previous card out before fading the next card in, so the next card won’t be available in the DOM when the showQuestion hook fires. There are some new hooks you can use to run Javascript at the appropriate time - see <a href="reviewer-javascript.html">here</a> for more.<br>
 Anki 现在的卡片切换效果是：先将上一张卡片淡出，再将下一张卡片淡入。因此，当 <code>showQuestion</code> 钩子触发时，下一张卡片尚未在 <code>DOM</code> 中生成，故无法访问。为解决此问题，Anki 提供了一些新的钩子，以便你可以在恰当的时机运行 Javascript。更多详情请参阅<a href="reviewer-javascript.html">此文档</a>。</p>
 <h2 id="add-on-configuration插件配置"><a class="header" href="#add-on-configuration插件配置">Add-on Configuration（插件配置）</a></h2>
-<p>Many small 2.0 add-ons relied on users editing the sourcecode to customize them. This is no longer a good idea in 2.1, because changes made by the user will be overwritten when they check for and download updates. 2.1 provides a <a href="addon-config.html#config-json">Configuration</a> system to work around this. If you need to continue supporting 2.0 as well, you could
-use code like the following:</p>
+<p>Many small 2.0 add-ons relied on users editing the sourcecode to customize them. This is no longer a good idea in 2.1, because changes made by the user will be overwritten when they check for and download updates. 2.1 provides a <a href="addon-config.html#config-json">Configuration</a> system to work around this. If you need to continue supporting 2.0 as well, you could use code like the following:<br></p>
 <p>许多小型的 2.0 版本插件依赖用户通过编辑源代码来进行自定义。在 2.1 版本中，这种做法已不再推荐，因为当用户检查并下载更新时，他们对代码的任何修改都将被覆盖。为了解决这个问题，2.1 版本提供了一套<a href="addon-config.html#config-json">配置</a>系统。如果你需要让插件同时兼容 2.0 版本，可以使用类似下面的代码来向后兼容：</p>
 <pre><code class="language-python">if getattr(getattr(mw, "addonManager", None), "getConfig", None):
     config = mw.addonManager.getConfig(__name__)

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Add-on Config - 编写 Anki 插件</title>
+        <title>Add-on Config（插件配置） - 编写 Anki 插件</title>
 
 
         <!-- Custom HTML head -->
@@ -171,49 +171,49 @@
                     <main>
                         <h1 id="add-on-config插件配置"><a class="header" href="#add-on-config插件配置">Add-on Config（插件配置）</a></h1>
 <h2 id="config-jsonjson-配置"><a class="header" href="#config-jsonjson-配置">Config JSON（JSON 配置）</a></h2>
-<p>Add-ons can store config data in a JSON dictionary. You provide the default values by shipping a file called <code>config.json</code>. A simple example:
+<p>Add-ons can store config data in a JSON dictionary. You provide the default values by shipping a file called <code>config.json</code>. A simple example:<br>
 插件可将配置数据存储于一个 JSON 字典中。你可以通过随插件一同发布一个名为 <code>config.json</code> 的文件来提供默认值。示例如下：</p>
 <pre><code>{"myvar": 5}
 </code></pre>
-<p>In config.md:
+<p>In config.md:<br>
 在 config.md 中：</p>
 <pre><code>This is documentation for this add-on's configuration, in *markdown* format.
 这是此插件的配置文档，采用「markdown」格式。
 </code></pre>
-<p>In your add-on’s code:
+<p>In your add-on’s code:<br>
 在你的插件代码中：</p>
 <pre><code class="language-python">from aqt import mw
 config = mw.addonManager.getConfig(__name__)
 print("var is", config['myvar'])
 </code></pre>
-<p>If the config hasn't been customized, the default values from that file will be used.
+<p>If the config hasn't been customized, the default values from that file will be used.<br>
 如果用户尚未自定义配置，程序将采用该文件中的默认值。</p>
-<p>If you need to programmatically modify the config, you can save your changes with:
+<p>If you need to programmatically modify the config, you can save your changes with:<br>
 如果你需要通过编程方式修改配置，可以使用以下代码保存更改：</p>
 <pre><code class="language-python">mw.addonManager.writeConfig(__name__, config)
 </code></pre>
-<p>Users are also able to edit the config inside the GUI.
-用户也可以在图形用户界面（GUI）中直接编辑配置。
-The edited config is stored in <code>meta.json</code>.
+<p>Users are also able to edit the config inside the GUI.<br>
+用户也可以在图形用户界面（GUI）中直接编辑配置。</p>
+<p>The edited config is stored in <code>meta.json</code>.<br>
 编辑后的配置被存储在 <code>meta.json</code> 文件中。</p>
-<p>When <code>getConfig()</code> is used after edits, meta.json is used preferentially. If a key is missing from meta.json's config, Anki will fall back on the default config.
+<p>When <code>getConfig()</code> is used after edits, meta.json is used preferentially. If a key is missing from meta.json's config, Anki will fall back on the default config.<br>
 当 <code>getConfig()</code> 在配置被编辑后调用时，程序将优先使用 <code>meta.json</code> 中的数据。如果 <code>meta.json</code> 的配置中缺少某个键，Anki 将回退至默认配置。</p>
-<p>If you change the value of existing keys in config.json, users who have customized their configuration will continue to see the old values unless they use the "restore defaults" button.
+<p>If you change the value of existing keys in config.json, users who have customized their configuration will continue to see the old values unless they use the "restore defaults" button.<br>
 如果你更改了 <code>config.json</code> 文件中现有键的值，已自定义配置的用户将继续看到旧的值，除非他们使用「恢复默认值」按钮。</p>
-<p>If no config.json file exists, getConfig() will return None - even if you have called writeConfig().
+<p>If no config.json file exists, getConfig() will return None - even if you have called writeConfig().<br>
 如果 <code>config.json</code> 文件不存在，<code>getConfig()</code> 将返回 <code>None</code>——即使你已经调用过 <code>writeConfig()</code>。</p>
-<p>Add-ons that manage options in their own GUI can have that GUI displayed when the config button is clicked:
+<p>Add-ons that manage options in their own GUI can have that GUI displayed when the config button is clicked:<br>
 对于在自有图形界面中管理选项的插件，可以设置在用户点击配置按钮时显示该界面：</p>
 <pre><code class="language-python">mw.addonManager.setConfigAction(__name__, myOptionsFunc)
 </code></pre>
-<p>Avoid key names starting with an underscore - they are reserved for future use by Anki.
+<p>Avoid key names starting with an underscore - they are reserved for future use by Anki.<br>
 请避免使用以下划线开头的键名——它们已被 Anki 预留给未来功能使用。</p>
 <h2 id="user-files用户文件"><a class="header" href="#user-files用户文件">User Files（用户文件）</a></h2>
-<p>When your add-on needs configuration data other than simple keys and values, it can use a special folder called user_files in the root of your add-on’s folder. Any files placed in this folder will be preserved when the add-on is upgraded. All other files in the add-on folder are removed on upgrade.
+<p>When your add-on needs configuration data other than simple keys and values, it can use a special folder called user_files in the root of your add-on’s folder. Any files placed in this folder will be preserved when the add-on is upgraded. All other files in the add-on folder are removed on upgrade.<br>
 当你的插件需要的配置数据超出了简单的键值对外，它可以使用一个位于插件根目录下的特殊文件夹 <code>user_files</code>。放置在此文件夹中的任何文件都会在插件升级时被保留。插件文件夹中的所有其他文件都将在升级时被移除。</p>
-<p>To ensure the user_files folder is created for the user, you can put a README.txt or similar file inside it before zipping up your add-on.
+<p>To ensure the user_files folder is created for the user, you can put a README.txt or similar file inside it before zipping up your add-on.<br>
 为了确保系统能为用户创建 <code>user_files</code> 文件夹，你可以在打包插件（<code>.zip</code>）前，在该文件夹内放置一个 <code>README.txt</code> 或类似的文件。</p>
-<p>When Anki upgrades an add-on, it will ignore any files in the .zip that already exist in the user_files folder.
+<p>When Anki upgrades an add-on, it will ignore any files in the .zip that already exist in the user_files folder.<br>
 当 Anki 升级插件时，它会忽略压缩包中那些与 <code>user_files</code> 文件夹内已存在文件同名的文件。</p>
 
                     </main>

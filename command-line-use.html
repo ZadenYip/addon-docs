@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Command-Line Use - 编写 Anki 插件</title>
+        <title>Command-Line Use（「anki」模块） - 编写 Anki 插件</title>
 
 
         <!-- Custom HTML head -->
@@ -170,19 +170,19 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="command-line-use命令行使用"><a class="header" href="#command-line-use命令行使用">Command-Line Use（命令行使用）</a></h1>
-<p>The <code>anki</code> module can be used separately from Anki's GUI. It is strongly recommended you use it instead of attempting to read or write a .anki2 file directly.</p>
-<p><code>anki</code> 模块可以独立于 Anki 的图形用户界面（GUI）运行。我们强烈建议你通过此模块进行操作，而不是直接尝试读取或写入 <code>.anki2</code> 文件。</p>
-<p>Install it with pip:
+<p>The <code>anki</code> module can be used separately from Anki's GUI. It is strongly recommended you use it instead of attempting to read or write a .anki2 file directly.<br>
+<code>anki</code> 模块可以独立于 Anki 的图形用户界面（GUI）运行。我们强烈建议你通过此模块进行操作，而不是直接尝试读取或写入 <code>.anki2</code> 文件。</p>
+<p>Install it with pip:<br>
 请使用 pip 来安装该模块：</p>
 <pre><code class="language-shell">$ pip install anki
 </code></pre>
-<p>Then you can use it in a .py file, like so:
+<p>Then you can use it in a .py file, like so:<br>
 安装后，你就可以在 <code>.py</code> 文件中如下所示地使用它：</p>
 <pre><code class="language-python">from anki.collection import Collection
 col = Collection("/path/to/collection.anki2")
 print(col.sched.deck_due_tree())
 </code></pre>
-<p>See <a href="./the-anki-module.html">the Anki module</a> for more.
+<p>See <a href="./the-anki-module.html">the Anki module</a> for more.<br>
 更多详细信息，请参阅 <a href="./the-anki-module.html">Anki 模块</a> 章节。</p>
 
                     </main>

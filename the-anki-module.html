@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>The &#x27;anki&#x27; Module - 编写 Anki 插件</title>
+        <title>The &#x27;anki&#x27; Module（「anki」模块） - 编写 Anki 插件</title>
 
 
         <!-- Custom HTML head -->
@@ -170,50 +170,50 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="the-anki-moduleanki模块"><a class="header" href="#the-anki-moduleanki模块">The 'anki' module（「anki」模块）</a></h1>
-<p>All access to your collection and associated media go through a Python package called <code>anki</code>, located in <a href="https://github.com/ankitects/anki/tree/main/pylib/anki">pylib/anki</a> in Anki's source repo.
+<p>All access to your collection and associated media go through a Python package called <code>anki</code>, located in <a href="https://github.com/ankitects/anki/tree/main/pylib/anki">pylib/anki</a> in Anki's source repo.<br>
 所有对你的牌组集合及相关媒体文件的访问，都是通过一个名为 <code>anki</code> 的 Python 包进行的。该包位于 Anki 源码仓库的 <a href="https://github.com/ankitects/anki/tree/main/pylib/anki">pylib/anki</a> 目录中。</p>
 <h2 id="the-collection牌组集合"><a class="header" href="#the-collection牌组集合">The Collection（牌组集合）</a></h2>
-<p>All operations on a collection file are accessed via a <code>Collection</code> object. The currently-open Collection is accessible via a global <code>mw.col</code>, where <code>mw</code> stands for <code>main window</code>. When using the <code>anki</code> module outside of Anki, you will need to create your own Collection object.
+<p>All operations on a collection file are accessed via a <code>Collection</code> object. The currently-open Collection is accessible via a global <code>mw.col</code>, where <code>mw</code> stands for <code>main window</code>. When using the <code>anki</code> module outside of Anki, you will need to create your own Collection object.<br>
 所有对牌组集合文件的操作都是通过一个 <code>Collection</code> 对象来访问的。当前打开的牌组集合可以通过全局变量 <code>mw.col</code> 来访问，其中 <code>mw</code> 代表「main window」（主窗口）。当在 Anki 环境之外使用 <code>anki</code> 模块时，你需要自己创建一个 <code>Collection</code> 对象。</p>
-<p>Some basic examples of what you can do follow. Please note that you should put these in something like <a href="./a-basic-addon.html">testFunction()</a>. You can’t run them directly in an add-on, as add-ons are initialized during Anki startup, before any collection or profile has been loaded.
+<p>Some basic examples of what you can do follow. Please note that you should put these in something like <a href="./a-basic-addon.html">testFunction()</a>. You can’t run them directly in an add-on, as add-ons are initialized during Anki startup, before any collection or profile has been loaded.<br>
 下面是一些你可以实现的基本操作示例。请注意，你应该将这些代码放在像 <a href="./a-basic-addon.html">testFunction()</a> 这样的函数中。你不能直接在插件的顶层代码中运行它们，因为插件是在 Anki 启动过程中初始化的，那时还没有加载任何牌组集合或用户配置文件。</p>
-<p>Also please note that accessing the collection directly can lead to the UI temporarily freezing if the operation doesn't complete quickly - in practice you would typically run the code below in a background thread.
+<p>Also please note that accessing the collection directly can lead to the UI temporarily freezing if the operation doesn't complete quickly - in practice you would typically run the code below in a background thread.<br>
 另外也请注意，如果操作不能快速完成，直接访问牌组集合可能会导致 UI 暂时冻结。在实际应用中，你通常应该在后台线程中运行下面的代码。</p>
-<p><strong>Get a due card:</strong>
+<p><strong>Get a due card:</strong><br>
 <strong>获取一张到期卡片：</strong></p>
 <pre><code class="language-python">card = mw.col.sched.getCard()
 if not card:
     # current deck is finished
     # 当前牌组已完成
 </code></pre>
-<p><strong>Answer the card:</strong>
+<p><strong>Answer the card:</strong><br>
 <strong>回答卡片：</strong></p>
 <pre><code class="language-python">mw.col.sched.answerCard(card, ease)
 </code></pre>
-<p><strong>Edit a note (append "new" to the end of each field):</strong>
+<p><strong>Edit a note (append "new" to the end of each field):</strong><br>
 <strong>编辑一条笔记（在每个字段末尾追加「new」）：</strong></p>
 <pre><code class="language-python">note = card.note()
 for (name, value) in note.items():
     note[name] = value + " new"
 mw.col.update_note(note)
 </code></pre>
-<p><strong>Get card IDs for notes with tag x:</strong>
+<p><strong>Get card IDs for notes with tag x:</strong><br>
 <strong>获取带有标签 x 的笔记的所有卡片 ID：</strong></p>
 <pre><code class="language-python">ids = mw.col.find_cards("tag:x")
 </code></pre>
-<p><strong>Get question and answer for each of those ids:</strong>
+<p><strong>Get question and answer for each of those ids:</strong><br>
 <strong>根据这些 ID 获取每张卡片的问题和答案：</strong></p>
 <pre><code class="language-python">for id in ids:
     card = mw.col.get_card(id)
     question = card.question()
     answer = card.answer()
 </code></pre>
-<p><strong>Make reviews due tomorrow</strong>
+<p><strong>Make reviews due tomorrow</strong><br>
 <strong>将复习卡片的到期日设为明天：</strong></p>
 <pre><code class="language-python">ids = mw.col.find_cards("is:due")
 mw.col.sched.set_due_date(ids, "1")
 </code></pre>
-<p><strong>Import a text file into the collection</strong>
+<p><strong>Import a text file into the collection</strong><br>
 <strong>将一个文本文件导入到牌组集合中：</strong></p>
 <p>Requires Anki 2.1.55+.
 需要 Anki 2.1.55+ 版本。</p>
@@ -226,13 +226,11 @@ request = ImportCsvRequest(path=path, metadata=metadata)
 response = col.import_csv(request)
 print(response.log.found_notes, list(response.log.updated), list(response.log.new))
 </code></pre>
-<p>Almost every GUI operation has an associated function in anki, so any of
-the operations that Anki makes available can also be called in an
-add-on.
+<p>Almost every GUI operation has an associated function in anki, so any of the operations that Anki makes available can also be called in an add-on.<br>
 几乎每个 GUI 操作在 <code>anki</code> 模块中都有一个对应的函数，因此 Anki 提供的任何操作都可以在插件中调用。</p>
 <h2 id="readingwriting-读写对象"><a class="header" href="#readingwriting-读写对象">Reading/Writing （读/写对象）</a></h2>
-<p>Most objects in Anki can be read and written via methods in pylib.</p>
-<p>Anki 中的大多数对象都可以通过 pylib 中的方法进行读取和写入。</p>
+<p>Most objects in Anki can be read and written via methods in pylib.<br>
+Anki 中的大多数对象都可以通过 pylib 中的方法进行读取和写入。</p>
 <pre><code class="language-python">card = col.get_card(card_id)
 card.ivl += 1
 col.update_card(card)
@@ -259,54 +257,50 @@ col.models.save(note)
 notetype = col.models.by_name("Basic")
 ...
 </code></pre>
-<p>You should prefer these methods over directly accessing the database, as they take care of marking items as requiring a sync, and they prevent some forms of invalid data from being written to the database.
+<p>You should prefer these methods over directly accessing the database, as they take care of marking items as requiring a sync, and they prevent some forms of invalid data from being written to the database.<br>
 你应该优先使用这些方法，而不是直接访问数据库。因为这些方法会自动处理需要同步的项目标记，并能防止某些形式的无效数据被写入数据库。</p>
-<p>For locating specific cards and notes, col.find_cards() and
-col.find_notes() are useful.
+<p>For locating specific cards and notes, col.find_cards() and col.find_notes() are useful.<br>
 要查找特定的卡片和笔记，<code>col.find_cards()</code> 和 <code>col.find_notes()</code> 函数非常有用。</p>
 <h2 id="the-database数据库"><a class="header" href="#the-database数据库">The Database（数据库）</a></h2>
-<p>:warning: You can easily cause problems by writing directly to the database.
-Where possible, please use methods such as the ones mentioned above instead.
+<p>:warning: You can easily cause problems by writing directly to the database. Where possible, please use methods such as the ones mentioned above instead.<br>
 :warning: 直接写入数据库很容易引发问题。请尽可能使用上文提到的方法来代替直接操作数据库。</p>
-<p>Anki’s DB object supports the following functions:
+<p>Anki’s DB object supports the following functions:<br>
 Anki 的 DB 对象支持以下函数：</p>
-<p><strong>scalar() returns a single item:</strong>
+<p><strong>scalar() returns a single item:</strong><br>
 <strong>scalar() 返回单个值：</strong></p>
 <pre><code class="language-python">showInfo("card count: %d" % mw.col.db.scalar("select count() from cards"))
 </code></pre>
-<p><strong>list() returns a list of the first column in each row, e.g.[1, 2, 3]</strong>
+<p><strong>list() returns a list of the first column in each row, e.g.[1, 2, 3]</strong><br>
 <strong>list() 返回每行第一列数据组成的 list，例如：[1, 2, 3]</strong></p>
 <pre><code class="language-python">ids = mw.col.db.list("select id from cards limit 3")
 </code></pre>
-<p><strong>all() returns a list of rows, where each row is a list:</strong>
+<p><strong>all() returns a list of rows, where each row is a list:</strong><br>
 <strong>all() 返回一个由多个行行组成的 list，其中每一行本身也是一个 list：</strong></p>
 <pre><code class="language-python">ids_and_ivl = mw.col.db.all("select id, ivl from cards")
 </code></pre>
-<p><strong>execute() can also be used to iterate over a result set without
-building an intermediate list. eg:</strong>
+<p><strong>execute() can also be used to iterate over a result set without building an intermediate list. eg:</strong><br>
 <strong>execute() 也可以用来遍历 result set，而无需构建一个中间 list。例如：</strong></p>
 <pre><code class="language-python">for id, ivl in mw.col.db.execute("select id, ivl from cards limit 3"):
     showInfo("card id %d has ivl %d" % (id, ivl))
 </code></pre>
-<p><strong>execute() allows you to perform an insert or update operation. Use named arguments with ?. eg:</strong>
+<p><strong>execute() allows you to perform an insert or update operation. Use named arguments with ?. eg:</strong><br>
 <strong>execute() 允许你执行插入或更新操作。请使用 <code>?</code> 作为占位符。例如：</strong></p>
 <pre><code class="language-python">mw.col.db.execute("update cards set ivl = ? where id = ?", newIvl, cardId)
 </code></pre>
 <p>Note that these changes won't sync, as they would if you used the functions mentioned in the previous section.
 请注意，这些更改不会被同步，而使用上一节提到的函数所做的更改则会被同步。</p>
-<p><strong>executemany() allows you to perform bulk update or insert operations. For large updates, this is much faster than calling execute() for each data point. eg:</strong>
+<p><strong>executemany() allows you to perform bulk update or insert operations. For large updates, this is much faster than calling execute() for each data point. eg:</strong><br>
 <strong>executemany() 允许你执行批量更新或插入操作。对于大量更新，这比为每个数据点调用 <code>execute()</code> 要快得多。例如：</strong></p>
 <pre><code class="language-python">data = [[newIvl1, cardId1], [newIvl2, cardId2]]
 mw.col.db.executemany(same_sql_as_above, data)
 </code></pre>
-<p>As above, these changes won't sync.
+<p>As above, these changes won't sync.<br>
 与上面一样，这些更改也不会被同步。</p>
-<p>Add-ons should never modify the schema of existing tables, as that may break future versions of Anki.
+<p>Add-ons should never modify the schema of existing tables, as that may break future versions of Anki.<br>
 插件永远不应该修改现有表的结构（schema），因为这可能会破坏未来版本的 Anki。</p>
-<p>If you need to store addon-specific data, consider using Anki’s
-<a href="addon-config.html#config-json">Configuration</a> support.
+<p>If you need to store addon-specific data, consider using Anki’s <a href="addon-config.html#config-json">Configuration</a> support.<br>
 如果你需要存储插件特有的数据，可以考虑使用 Anki 的<a href="addon-config.html#config-json">配置</a>功能。</p>
-<p>If you need the data to sync across devices, small options can be stored within mw.col.conf. Please don’t store large amounts of data there, as it’s currently sent on every sync.
+<p>If you need the data to sync across devices, small options can be stored within mw.col.conf. Please don’t store large amounts of data there, as it’s currently sent on every sync.<br>
 如果你需要数据在不同设备间同步，可以将小的配置项存储在 <code>mw.col.conf</code> 中。请不要在那里存储大量数据，因为它目前会在每次同步时都被发送。</p>
 
                     </main>

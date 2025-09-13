@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Qt and PyQt - 编写 Anki 插件</title>
+        <title>Qt and PyQt（Qt 与 PyQt） - 编写 Anki 插件</title>
 
 
         <!-- Custom HTML head -->
@@ -171,36 +171,30 @@
                     <main>
                         <h1 id="qt-and-pyqtqt-与-pyqt"><a class="header" href="#qt-and-pyqtqt-与-pyqt">Qt and PyQt（Qt 与 PyQt）</a></h1>
 <p>As mentioned in the overview, Anki uses PyQt for a lot of its UI, and the Qt
-documentation and <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/sip-classes.html">PyQt
-documentation</a>
-are invaluable for learning how to display different GUI widgets.</p>
-<p>如概述中所述，Anki 的许多 UI 都是用 PyQt 实现的。在学习如何显示不同的 GUI 控件时，Qt 官方文档和 <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/sip-classes.html">PyQt 文档</a> 是非常宝贵的参考资料。</p>
+documentation and <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/sip-classes.html">PyQt documentation</a> are invaluable for learning how to display different GUI widgets.<br>
+如概述中所述，Anki 的许多 UI 都是用 PyQt 实现的。在学习如何显示不同的 GUI 控件时，Qt 官方文档和 <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/sip-classes.html">PyQt 文档</a> 是非常宝贵的参考资料。</p>
 <h2 id="qt-versionsqt-版本"><a class="header" href="#qt-versionsqt-版本">Qt Versions（Qt 版本）</a></h2>
-<p>From Anki 2.1.50, separate builds are provided for PyQt5 and PyQt6. Generally speaking, if you write code that works in Qt6, and make sure to import any Qt classes from aqt.qt instead of directly from PyQt6, your code should also work
-in Qt5.</p>
-<p>从 Anki 2.1.50 版本开始，官方分别为 PyQt5 和 PyQt6 提供了独立的构建版本。通常来说，只要您编写的代码能在 Qt6 环境下运行，并确保所有 Qt 类都从 <code>aqt.qt</code> 导入，而不是直接从 <code>PyQt6</code> 导入，那么您的代码也应该能兼容 Qt5。</p>
+<p>From Anki 2.1.50, separate builds are provided for PyQt5 and PyQt6. Generally speaking, if you write code that works in Qt6, and make sure to import any Qt classes from aqt.qt instead of directly from PyQt6, your code should also work in Qt5.<br>
+从 Anki 2.1.50 版本开始，官方分别为 PyQt5 和 PyQt6 提供了独立的构建版本。通常来说，只要您编写的代码能在 Qt6 环境下运行，并确保所有 Qt 类都从 <code>aqt.qt</code> 导入，而不是直接从 <code>PyQt6</code> 导入，那么您的代码也应该能兼容 Qt5。</p>
 <h2 id="designer-filesdesigner-文件"><a class="header" href="#designer-filesdesigner-文件">Designer Files（Designer 文件）</a></h2>
-<p>Parts of Anki's UI are defined in .ui files, located in <code>qt/aqt/forms</code>. Anki's build process converts them into .py files. If you wish to build your add-on's UI in a similar way, you will need to install Python, and install a program called Qt Designer (Designer.app on macOS). On Linux, it may be available in your distro's packages; on Windows and Mac, you'll need to install it as part of a <a href="https://download.qt.io/">Qt install</a>. Once installed, you will need to use a program provided in the pyqt6 pip package to compile the .ui files.</p>
-<p>Anki 的部分用户界面是在 <code>.ui</code> 文件中定义的，这些文件位于 <code>qt/aqt/forms</code> 目录下。Anki 的构建过程会将这些 <code>.ui</code> 文件转换为 <code>.py</code> 文件。如果您希望用类似的方式来构建插件的用户界面，就需要安装 Python 和一个名为 Qt Designer 的程序（在 macOS 上是 Designer.app）。在 Linux 系统上，您或许能通过发行版的软件包管理器直接安装；而在 Windows 和 Mac 系统上，则需要通过<a href="https://download.qt.io/">安装 Qt</a> 来获取它。安装完成后，您还需要使用 <code>pyqt6</code> pip 包提供的一个程序来编译 <code>.ui</code> 文件。</p>
-<p>Generated Python files for PyQt6 won't work with PyQt5 and vice versa, so if you wish to support both versions, you will need to build the .ui files twice, once with pyuic5, and once with pyuic6.
+<p>Parts of Anki's UI are defined in .ui files, located in <code>qt/aqt/forms</code>. Anki's build process converts them into .py files. If you wish to build your add-on's UI in a similar way, you will need to install Python, and install a program called Qt Designer (Designer.app on macOS). On Linux, it may be available in your distro's packages; on Windows and Mac, you'll need to install it as part of a <a href="https://download.qt.io/">Qt install</a>. Once installed, you will need to use a program provided in the pyqt6 pip package to compile the .ui files.<br>
+Anki 的部分用户界面是在 <code>.ui</code> 文件中定义的，这些文件位于 <code>qt/aqt/forms</code> 目录下。Anki 的构建过程会将这些 <code>.ui</code> 文件转换为 <code>.py</code> 文件。如果您希望用类似的方式来构建插件的用户界面，就需要安装 Python 和一个名为 Qt Designer 的程序（在 macOS 上是 Designer.app）。在 Linux 系统上，您或许能通过发行版的软件包管理器直接安装；而在 Windows 和 Mac 系统上，则需要通过<a href="https://download.qt.io/">安装 Qt</a> 来获取它。安装完成后，您还需要使用 <code>pyqt6</code> pip 包提供的一个程序来编译 <code>.ui</code> 文件。</p>
+<p>Generated Python files for PyQt6 won't work with PyQt5 and vice versa, so if you wish to support both versions, you will need to build the .ui files twice, once with pyuic5, and once with pyuic6.<br>
 为 PyQt6 生成的 Python 文件与 PyQt5 并不兼容，反之亦然。因此，若想同时支持这两个版本，您需要分别使用 <code>pyuic5</code> 和 <code>pyuic6</code> 将 <code>.ui</code> 文件编译两次。</p>
 <h2 id="garbage-collection垃圾回收"><a class="header" href="#garbage-collection垃圾回收">Garbage Collection（垃圾回收）</a></h2>
-<p>One particular thing to bear in mind is that objects are garbage
-collected in Python, so if you do something like:</p>
-<p>有一个特殊情况需要牢记：Python 会对对象进行垃圾回收。因此，如果您编写了如下代码：</p>
+<p>One particular thing to bear in mind is that objects are garbage collected in Python, so if you do something like:<br>
+有一个特殊情况需要牢记：Python 会对对象进行垃圾回收。因此，如果您编写了如下代码：</p>
 <pre><code class="language-python">def myfunc():
     widget = QWidget()
     widget.show()
 </code></pre>
-<p>…​then the widget will disappear as soon as the function exits. To
-prevent this, assign top level widgets to an existing object, like:</p>
-<p>…​那么这个控件会在函数执行完毕后立即消失。为避免这种情况，需要将顶层控件赋值给一个已存在的对象，例如：</p>
+<p>…​then the widget will disappear as soon as the function exits. To prevent this, assign top level widgets to an existing object, like:<br>
+…​那么这个控件会在函数执行完毕后立即消失。为避免这种情况，需要将顶层控件赋值给一个已存在的对象，例如：</p>
 <pre><code class="language-python">def myfunc():
     mw.myWidget = widget = QWidget()
     widget.show()
 </code></pre>
-<p>This is often not required when you create a Qt object and give it an existing object as the parent, as the parent will keep a reference to
-the object.
+<p>This is often not required when you create a Qt object and give it an existing object as the parent, as the parent will keep a reference to the object.<br>
 不过，在创建一个 Qt 对象并为其指定一个父对象时，通常不必这样做，因为父对象会持有对该子对象的引用。</p>
 
                     </main>
