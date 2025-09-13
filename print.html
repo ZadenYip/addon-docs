@@ -271,8 +271,6 @@ Mypy 提供了一个 <code>check_untyped_defs</code> 选项，即便您的代码
 如果您有一个庞大且历史悠久的插件，不妨考虑使用 <code>monkeytype</code> 这类工具来自动为代码添加类型。</p>
 <details>
 <summary>Monkeytype</summary>
-<details>
-<summary>Monkeytype</summary>
 <p>To use monkeytype with an add-on called 'test', you could do something like the following:<br>
 要对一个名为「test」的插件使用 <code>monkeytype</code>，您可以参照以下步骤：</p>
 <pre><code class="language-shell">% /usr/local/bin/python3.8 -m venv pyenv
@@ -286,7 +284,6 @@ Mypy 提供了一个 <code>check_untyped_defs</code> 选项，即便您的代码
 之后，您需要注释掉所有顶层操作（例如在函数外部修改菜单的代码），因为这些操作会干扰 <code>monkeytype</code> 的正常工作。最后，您可以通过以下命令生成带有类型提示的文件：</p>
 <pre><code class="language-shell">(pyenv) % PYTHONPATH=~/Library/Application\ Support/Anki2/addons21 monkeytype apply test
 </code></pre>
-</details>
 </details>
 <p>Here are some example add-ons that use type hints:<br>
 这里有一些使用类型提示的插件示例：</p>
@@ -859,8 +856,7 @@ def my_ui_action(note_ids: list[int]) -&gt; None:
 <p>For more information on undo handling, including combining multiple operations into a single undo step, please see <a href="https://forums.ankiweb.net/t/add-on-porting-notes-for-anki-2-1-45/11212#undoredo-4">this forum page</a>.<br>
 如果想了解更多关于撤销处理的信息，包括如何将多个操作合并为一个撤销步骤，请参阅<a href="https://forums.ankiweb.net/t/add-on-porting-notes-for-anki-2-1-45/11212#undoredo-4">此论坛页面</a>。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="qt-and-pyqtqt-与-pyqt"><a class="header" href="#qt-and-pyqtqt-与-pyqt">Qt and PyQt（Qt 与 PyQt）</a></h1>
-<p>As mentioned in the overview, Anki uses PyQt for a lot of its UI, and the Qt
-documentation and <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/sip-classes.html">PyQt documentation</a> are invaluable for learning how to display different GUI widgets.<br>
+<p>As mentioned in the overview, Anki uses PyQt for a lot of its UI, and the Qt documentation and <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/sip-classes.html">PyQt documentation</a> are invaluable for learning how to display different GUI widgets.<br>
 如概述中所述，Anki 的许多 UI 都是用 PyQt 实现的。在学习如何显示不同的 GUI 控件时，Qt 官方文档和 <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/sip-classes.html">PyQt 文档</a> 是非常宝贵的参考资料。</p>
 <h2 id="qt-versionsqt-版本"><a class="header" href="#qt-versionsqt-版本">Qt Versions（Qt 版本）</a></h2>
 <p>From Anki 2.1.50, separate builds are provided for PyQt5 and PyQt6. Generally speaking, if you write code that works in Qt6, and make sure to import any Qt classes from aqt.qt instead of directly from PyQt6, your code should also work in Qt5.<br>

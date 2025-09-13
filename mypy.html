@@ -200,8 +200,6 @@ Mypy 提供了一个 <code>check_untyped_defs</code> 选项，即便您的代码
 如果您有一个庞大且历史悠久的插件，不妨考虑使用 <code>monkeytype</code> 这类工具来自动为代码添加类型。</p>
 <details>
 <summary>Monkeytype</summary>
-<details>
-<summary>Monkeytype</summary>
 <p>To use monkeytype with an add-on called 'test', you could do something like the following:<br>
 要对一个名为「test」的插件使用 <code>monkeytype</code>，您可以参照以下步骤：</p>
 <pre><code class="language-shell">% /usr/local/bin/python3.8 -m venv pyenv
@@ -215,7 +213,6 @@ Mypy 提供了一个 <code>check_untyped_defs</code> 选项，即便您的代码
 之后，您需要注释掉所有顶层操作（例如在函数外部修改菜单的代码），因为这些操作会干扰 <code>monkeytype</code> 的正常工作。最后，您可以通过以下命令生成带有类型提示的文件：</p>
 <pre><code class="language-shell">(pyenv) % PYTHONPATH=~/Library/Application\ Support/Anki2/addons21 monkeytype apply test
 </code></pre>
-</details>
 </details>
 <p>Here are some example add-ons that use type hints:<br>
 这里有一些使用类型提示的插件示例：</p>
