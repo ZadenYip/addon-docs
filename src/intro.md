@@ -5,6 +5,8 @@
 - 日语：
   - <https://t-cool.github.io/anki-addon-docs-ja/>
   - <http://rs.luminousspice.com/ankiaddons21/>
+- 中文
+  - <https://zadenyip.github.io/addon-docs-zh/>
 
 ## Overview（概述）
 
