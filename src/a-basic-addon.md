@@ -1,7 +1,6 @@
 # A Basic Add-on（一个简单的插件）
 
-Add the following to `myaddon/__init__.py` in your add-ons folder:
-
+Add the following to `myaddon/__init__.py` in your add-ons folder:<br>
 将以下代码添加到你 Anki 插件文件夹内的 `myaddon/__init__.py` 文件中：
 
 ```python
@@ -41,13 +40,8 @@ qconnect(action.triggered, testFunction)
 mw.form.menuTools.addAction(action)
 ```
 
-Restart Anki, and you should find a 'test' item in the tools menu.
-Running it will display a dialog with the card count.
+Restart Anki, and you should find a 'test' item in the tools menu. Running it will display a dialog with the card count.<br>
+重启 Anki，你应该能在「工具」菜单中找到一个名为「test」的菜单项。运行它，将会弹出一个显示卡片总数的对话框。
 
-重启 Anki，你应该能在「工具」菜单中找到一个名为「test」的菜单项。
-运行它，将会弹出一个显示卡片总数的对话框。
-
-If you make a mistake when entering in the plugin, Anki will show an
-error message on startup indicating where the problem is.
-
+If you make a mistake when entering in the plugin, Anki will show an error message on startup indicating where the problem is.<br>
 如果你在输入插件代码时出错，Anki 将在启动时显示一条错误消息，并指明问题所在。
