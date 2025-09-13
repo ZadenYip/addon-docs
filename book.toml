@@ -13,8 +13,7 @@ command = "mdbook-toc"
 renderer = ["html"]
 
 [output.html]
-git-repository-url = "https://github.com/ankitects/addon-docs/"
-cname = "addon-docs.ankiweb.net"
+git-repository-url = "https://github.com/ZadenYip/addon-docs/"
 
 [output.linkcheck]
 optional = true
