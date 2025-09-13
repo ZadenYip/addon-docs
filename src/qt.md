@@ -1,7 +1,6 @@
 # Qt and PyQt（Qt 与 PyQt）
 
-As mentioned in the overview, Anki uses PyQt for a lot of its UI, and the Qt
-documentation and [PyQt documentation](https://www.riverbankcomputing.com/static/Docs/PyQt6/sip-classes.html) are invaluable for learning how to display different GUI widgets.<br>
+As mentioned in the overview, Anki uses PyQt for a lot of its UI, and the Qt documentation and [PyQt documentation](https://www.riverbankcomputing.com/static/Docs/PyQt6/sip-classes.html) are invaluable for learning how to display different GUI widgets.<br>
 如概述中所述，Anki 的许多 UI 都是用 PyQt 实现的。在学习如何显示不同的 GUI 控件时，Qt 官方文档和 [PyQt 文档](https://www.riverbankcomputing.com/static/Docs/PyQt6/sip-classes.html) 是非常宝贵的参考资料。
 
 ## Qt Versions（Qt 版本）

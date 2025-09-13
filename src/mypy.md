@@ -43,9 +43,6 @@ If you have a large existing add-on, you may wish to look into tools like monkey
 <details>
 <summary>Monkeytype</summary>
 
-<details>
-<summary>Monkeytype</summary>
-
 To use monkeytype with an add-on called 'test', you could do something like the following:<br>
 要对一个名为「test」的插件使用 `monkeytype`，您可以参照以下步骤：
 
@@ -65,8 +62,6 @@ After doing so, you'll need to comment out any top-level actions (such as code m
 ```shell
 (pyenv) % PYTHONPATH=~/Library/Application\ Support/Anki2/addons21 monkeytype apply test
 ```
-
-</details>
 
 </details>
 
